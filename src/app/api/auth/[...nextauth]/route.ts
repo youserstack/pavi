@@ -1,6 +1,8 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
+import Credentials from "next-auth/providers/credentials";
 import type { NextAuthOptions } from "next-auth";
+import { revalidatePath } from "next/cache";
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
@@ -8,6 +10,38 @@ export const authOptions: NextAuthOptions = {
     Google({
       clientId: process.env.GOOGLE_ID as string,
       clientSecret: process.env.GOOGLE_SECRET as string,
+    }),
+    Credentials({
+      credentials: { email: {}, password: {} },
+      authorize: async (credentials) => {
+        console.log(
+          "☑️ api/auth/[...nextauth]/route > authorize callback : Credentials 인증/인가 처리"
+        );
+
+        try {
+          // ⚪ 스프링서버에서 인증처리
+          console.log("✔️ 스프링서버에서 인증처리중...");
+          const res = await fetch(`${process.env.API_URL}/api/auth/signin`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: credentials?.email, password: credentials?.password }),
+          });
+          if (!res.ok) {
+            const msg = "❌ 인증처리 실패";
+            console.error(msg);
+            throw new Error(msg);
+          }
+          const user = await res.json();
+          console.log("✔️ 스프링서버로부터 인증된 사용자 데이터", { user });
+
+          // ⚪ 넥스트서버에서 인가처리 (NextAuth는 이 객체를 기반으로 JWT/Session 생성)
+          return user;
+        } catch (error) {
+          throw error;
+          // if (error instanceof CredentialsSignin) throw error;
+          // throw new CredentialsSignin("알 수 없는 인증 오류");
+        }
+      },
     }),
   ],
   callbacks: {

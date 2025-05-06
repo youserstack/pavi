@@ -24,6 +24,7 @@ export default function Header() {
 
 async function UserMenu({ className }: { className?: string }) {
   const session = await getServerSession(authOptions);
+  // console.log({ session });
 
   return (
     <div className={cn("UserMenu flex gap-4 items-center", className)}>

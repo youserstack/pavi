@@ -16,7 +16,7 @@ export default function SignInWithOauth({ provider, label, Icon, iconClassName }
     <Button
       variant="outline"
       className="w-full cursor-pointer"
-      onClick={async () => await signIn(provider, { redirect: true, callbackUrl: "/dashboard" })}
+      onClick={() => signIn(provider, { redirect: true, callbackUrl: "/dashboard" })}
     >
       <Icon className={iconClassName} />
       <span>{label}</span>

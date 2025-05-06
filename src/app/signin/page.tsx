@@ -1,16 +1,15 @@
-import { ShipWheel } from "lucide-react";
-import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import OauthButtons from "@/app/signin/oauth-buttons";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import GeneralAuthForm from "@/app/signin/general-auth-form";
+import OauthButtons from "@/app/signin/oauth-buttons";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { ShipWheel } from "lucide-react";
+import Link from "next/link";
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
 export default async function SigninPage(props: { searchParams: SearchParams }) {
-  // const searchParams = await props.searchParams;
   const session = await getServerSession(authOptions);
 
   if (session) {
@@ -37,7 +36,6 @@ export default async function SigninPage(props: { searchParams: SearchParams }) 
               <CardContent className="grid gap-6">
                 <OauthButtons />
                 <Divider />
-                {/* <GeneralAuthForm searchParams={searchParams} /> */}
                 <GeneralAuthForm />
                 <SignupNotice />
               </CardContent>
