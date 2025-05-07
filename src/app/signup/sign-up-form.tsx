@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signupSchema, SignupSchema } from "@/lib/schemas";
+import { signUpSchema, SignupSchema } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -17,7 +17,7 @@ export default function SignUpForm() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<SignupSchema>({
-    resolver: zodResolver(signupSchema),
+    resolver: zodResolver(signUpSchema),
   });
 
   const onSubmit = async (data: SignupSchema) => {
@@ -40,8 +40,6 @@ export default function SignUpForm() {
       setSignupError("서버와의 통신 중 문제가 발생했습니다.");
     }
   };
-
-  useEffect(() => console.log({ errors }), [errors]);
 
   return (
     <form className="GeneralAuth grid gap-6" onSubmit={handleSubmit(onSubmit)}>

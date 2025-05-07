@@ -1,15 +1,15 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import GeneralAuthForm from "@/app/signin/general-auth-form";
-import OauthButtons from "@/app/signin/oauth-buttons";
+import SignInForm from "@/app/signin/sign-in-form";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { ShipWheel } from "lucide-react";
 import Link from "next/link";
+import SignInWithOauth from "@/components/sign-in-with-oauth";
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
-export default async function SigninPage(props: { searchParams: SearchParams }) {
+export default async function SignInPage(props: { searchParams: SearchParams }) {
   const session = await getServerSession(authOptions);
 
   if (session) {
@@ -23,20 +23,24 @@ export default async function SigninPage(props: { searchParams: SearchParams }) 
         <div className="Box flex w-full max-w-sm flex-col gap-6">
           <Link href="#" className="flex items-center gap-1 self-center font-medium">
             <ShipWheel />
-            Logo Inc.
+            Pavi Inc.
           </Link>
 
           <div className="flex flex-col gap-6">
             <Card className="border-border">
               <CardHeader className="text-center">
-                <CardTitle className="text-xl">Welcome back</CardTitle>
+                <CardTitle className="text-xl">로그인</CardTitle>
                 <CardDescription>사용할 계정을 선택하세요</CardDescription>
               </CardHeader>
 
               <CardContent className="grid gap-6">
-                <OauthButtons />
+                <ul className="flex flex-col gap-2">
+                  <SignInWithOauth provider="google" />
+                  <SignInWithOauth provider="naver" />
+                </ul>
                 <Divider />
-                <GeneralAuthForm />
+
+                <SignInForm />
                 <Notice />
               </CardContent>
             </Card>

@@ -3,7 +3,6 @@ import Google from "next-auth/providers/google";
 import Naver from "next-auth/providers/naver";
 import Credentials from "next-auth/providers/credentials";
 import type { NextAuthOptions } from "next-auth";
-import { revalidatePath } from "next/cache";
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,

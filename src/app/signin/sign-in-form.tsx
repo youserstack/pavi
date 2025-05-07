@@ -3,14 +3,14 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signinSchema, SigninSchema } from "@/lib/schemas";
+import { signInSchema, SigninSchema } from "@/lib/schemas";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-export default function GeneralAuthForm() {
+export default function SignInForm() {
   const router = useRouter();
   const [error, setError] = useState("");
   const {
@@ -18,7 +18,7 @@ export default function GeneralAuthForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<SigninSchema>({
-    resolver: zodResolver(signinSchema),
+    resolver: zodResolver(signInSchema),
   });
 
   const onSubmit = async (data: SigninSchema) => {
