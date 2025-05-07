@@ -1,8 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { signinSchema, signupSchema } from "@/lib/schemas";
-import { signIn } from "next-auth/react";
+import { signupSchema } from "@/lib/schemas";
 
 export async function signup(prevState: any, formData: FormData) {
   console.log("☑️ signup server action : 회원가입 서버액션 호출");

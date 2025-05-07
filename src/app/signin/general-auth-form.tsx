@@ -3,27 +3,34 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { signinSchema, SigninSchema } from "@/lib/schemas";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+type LoginForm = {
+  email: string;
+  password: string;
+};
 
 export default function GeneralAuthForm() {
   const router = useRouter();
   const [error, setError] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SigninSchema>({ resolver: zodResolver(signinSchema) });
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-
+  const onSubmit = async (data: LoginForm) => {
     const res = await signIn("credentials", {
-      email,
-      password,
+      email: data.email,
+      password: data.password,
+      redirect: false,
       // redirect: true,
       // callbackUrl: "/dashboard",
-      redirect: false,
     });
 
     if (res?.error) {
@@ -35,23 +42,36 @@ export default function GeneralAuthForm() {
   };
 
   return (
-    <form className="GeneralAuth grid gap-6" onSubmit={onSubmit}>
+    <form className="GeneralAuth grid gap-6" onSubmit={handleSubmit(onSubmit)}>
       <div className="grid gap-2">
-        <Label htmlFor="email">이메일</Label>
-        <Input name="email" type="email" id="email" placeholder="example@example.com" required />
-      </div>
-      <div className="grid gap-2">
-        <div className="flex items-center">
-          <Label htmlFor="password">비밀번호</Label>
-          <a href="#" className="ml-auto text-sm underline-offset-4 hover:underline">
-            비밀번호를 잊으셨나요?
-          </a>
+        <div className="flex items-center gap-4">
+          <Label>이메일</Label>
+          {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
         </div>
-        <Input name="password" type="password" id="password" required />
+        <Input
+          {...register("email", { required: "이메일을 입력하세요" })}
+          placeholder="example@example.com"
+        />
       </div>
+
+      <div className="grid gap-2">
+        <div className="flex items-center gap-4">
+          <Label>비밀번호</Label>
+          {errors.password && (
+            <p className="text-red-500 text-sm">{errors.password.message || "asdhalshdl"}</p>
+          )}
+        </div>
+        <Input
+          {...register("password", { required: "비밀번호를 입력하세요" })}
+          placeholder="********"
+        />
+      </div>
+
       <Button type="submit" className="w-full">
         로그인
       </Button>
+
+      {error && <p className="text-red-600 text-sm">{error}</p>}
     </form>
   );
 }

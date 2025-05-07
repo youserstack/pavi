@@ -1,4 +1,4 @@
-import { number, object, string } from "zod";
+import { number, object, string, z } from "zod";
 
 export const signinSchema = object({
   email: string({ required_error: "이메일은 필수 항목입니다." })
@@ -41,3 +41,6 @@ export const tableRowSchema = object({
   limit: string(),
   reviewer: string(),
 });
+
+export type SigninSchema = z.infer<typeof signinSchema>;
+export type SignupSchema = z.infer<typeof signupSchema>;

@@ -24,7 +24,7 @@ export default function Header() {
 
 async function UserMenu({ className }: { className?: string }) {
   const session = await getServerSession(authOptions);
-  // console.log({ session });
+  console.log({ session });
 
   return (
     <div className={cn("UserMenu flex gap-4 items-center", className)}>
@@ -37,7 +37,10 @@ async function UserMenu({ className }: { className?: string }) {
           </ul>
 
           <Avatar>
-            <AvatarImage src={"https://github.com/shadcn.png"} alt={"avatar"} />
+            <AvatarImage
+              src={session.user?.image || "https://github.com/shadcn.png"}
+              alt={"avatar"}
+            />
             <AvatarFallback>
               {session?.user?.name?.slice(0, 1).toUpperCase() || "CN"}
             </AvatarFallback>

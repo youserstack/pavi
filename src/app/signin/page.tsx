@@ -37,7 +37,7 @@ export default async function SigninPage(props: { searchParams: SearchParams }) 
                 <OauthButtons />
                 <Divider />
                 <GeneralAuthForm />
-                <SignupNotice />
+                <Notice />
               </CardContent>
             </Card>
 
@@ -59,13 +59,16 @@ function Divider() {
   );
 }
 
-function SignupNotice() {
+function Notice() {
   return (
-    <div className="text-center text-sm space-x-4">
-      <span>계정이 없으신가요?</span>
-      <a href="#" className="underline underline-offset-4">
+    <div className="flex justify-between gap-2 text-sm">
+      <Link href="#" className="underline-offset-4 hover:underline">
+        비밀번호 찾기
+      </Link>
+
+      <Link href={"/signup"} className="underline-offset-4 hover:underline">
         회원가입
-      </a>
+      </Link>
     </div>
   );
 }

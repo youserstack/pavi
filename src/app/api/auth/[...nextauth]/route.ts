@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
+import Naver from "next-auth/providers/naver";
 import Credentials from "next-auth/providers/credentials";
 import type { NextAuthOptions } from "next-auth";
 import { revalidatePath } from "next/cache";
@@ -10,6 +11,10 @@ export const authOptions: NextAuthOptions = {
     Google({
       clientId: process.env.GOOGLE_ID as string,
       clientSecret: process.env.GOOGLE_SECRET as string,
+    }),
+    Naver({
+      clientId: process.env.NAVER_ID as string,
+      clientSecret: process.env.NAVER_SECRET as string,
     }),
     Credentials({
       credentials: { email: {}, password: {} },
