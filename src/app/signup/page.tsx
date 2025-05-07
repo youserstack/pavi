@@ -1,9 +1,18 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import SignUpForm from "@/app/signup/sign-up-form";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import { ShipWheel } from "lucide-react";
 import Link from "next/link";
 
 export default async function SignUpPage() {
+  const session = await getServerSession(authOptions);
+
+  if (session) {
+    redirect("/");
+  }
+
   return (
     <main>
       <section>

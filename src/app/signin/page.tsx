@@ -1,19 +1,16 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import SignInWithOauth from "@/components/sign-in-with-oauth";
 import SignInForm from "@/app/signin/sign-in-form";
-import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import { ShipWheel } from "lucide-react";
 import Link from "next/link";
-import SignInWithOauth from "@/components/sign-in-with-oauth";
 
-type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
-
-export default async function SignInPage(props: { searchParams: SearchParams }) {
+export default async function SignInPage() {
   const session = await getServerSession(authOptions);
 
   if (session) {
-    // 이미 로그인된 경우 /dashboard로 서버 리다이렉트
     redirect("/dashboard");
   }
 
