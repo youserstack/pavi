@@ -10,11 +10,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-type LoginForm = {
-  email: string;
-  password: string;
-};
-
 export default function GeneralAuthForm() {
   const router = useRouter();
   const [error, setError] = useState("");
@@ -22,9 +17,11 @@ export default function GeneralAuthForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SigninSchema>({ resolver: zodResolver(signinSchema) });
+  } = useForm<SigninSchema>({
+    resolver: zodResolver(signinSchema),
+  });
 
-  const onSubmit = async (data: LoginForm) => {
+  const onSubmit = async (data: SigninSchema) => {
     const res = await signIn("credentials", {
       email: data.email,
       password: data.password,
@@ -49,7 +46,8 @@ export default function GeneralAuthForm() {
           {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
         </div>
         <Input
-          {...register("email", { required: "이메일을 입력하세요" })}
+          {...register("email")}
+          aria-invalid={!!errors.email}
           placeholder="example@example.com"
         />
       </div>
@@ -57,14 +55,9 @@ export default function GeneralAuthForm() {
       <div className="grid gap-2">
         <div className="flex items-center gap-4">
           <Label>비밀번호</Label>
-          {errors.password && (
-            <p className="text-red-500 text-sm">{errors.password.message || "asdhalshdl"}</p>
-          )}
+          {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
         </div>
-        <Input
-          {...register("password", { required: "비밀번호를 입력하세요" })}
-          placeholder="********"
-        />
+        <Input {...register("password")} aria-invalid={!!errors.password} placeholder="********" />
       </div>
 
       <Button type="submit" className="w-full">
