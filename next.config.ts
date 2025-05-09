@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   env: {
     API_URL: process.env.API_URL,
   },
+  images: {
+    remotePatterns: [{ hostname: "shopping-phinf.pstatic.net" }],
+  },
 };
 
 export default nextConfig;

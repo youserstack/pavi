@@ -227,9 +227,15 @@
 
   main {
     section {
-      @apply min-h-screen;
-      @apply flex flex-col justify-center items-center;
+      @apply max-w-7xl min-h-screen mx-auto;
+      @apply border border-dashed;
+      @apply pt-10;
+      /* @apply flex flex-col justify-center items-center; */
     }
+  }
+
+  button {
+    @apply hover:cursor-pointer;
   }
 
   /* table {
