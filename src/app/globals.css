@@ -208,6 +208,13 @@
   }
 }
 
+/* Breakpoints */
+@layer base {
+  @theme {
+    --breakpoint-xs: 30rem;
+  }
+}
+
 /* Base 스타일 */
 @layer base {
   /* shadcn 기본 설정된 스타일 */

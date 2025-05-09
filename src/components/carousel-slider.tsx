@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -8,10 +10,12 @@ import {
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import Autoplay from "embla-carousel-autoplay";
+import { useRef } from "react";
 
-const imageUrl = "https://shopping-phinf.pstatic.net/main_5025360/50253608620.20240910110137.jpg";
+export function CarouselSlider() {
+  const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
 
-export function CarouselSize() {
   return (
     <Carousel
       opts={{
@@ -20,6 +24,9 @@ export function CarouselSize() {
         slidesToScroll: "auto",
         // slidesToScroll: 3,
       }}
+      plugins={[plugin.current]}
+      onMouseEnter={() => plugin.current.stop()}
+      onMouseLeave={() => plugin.current.play()}
       className={cn(
         "group",
         "w-full h-[300px]",
@@ -45,3 +52,5 @@ export function CarouselSize() {
     </Carousel>
   );
 }
+
+const imageUrl = "https://shopping-phinf.pstatic.net/main_5025360/50253608620.20240910110137.jpg";

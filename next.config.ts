@@ -5,7 +5,11 @@ const nextConfig: NextConfig = {
     API_URL: process.env.API_URL,
   },
   images: {
-    remotePatterns: [{ hostname: "shopping-phinf.pstatic.net" }],
+    remotePatterns: [
+      //
+      { hostname: "shopping-phinf.pstatic.net" },
+      { hostname: "*" },
+    ],
   },
 };
 
