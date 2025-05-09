@@ -1,13 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function ProductList() {
-  const products = await fetch(
-    "https://express-server-pi-seven.vercel.app/api/products?sort=latest"
-  ).then((res) => res.json());
-
-  console.log({ products });
-
+export default async function ProductList({ products }: { products: [] }) {
   return (
     <div className="ProductList px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
       <ul className="grid grid-cols-8 xs:grid-cols-12 sm:grid-cols-16 md:grid-cols-20 lg:grid-cols-24">

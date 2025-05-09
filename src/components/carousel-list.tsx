@@ -9,9 +9,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Heart } from "lucide-react";
+import { useWishlistStore } from "@/stores/useWishlistStore";
 
-export function CarouselList() {
+export function CarouselList({ products }: { products: Product[] }) {
   const [isDragging, setIsDragging] = useState(false);
 
   return (
@@ -32,35 +34,13 @@ export function CarouselList() {
         onMouseUp={() => setIsDragging(false)}
         onMouseLeave={() => setIsDragging(false)}
       >
-        {Array.from({ length: 20 }).map((_, index) => (
+        {products.map((product, index) => (
           <CarouselItem
             key={index}
             // padding left 로 간격조절가능
             className="basis-1/2 xs:basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/6 pl-0 /pl-4"
           >
-            <Link href={"#"} className={isDragging ? "cursor-grabbing" : ""}>
-              <div className="border">
-                <div>
-                  <Image
-                    src={imageUrl}
-                    alt=""
-                    width={500}
-                    height={500}
-                    className="object-cover aspect-square"
-                  />
-                </div>
-                <div className="p-2">
-                  <p className="text-[11px] md:text-[12px] font-semibold">나이키</p>
-                  <p className="text-[12px] md:text-[13px]">
-                    원 드라이핏 자켓 W - 블랙:화이트 / HQ3368-010
-                  </p>
-                  <p className="text-[12px] md:text-[13px] font-semibold flex gap-1">
-                    <span className="text-red-600 dark:text-red-500">12%</span>
-                    <span>23,500원</span>
-                  </p>
-                </div>
-              </div>
-            </Link>
+            <Item product={product} isDragging={isDragging} />
           </CarouselItem>
         ))}
       </CarouselContent>
@@ -71,3 +51,62 @@ export function CarouselList() {
 }
 
 const imageUrl = "https://shopping-phinf.pstatic.net/main_5025360/50253608620.20240910110137.jpg";
+
+function Item({ product, isDragging }: { product: Product; isDragging: boolean }) {
+  const { items, isInWishlist, removeFromWishlist, addToWishlist } = useWishlistStore();
+  const [isWished, setIsWished] = useState(false);
+
+  useEffect(() => {
+    setIsWished(isInWishlist(product.productId));
+  }, [product.productId, isInWishlist, items]);
+
+  return (
+    <Link href={"#"} className={isDragging ? "cursor-grabbing" : ""}>
+      <div className="border">
+        {/* 이미지 */}
+        <div className="relative">
+          <Image
+            src={product.image}
+            alt=""
+            width={500}
+            height={500}
+            className="object-cover aspect-square"
+          />
+          <Heart
+            className={`absolute bottom-4 right-4 size-4 
+           stroke-red-500 hover:fill-red-500
+             ${isWished ? "fill-red-500" : ""}
+           `}
+            onClick={(e) => {
+              e.preventDefault();
+
+              if (isInWishlist(product.productId)) {
+                removeFromWishlist(product.productId);
+              } else {
+                addToWishlist({
+                  id: product.productId,
+                  name: product.title,
+                  image: product.image,
+                  price: product.price,
+                });
+              }
+            }}
+          />
+        </div>
+
+        {/* 설명 */}
+        <div className="p-2">
+          <p className="text-[11px] md:text-[12px] font-semibold">{product.brand}</p>
+          <p className="text-[12px] md:text-[13px]">
+            {/* 원 드라이핏 자켓 W - 블랙:화이트 / HQ3368-010 */}
+            {product.title}
+          </p>
+          <p className="text-[12px] md:text-[13px] font-semibold flex gap-1">
+            <span className="text-red-600 dark:text-red-500">12%</span>
+            <span>23,500원</span>
+          </p>
+        </div>
+      </div>
+    </Link>
+  );
+}
