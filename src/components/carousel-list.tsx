@@ -56,6 +56,7 @@ function Item({ product, isDragging }: { product: Product; isDragging: boolean }
   const { items, isInWishlist, removeFromWishlist, addToWishlist } = useWishlistStore();
   const [isWished, setIsWished] = useState(false);
 
+  // 리로드시, 아이템리스트변경시 -> 위시리스트상태변경 -> 구독중인UI스타일변경
   useEffect(() => {
     setIsWished(isInWishlist(product.productId));
   }, [product.productId, isInWishlist, items]);

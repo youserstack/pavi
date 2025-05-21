@@ -6,8 +6,7 @@ const nextConfig: NextConfig = {
   },
   images: {
     remotePatterns: [
-      //
-      { hostname: "shopping-phinf.pstatic.net" },
+      // { hostname: "shopping-phinf.pstatic.net" },
       { hostname: "*" },
     ],
   },

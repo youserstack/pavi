@@ -25,8 +25,8 @@ export const useCartStore = create<CartStore>()(
 
       addToCart: (newItem) => {
         set((state: CartStore) => {
-          const existingItem = state.items.find((item) => item.id === newItem.id);
-          if (existingItem) existingItem.quantity += newItem.quantity;
+          const foundItem = state.items.find((item) => item.id === newItem.id);
+          if (foundItem) foundItem.quantity += newItem.quantity;
           else state.items.push(newItem);
         });
       },
@@ -83,9 +83,9 @@ export const useCartStore = create<CartStore>()(
 
 //       addToCart: (newItem) => {
 //         set((state) => {
-//           const existingItem = state.items.find((item) => item.id === newItem.id);
+//           const foundItem = state.items.find((item) => item.id === newItem.id);
 //           // 이미 있는 아이템이면 수량만 증가
-//           if (existingItem) {
+//           if (foundItem) {
 //             const updatedItems = state.items.map((item) =>
 //               item.id === newItem.id
 //                 ? { ...item, quantity: item.quantity + newItem.quantity }

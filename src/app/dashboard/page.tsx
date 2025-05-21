@@ -31,7 +31,7 @@ export default async function DashboardPage() {
 
   return (
     <main>
-      <section>
+      <section className="flex flex-col justify-center items-center">
         <Suspense fallback={<DashboardSkeleton />}>
           <Dashboard />
         </Suspense>

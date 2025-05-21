@@ -8,7 +8,7 @@ import SignOut from "@/components/sign-out";
 
 export default function Header() {
   return (
-    <header className="Header fixed w-full h-[40px] z-[50] bg-emerald-800">
+    <header className="Header fixed w-full h-[40px] z-[50]">
       <section className="w-full h-full flex justify-between items-center">
         <Link className="Logo" href={"/"}>
           <p className="font-semibold uppercase flex gap-1 items-center">

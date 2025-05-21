@@ -49,6 +49,17 @@ export const useWishlistStore = create<WishlistStore>()(
     {
       name: "wishlist-storage",
       storage: createJSONStorage(() => localStorage),
+      // onRehydrateStorage: (state) => {
+      //   console.log("hydration starts"); // 스토리지로부터 상태를 불러오기 시작할 때 출력
+
+      //   return (state, error) => {
+      //     if (error) {
+      //       console.log("an error happened during hydration", error); // 에러 발생 시 출력
+      //     } else {
+      //       console.log("hydration finished"); // 정상적으로 hydration 완료 시 출력
+      //     }
+      //   };
+      // },
     }
   )
 );
