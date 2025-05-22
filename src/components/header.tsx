@@ -5,17 +5,16 @@ import { cn } from "@/lib/utils";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import SignOut from "@/components/sign-out";
+import Image from "next/image";
 
 export default function Header() {
   return (
     <header className="Header fixed w-full h-[40px] z-[50]">
       <section className="w-full h-full flex justify-between items-center">
-        <Link className="Logo" href={"/"}>
-          <p className="font-semibold uppercase flex gap-1 items-center">
-            <span className="hidden sm:block">logo</span>
-          </p>
+        <Link className="flex items-center gap-2" href={"/"}>
+          <Image src="/favicon.png" alt="logo" width={200} height={200} className="size-4" />
+          <p className="font-semibold uppercase">Pavi</p>
         </Link>
-
         <UserMenu />
       </section>
     </header>
@@ -50,11 +49,11 @@ async function UserMenu({ className }: { className?: string }) {
         </>
       ) : (
         <>
-          <Button size={"sm"} asChild>
+          <Button size={"sm"} asChild variant={"outline"} className="rounded-full">
             <Link href={"/signin"}>로그인</Link>
           </Button>
 
-          <Button size={"sm"} asChild>
+          <Button size={"sm"} asChild variant={"outline"} className="rounded-full">
             <Link href={"/signup"}>회원가입</Link>
           </Button>
         </>

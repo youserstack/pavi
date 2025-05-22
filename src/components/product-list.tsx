@@ -1,15 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function ProductList({ products }: { products: [] }) {
+export default function ProductList({ products }: { products: [] }) {
   return (
-    <div className="ProductList px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <div className="ProductList">
       <ul className="grid grid-cols-8 xs:grid-cols-12 sm:grid-cols-16 md:grid-cols-20 lg:grid-cols-24">
         {products.map((product: any) => (
           <Link
             key={product.productId}
             href={`/products/${product._id}`}
-            className="group col-span-4 border"
+            className="group col-span-4 border/"
           >
             <Image
               src={product.image || spareImageUrl}

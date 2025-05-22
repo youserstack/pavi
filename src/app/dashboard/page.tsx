@@ -5,18 +5,6 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
-async function getUser(user: any) {
-  try {
-    const res = await fetch(`${process.env.API_URL}/api/users?email=${user.email}`);
-    if (!res.ok) throw new Error("not ok");
-    return res.json();
-  } catch (error) {
-    const msg = "❌ 에러발생";
-    console.error(msg, error);
-    return null;
-  }
-}
-
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
 

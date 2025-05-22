@@ -161,18 +161,22 @@
   }
 
   header {
-    @apply bg-emerald-900 text-background;
+    @apply bg-background;
+    @apply border-b;
     section {
       @apply max-w-7xl mx-auto;
       @apply px-2 xs:px-3 sm:px-4;
+      /* @apply border border-sky-500 border-dashed; */
     }
   }
 
   main {
     section {
-      @apply max-w-7xl min-h-screen mx-auto;
-      @apply border border-dashed;
-      @apply pt-10;
+      @apply max-w-7xl mx-auto;
+      @apply border border-emerald-500 border-dashed;
+      @apply pt-[40px];
+      @apply px-2 sm:px-3 lg:px-4;
+      @apply space-y-8;
       /* @apply flex flex-col justify-center items-center; */
     }
   }

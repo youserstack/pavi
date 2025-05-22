@@ -24,7 +24,7 @@ export function CarouselList({ products }: { products: Product[] }) {
         // 1,2,3,4,...: 해당하는 숫자 단위만큼 슬라이드 스크롤
         slidesToScroll: "auto",
       }}
-      className="group"
+      className="group bg-background"
     >
       <CarouselContent
         // margin left 로 슬라이드의 그룹 간의 간격조절가능
@@ -63,7 +63,7 @@ function Item({ product, isDragging }: { product: Product; isDragging: boolean }
 
   return (
     <Link href={"#"} className={isDragging ? "cursor-grabbing" : ""}>
-      <div className="border">
+      <div className="border/">
         {/* 이미지 */}
         <div className="relative">
           <Image

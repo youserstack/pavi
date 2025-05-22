@@ -16,7 +16,7 @@ export default async function SignInPage() {
 
   return (
     <main className="SigninPage">
-      <section className="flex flex-col items-center justify-center">
+      <section className="min-h-screen flex flex-col items-center justify-center">
         <div className="Box flex w-full max-w-sm flex-col gap-6">
           <Link href="#" className="flex items-center gap-1 self-center font-medium">
             <ShipWheel />

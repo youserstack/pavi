@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Pavi | E-Commerce",
+  title: "PAVI | E-Commerce",
   description: "pavi는 youserstack이 개발한 이커머스 웹 애플리케이션입니다.",
   keywords: ["pavi", "youserstack", "e-commerce"],
   icons: "/favicon.png",
