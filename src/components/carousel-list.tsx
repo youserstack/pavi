@@ -62,7 +62,11 @@ function Item({ product, isDragging }: { product: Product; isDragging: boolean }
   }, [product.productId, isInWishlist, items]);
 
   return (
-    <Link href={"#"} className={isDragging ? "cursor-grabbing" : ""}>
+    <Link
+      href={"#"}
+      onClick={(e) => e.preventDefault()}
+      className={isDragging ? "cursor-grabbing" : ""}
+    >
       <div className="border/">
         {/* 이미지 */}
         <div className="relative">

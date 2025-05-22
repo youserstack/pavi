@@ -28,11 +28,13 @@ export default function Home() {
   if (status === "success") {
     return (
       <main>
-        <section>
+        {/* <section>
           <CarouselSlider />
-        </section>
+        </section> */}
 
-        <section className="bg-muted space-y-8">
+        <section></section>
+
+        {/* <section className="bg-muted space-y-8">
           <div className=" space-y-8">
             <div>
               <h1 className="ml-3 mb-3 font-semibold">구매가 많은 제품들</h1>
@@ -44,8 +46,7 @@ export default function Home() {
               <ProductList products={products} />
             </div>
           </div>
-        </section>
-        <section className="/hidden"></section>
+        </section> */}
       </main>
     );
   }

@@ -10,7 +10,7 @@ const publicRoutes = ["/"];
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const token = await getToken({ req: request });
-  console.log("✅", pathname);
+  // console.log("✅", pathname);
 
   // 인증사용자를 위한 페이지에 미인증사용자 접속시 -> 인증이 필요하니까 로그인페이지로 리다이렉트
   if (protectedRoutes.some((route) => pathname.startsWith(route)) && !token) {
