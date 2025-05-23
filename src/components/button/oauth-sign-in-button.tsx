@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import { SiNaver } from "react-icons/si";
 
-export default function SignInWithOauth({ provider }: { provider: "google" | "naver" }) {
+export default function OauthSignInButton({ provider }: { provider: "google" | "naver" }) {
   return (
     <Button
       variant="outline"

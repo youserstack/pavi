@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import SignInWithOauth from "@/components/sign-in-with-oauth";
+import OauthSignInButton from "@/components/button/oauth-sign-in-button";
 import SignInForm from "@/app/signin/sign-in-form";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
@@ -25,8 +25,8 @@ export default async function SignInPage() {
 
           <CardContent className="grid gap-6">
             <ul className="flex flex-col gap-2">
-              <SignInWithOauth provider="google" />
-              <SignInWithOauth provider="naver" />
+              <OauthSignInButton provider="google" />
+              <OauthSignInButton provider="naver" />
             </ul>
             <Divider />
 

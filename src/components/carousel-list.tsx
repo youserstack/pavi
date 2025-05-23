@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import { Heart } from "lucide-react";
 import { useWishlistStore } from "@/stores/useWishlistStore";
 
-export function MyCarouselList({ products }: { products: Product[] }) {
+export function CarouselList({ products }: { products: Product[] }) {
   const [isDragging, setIsDragging] = useState(false);
 
   return (

@@ -111,7 +111,13 @@ export const saleItems = [
   },
 ];
 
-export const navItems = [
+type MenuItem = {
+  id: string;
+  name: string;
+  children?: MenuItem[];
+};
+
+export const navItems: MenuItem[] = [
   { id: "category", name: "카테고리", children: categoryItems },
   { id: "brand", name: "브랜드", children: brandItems },
   { id: "event", name: "이벤트", children: eventItems },

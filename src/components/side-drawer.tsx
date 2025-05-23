@@ -1,10 +1,10 @@
 "use client";
 
-import { MyAccordion } from "@/components/my-accordion";
+import { AccordionNavMenu } from "@/components/menu/accordion-nav-menu";
 import { Button } from "@/components/ui/button";
-import MyAvatar from "@/components/my-avatar";
+import UserAvatar from "@/components/user-avatar";
 import { useSession } from "next-auth/react";
-import MySignOut from "@/components/my-sign-out";
+import SignOutButton from "@/components/button/sign-out-button";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import {
@@ -17,9 +17,9 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Separator } from "@/components/ui/separator";
-import MySignIn from "@/components/my-sign-in";
+import SignInButton from "@/components/button/sign-in-button";
 
-export function MyNavDrawer() {
+export function SideDrawer() {
   const { data: session } = useSession();
   const image = session?.user?.image as string;
   const name = session?.user?.name as string;
@@ -38,14 +38,14 @@ export function MyNavDrawer() {
             <Link href="/" className="uppercase mr-auto">
               <DrawerTitle>home</DrawerTitle>
             </Link>
-            {session ? <MyAvatar image={image} username={name} /> : <MySignIn />}
+            {session ? <UserAvatar image={image} username={name} /> : <SignInButton />}
           </div>
           <Separator className="my-4" />
-          <MyAccordion />
+          <AccordionNavMenu />
         </DrawerHeader>
 
         <DrawerFooter>
-          <MySignOut />
+          <SignOutButton />
           <DrawerClose asChild>
             <Button variant="outline">닫기</Button>
           </DrawerClose>

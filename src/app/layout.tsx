@@ -1,13 +1,11 @@
 import TanstackQueryProvider from "@/providers/tanstack-query-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { inter, notoSansKR, orbitron } from "@/lib/fonts";
-import AuthProvider from "@/providers/AuthProvider";
+import AuthProvider from "@/providers/auth-provider";
 import Header from "@/components/header";
 import type { Metadata } from "next";
 import { cn } from "@/lib/utils";
 import "./globals.css";
-import NavSidebar from "@/components/nav-sidebar";
-import { SidebarProvider } from "@/components/ui/sidebar";
 
 export const metadata: Metadata = {
   title: "PAVI | E-Commerce",

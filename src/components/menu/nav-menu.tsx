@@ -1,3 +1,6 @@
+import { navItems } from "@/data/items";
+import Link from "next/link";
+import React from "react";
 import {
   Menubar,
   MenubarContent,
@@ -9,16 +12,8 @@ import {
   MenubarSubTrigger,
   MenubarTrigger,
 } from "@/components/ui/menubar";
-import Link from "next/link";
-import React from "react";
 
-type MenuItem = {
-  id: string;
-  name: string;
-  children?: MenuItem[];
-};
-
-export function NavMenubar({ navItems }: { navItems: MenuItem[] }) {
+export function NavMenu() {
   return (
     <Menubar className="hidden md:flex border-none">
       {navItems.map((navItem) => (

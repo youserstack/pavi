@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-export default function MySignIn() {
+export default function SignUpButton() {
   return (
     <Button asChild variant={"outline"} size={"sm"} className="rounded-full">
-      <Link href={"/signin"}>로그인</Link>
+      <Link href={"/signup"}>회원가입</Link>
     </Button>
   );
 }

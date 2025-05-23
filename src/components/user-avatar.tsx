@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-export default function MyAvatar({ image, username }: { image: string; username: string }) {
+export default function UserAvatar({ image, username }: { image: string; username: string }) {
   return (
     <Avatar>
       <AvatarImage src={image || "https://github.com/shadcn.png"} alt={"avatar"} />

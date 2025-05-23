@@ -1,7 +1,7 @@
 "use client";
 
-import { MyCarouselList } from "@/components/my-carousel-list";
-import { MyCarouselSlider } from "@/components/my-carousel-slider";
+import { CarouselList } from "@/components/carousel-list";
+import { CarouselSlider } from "@/components/carousel-slider";
 import ProductList from "@/components/product-list";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getProducts } from "@/lib/api/fetchers";
@@ -29,14 +29,14 @@ export default function Home() {
     return (
       <main>
         <section>
-          <MyCarouselSlider />
+          <CarouselSlider />
         </section>
 
         <section className="bg-muted space-y-8">
           <div className=" space-y-8">
             <div>
               <h1 className="ml-3 mb-3 font-semibold">구매가 많은 제품들</h1>
-              <MyCarouselList products={products} />
+              <CarouselList products={products} />
             </div>
 
             <div>

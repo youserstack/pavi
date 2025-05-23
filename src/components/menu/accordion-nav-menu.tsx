@@ -4,11 +4,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
 import { navItems } from "@/data/items";
 import Link from "next/link";
 
-export function MyAccordion() {
+export function AccordionNavMenu() {
   return (
     <Accordion type="single" collapsible className="w-full ">
       {navItems.map((navItem) => (
