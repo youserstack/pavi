@@ -1,7 +1,7 @@
 "use client";
 
-import { CarouselList } from "@/components/carousel-list";
-import { CarouselSlider } from "@/components/carousel-slider";
+import { MyCarouselList } from "@/components/my-carousel-list";
+import { MyCarouselSlider } from "@/components/my-carousel-slider";
 import ProductList from "@/components/product-list";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getProducts } from "@/lib/api/fetchers";
@@ -28,15 +28,15 @@ export default function Home() {
   if (status === "success") {
     return (
       <main>
-        {/* <section>
-          <CarouselSlider />
-        </section> */}
+        <section>
+          <MyCarouselSlider />
+        </section>
 
-        {/* <section className="bg-muted space-y-8">
+        <section className="bg-muted space-y-8">
           <div className=" space-y-8">
             <div>
               <h1 className="ml-3 mb-3 font-semibold">구매가 많은 제품들</h1>
-              <CarouselList products={products} />
+              <MyCarouselList products={products} />
             </div>
 
             <div>
@@ -44,7 +44,7 @@ export default function Home() {
               <ProductList products={products} />
             </div>
           </div>
-        </section> */}
+        </section>
       </main>
     );
   }

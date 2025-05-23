@@ -19,7 +19,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import MySignIn from "@/components/my-sign-in";
 
-export function NavDrawer() {
+export function MyNavDrawer() {
   const { data: session } = useSession();
   const image = session?.user?.image as string;
   const name = session?.user?.name as string;

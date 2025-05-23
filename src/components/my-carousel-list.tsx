@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import { Heart } from "lucide-react";
 import { useWishlistStore } from "@/stores/useWishlistStore";
 
-export function CarouselList({ products }: { products: Product[] }) {
+export function MyCarouselList({ products }: { products: Product[] }) {
   const [isDragging, setIsDragging] = useState(false);
 
   return (
@@ -49,8 +49,6 @@ export function CarouselList({ products }: { products: Product[] }) {
     </Carousel>
   );
 }
-
-const imageUrl = "https://shopping-phinf.pstatic.net/main_5025360/50253608620.20240910110137.jpg";
 
 function Item({ product, isDragging }: { product: Product; isDragging: boolean }) {
   const { items, isInWishlist, removeFromWishlist, addToWishlist } = useWishlistStore();

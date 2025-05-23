@@ -1,9 +1,6 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import Dashboard from "@/app/dashboard/dashboard";
-import DashboardSkeleton from "@/components/dashboard-skeleton";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { Suspense } from "react";
 
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
@@ -19,11 +16,7 @@ export default async function DashboardPage() {
 
   return (
     <main>
-      <section className="flex flex-col justify-center items-center">
-        <Suspense fallback={<DashboardSkeleton />}>
-          <Dashboard />
-        </Suspense>
-      </section>
+      <section className="flex flex-col justify-center items-center"></section>
     </main>
   );
 }

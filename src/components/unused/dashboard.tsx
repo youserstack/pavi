@@ -2,7 +2,7 @@
 
 import { ChartAreaInteractive } from "@/components/cart-area-interactive";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
+import { AppSidebar } from "@/components/unused/app-sidebar";
 import { DataTable } from "@/components/table/data-table";
 import { SectionCards } from "@/components/section-cards";
 import { SiteHeader } from "@/components/site-header";

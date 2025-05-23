@@ -1,6 +1,9 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
+import Autoplay from "embla-carousel-autoplay";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { useRef } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -8,12 +11,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
-import Autoplay from "embla-carousel-autoplay";
-import { useRef } from "react";
 
-export function CarouselSlider() {
+export function MyCarouselSlider() {
   const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
 
   return (

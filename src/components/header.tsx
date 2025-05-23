@@ -1,17 +1,14 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { cn } from "@/lib/utils";
-import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import MySignOut from "@/components/my-sign-out";
-import Image from "next/image";
-import { categoryItems, navItems } from "@/data/items";
+import { MyNavDrawer } from "@/components/my-nav-drawer";
 import { NavMenubar } from "@/components/nav-menubar";
-import { NavDrawer } from "@/components/nav-drawer";
+import MySignOut from "@/components/my-sign-out";
 import MySignIn from "@/components/my-sign-in";
 import MySignUp from "@/components/my-sign-up";
 import MyAvatar from "@/components/my-avatar";
+import { getServerSession } from "next-auth";
+import { navItems } from "@/data/items";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
   return (
@@ -23,7 +20,7 @@ export default function Header() {
         </Link>
         <NavMenubar navItems={navItems} />
         <UserMenu />
-        <NavDrawer />
+        <MyNavDrawer />
       </section>
     </header>
   );
