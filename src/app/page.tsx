@@ -32,8 +32,6 @@ export default function Home() {
           <CarouselSlider />
         </section> */}
 
-        <section></section>
-
         {/* <section className="bg-muted space-y-8">
           <div className=" space-y-8">
             <div>

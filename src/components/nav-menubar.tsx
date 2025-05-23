@@ -20,7 +20,7 @@ type MenuItem = {
 
 export function NavMenubar({ navItems }: { navItems: MenuItem[] }) {
   return (
-    <Menubar className="border-none">
+    <Menubar className="hidden md:flex border-none">
       {navItems.map((navItem) => (
         <MenubarMenu key={navItem.name}>
           <MenubarTrigger className="navItem hover:bg-accent hover:text-accent-foreground">

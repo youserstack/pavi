@@ -161,6 +161,7 @@
   }
 
   header {
+    @apply w-screen!;
     @apply bg-background;
     @apply border-b;
     section {

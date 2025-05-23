@@ -6,6 +6,8 @@ import Header from "@/components/header";
 import type { Metadata } from "next";
 import { cn } from "@/lib/utils";
 import "./globals.css";
+import NavSidebar from "@/components/nav-sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 export const metadata: Metadata = {
   title: "PAVI | E-Commerce",

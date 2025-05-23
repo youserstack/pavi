@@ -17,34 +17,23 @@ export default async function SignInPage() {
   return (
     <main className="SigninPage">
       <section className="min-h-screen flex flex-col items-center justify-center">
-        <div className="Box flex w-full max-w-sm flex-col gap-6">
-          <Link href="#" className="flex items-center gap-1 self-center font-medium">
-            <ShipWheel />
-            Pavi Inc.
-          </Link>
+        <Card className="w-full max-w-sm">
+          <CardHeader className="text-center">
+            <CardTitle className="text-xl">로그인</CardTitle>
+            <CardDescription>사용할 계정을 선택하세요</CardDescription>
+          </CardHeader>
 
-          <div className="flex flex-col gap-6">
-            <Card className="border-border">
-              <CardHeader className="text-center">
-                <CardTitle className="text-xl">로그인</CardTitle>
-                <CardDescription>사용할 계정을 선택하세요</CardDescription>
-              </CardHeader>
+          <CardContent className="grid gap-6">
+            <ul className="flex flex-col gap-2">
+              <SignInWithOauth provider="google" />
+              <SignInWithOauth provider="naver" />
+            </ul>
+            <Divider />
 
-              <CardContent className="grid gap-6">
-                <ul className="flex flex-col gap-2">
-                  <SignInWithOauth provider="google" />
-                  <SignInWithOauth provider="naver" />
-                </ul>
-                <Divider />
-
-                <SignInForm />
-                <Notice />
-              </CardContent>
-            </Card>
-
-            <AgreementNotice />
-          </div>
-        </div>
+            <SignInForm />
+            <Notice />
+          </CardContent>
+        </Card>
       </section>
     </main>
   );
@@ -70,18 +59,6 @@ function Notice() {
       <Link href={"/signup"} className="underline-offset-4 hover:underline">
         회원가입
       </Link>
-    </div>
-  );
-}
-
-function AgreementNotice() {
-  return (
-    <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a:hover]:text-primary">
-      <span>계속 진행하면 </span>
-      <a href="#">이용 약관</a>
-      <span> 및 </span>
-      <a href="#">개인정보 처리방침</a>
-      <span> 에 동의하는 것으로 간주됩니다.</span>
     </div>
   );
 }
