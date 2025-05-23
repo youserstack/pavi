@@ -2,12 +2,14 @@ import {
   Menubar,
   MenubarContent,
   MenubarItem,
+  MenubarLabel,
   MenubarMenu,
   MenubarSub,
   MenubarSubContent,
   MenubarSubTrigger,
   MenubarTrigger,
 } from "@/components/ui/menubar";
+import Link from "next/link";
 import React from "react";
 
 type MenuItem = {
@@ -16,30 +18,64 @@ type MenuItem = {
   children?: MenuItem[];
 };
 
-export function NavMenubar({ items }: { items: MenuItem[] }) {
+export function NavMenubar({ navItems }: { navItems: MenuItem[] }) {
   return (
     <Menubar className="border-none">
-      {items.map((item) => (
-        <MenubarMenu key={item.name}>
-          <MenubarTrigger>{item.name} </MenubarTrigger>
+      {navItems.map((navItem) => (
+        <MenubarMenu key={navItem.name}>
+          <MenubarTrigger className="navItem hover:bg-accent hover:text-accent-foreground">
+            {navItem.name}
+          </MenubarTrigger>
           <MenubarContent>
-            {item.children?.map((child) => {
-              // 카테고리메뉴의 하위메뉴가 존재시
-              if (child.children && child.children.length > 0) {
+            {navItem.children?.map((v1) => {
+              // 레벨1(children)+레벨2(subChildren)
+              if (v1.children && v1.children.length > 0) {
                 return (
-                  <MenubarSub key={child.id}>
-                    <MenubarSubTrigger>{child.name}</MenubarSubTrigger>
+                  <MenubarSub key={v1.id}>
+                    <MenubarSubTrigger>
+                      <Link
+                        href={
+                          navItem.id === "category" || navItem.id === "brand"
+                            ? `/products?${navItem.id}=${v1.id}`
+                            : `/${navItem.id}?type=${v1.id}`
+                        }
+                      >
+                        <MenubarLabel>{v1.name}</MenubarLabel>
+                      </Link>
+                    </MenubarSubTrigger>
                     <MenubarSubContent>
-                      {child.children.map((sub) => (
-                        <MenubarItem key={sub.id}>{sub.name}</MenubarItem>
+                      {v1.children?.map((v2) => (
+                        <MenubarItem key={v2.id}>
+                          <Link
+                            href={
+                              navItem.id === "category" || navItem.id === "brand"
+                                ? `/products?${navItem.id}=${v1.id}/${v2.id}`
+                                : `/${navItem.id}?type=${v1.id}/${v2.id}`
+                            }
+                          >
+                            <MenubarLabel>{v2.name}</MenubarLabel>
+                          </Link>
+                        </MenubarItem>
                       ))}
                     </MenubarSubContent>
                   </MenubarSub>
                 );
               }
-              // 카테고리메뉴의 하위메뉴가 부재시
+              // 레벨1(children)
               else {
-                return <MenubarItem key={child.id}>{child.name}</MenubarItem>;
+                return (
+                  <MenubarItem key={v1.id}>
+                    <Link
+                      href={
+                        navItem.id === "category" || navItem.id === "brand"
+                          ? `/products?${navItem.id}=${v1.id}`
+                          : `/${navItem.id}?type=${v1.id}`
+                      }
+                    >
+                      <MenubarLabel>{v1.name}</MenubarLabel>
+                    </Link>
+                  </MenubarItem>
+                );
               }
             })}
           </MenubarContent>

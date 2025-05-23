@@ -33,7 +33,7 @@ function Nav() {
         </Button>
       ))} */}
 
-      <NavMenubar items={navItems} />
+      <NavMenubar navItems={navItems} />
     </nav>
   );
 }
