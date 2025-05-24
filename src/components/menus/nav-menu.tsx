@@ -21,7 +21,12 @@ export function NavMenu() {
           <MenubarTrigger className="navItem hover:bg-accent hover:text-accent-foreground">
             {navItem.name}
           </MenubarTrigger>
-          <MenubarContent className="[&_a]:w-full [&_*]:cursor-pointer">
+          <MenubarContent
+            className="
+            [&_a]:w-full 
+            [&_a]:space-x-2
+            [&_*]:cursor-pointer"
+          >
             {navItem.children?.map((v1) => {
               // 레벨1(children)+레벨2(subChildren)
               if (v1.children && v1.children.length > 0) {
@@ -36,7 +41,9 @@ export function NavMenu() {
                               : `/${navItem.id}?type=${v1.id}`
                           }
                         >
-                          {v1.name}
+                          {v1.icon && <span>{v1.icon}</span>}
+                          <span>{v1.name}</span>
+                          {v1.emoji && <span>{v1.emoji}</span>}
                         </Link>
                       </MenubarItem>
                     </MenubarSubTrigger>
@@ -50,7 +57,9 @@ export function NavMenu() {
                                 : `/${navItem.id}?type=${v1.id}/${v2.id}`
                             }
                           >
+                            {v2.icon && <span>{v2.icon}</span>}
                             <MenubarLabel>{v2.name}</MenubarLabel>
+                            {v2.emoji && <span>{v2.emoji}</span>}
                           </Link>
                         </MenubarItem>
                       ))}
@@ -69,7 +78,9 @@ export function NavMenu() {
                           : `/${navItem.id}?type=${v1.id}`
                       }
                     >
+                      {v1.icon && <span>{v1.icon}</span>}
                       <MenubarLabel>{v1.name}</MenubarLabel>
+                      {v1.emoji && <span>{v1.emoji}</span>}
                     </Link>
                     {/* <Link
                       href={

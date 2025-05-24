@@ -1,3 +1,8 @@
+import { List } from "lucide-react";
+import { JSX } from "react";
+import { IconType } from "react-icons/lib";
+import { SiAdidas, SiFila, SiNewbalance, SiNike, SiPuma, SiReebok } from "react-icons/si";
+
 // 레벨1
 export const categoryItems = [
   {
@@ -77,14 +82,13 @@ export const categoryItems = [
 
 // 레벨1
 export const brandItems = [
-  { id: "all", name: "전체" },
-  { id: "nike", name: "나이키" },
-  { id: "adidas", name: "아디다스" },
-  { id: "newblance", name: "뉴발란스" },
-  { id: "converse", name: "컨버스" },
-  { id: "puma", name: "푸마" },
-  { id: "reebok", name: "리복" },
-  { id: "fila", name: "휠라" },
+  { id: "all", name: "전체", icon: <List /> },
+  { id: "nike", name: "나이키", icon: <SiNike /> },
+  { id: "adidas", name: "아디다스", icon: <SiAdidas /> },
+  { id: "newblance", name: "뉴발란스", icon: <SiNewbalance /> },
+  { id: "puma", name: "푸마", icon: <SiPuma /> },
+  { id: "reebok", name: "리복", icon: <SiReebok /> },
+  { id: "fila", name: "휠라", icon: <SiFila /> },
 ];
 
 export const eventItems = [{ id: "all", name: "전체 이벤트" }];
@@ -103,10 +107,11 @@ export const rankingItems = [
 
 export const saleItems = [
   { id: "all", name: "전체 세일" },
-  { id: "hot", name: "HOT 세일" },
+  { id: "hot", name: "HOT 세일", emoji: "🔥" },
   {
     id: "time-deal",
     name: "타임딜",
+    emoji: "⏰",
     children: [{ id: "test", name: "테스트", children: [] }],
   },
 ];
@@ -114,6 +119,8 @@ export const saleItems = [
 type MenuItem = {
   id: string;
   name: string;
+  icon?: JSX.Element;
+  emoji?: string;
   children?: MenuItem[];
 };
 
