@@ -21,26 +21,28 @@ export function NavMenu() {
           <MenubarTrigger className="navItem hover:bg-accent hover:text-accent-foreground">
             {navItem.name}
           </MenubarTrigger>
-          <MenubarContent>
+          <MenubarContent className="[&_a]:w-full [&_*]:cursor-pointer">
             {navItem.children?.map((v1) => {
               // 레벨1(children)+레벨2(subChildren)
               if (v1.children && v1.children.length > 0) {
                 return (
                   <MenubarSub key={v1.id}>
                     <MenubarSubTrigger>
-                      <Link
-                        href={
-                          navItem.id === "category" || navItem.id === "brand"
-                            ? `/products?${navItem.id}=${v1.id}`
-                            : `/${navItem.id}?type=${v1.id}`
-                        }
-                      >
-                        <MenubarLabel>{v1.name}</MenubarLabel>
-                      </Link>
+                      <MenubarItem asChild>
+                        <Link
+                          href={
+                            navItem.id === "category" || navItem.id === "brand"
+                              ? `/products?${navItem.id}=${v1.id}`
+                              : `/${navItem.id}?type=${v1.id}`
+                          }
+                        >
+                          {v1.name}
+                        </Link>
+                      </MenubarItem>
                     </MenubarSubTrigger>
                     <MenubarSubContent>
                       {v1.children?.map((v2) => (
-                        <MenubarItem key={v2.id}>
+                        <MenubarItem key={v2.id} asChild>
                           <Link
                             href={
                               navItem.id === "category" || navItem.id === "brand"
@@ -59,7 +61,7 @@ export function NavMenu() {
               // 레벨1(children)
               else {
                 return (
-                  <MenubarItem key={v1.id}>
+                  <MenubarItem key={v1.id} asChild>
                     <Link
                       href={
                         navItem.id === "category" || navItem.id === "brand"
@@ -69,6 +71,15 @@ export function NavMenu() {
                     >
                       <MenubarLabel>{v1.name}</MenubarLabel>
                     </Link>
+                    {/* <Link
+                      href={
+                        navItem.id === "category" || navItem.id === "brand"
+                          ? `/products?${navItem.id}=${v1.id}`
+                          : `/${navItem.id}?type=${v1.id}`
+                      }
+                    >
+                      <MenubarLabel>{v1.name}</MenubarLabel>
+                    </Link> */}
                   </MenubarItem>
                 );
               }
