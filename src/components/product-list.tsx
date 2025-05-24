@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ProductList({ products }: { products: [] }) {
+export default function ProductList({ products }: { products: Product[] }) {
   return (
     <div className="ProductList">
       <ul className="grid grid-cols-8 xs:grid-cols-12 sm:grid-cols-16 md:grid-cols-20 lg:grid-cols-24">

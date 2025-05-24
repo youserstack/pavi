@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import OauthSignInButton from "@/components/button/oauth-sign-in-button";
+import OauthSignInButton from "@/components/buttons/oauth-sign-in-button";
 import SignInForm from "@/app/signin/sign-in-form";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";

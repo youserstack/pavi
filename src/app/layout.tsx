@@ -1,7 +1,7 @@
-import TanstackQueryProvider from "@/providers/tanstack-query-provider";
-import { ThemeProvider } from "@/providers/theme-provider";
+import TanstackQueryProvider from "@/components/providers/tanstack-query-provider";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 import { inter, notoSansKR, orbitron } from "@/lib/fonts";
-import AuthProvider from "@/providers/auth-provider";
+import AuthProvider from "@/components/providers/auth-provider";
 import Header from "@/components/header";
 import type { Metadata } from "next";
 import { cn } from "@/lib/utils";

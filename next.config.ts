@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   env: {
     API_URL: process.env.API_URL,
     TEMP_API_URL: process.env.TEMP_API_URL,
+    TEMP_API_URL2: process.env.TEMP_API_URL2,
   },
   images: {
     remotePatterns: [

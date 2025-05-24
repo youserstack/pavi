@@ -1,7 +1,7 @@
 import { SideDrawer } from "@/components/side-drawer";
-import { NavMenu } from "@/components/menu/nav-menu";
+import { NavMenu } from "@/components/menus/nav-menu";
 import Logo from "@/components/logo";
-import UserButtons from "@/components/button/user-buttons";
+import UserButtons from "@/components/buttons/user-buttons";
 
 export default function Header() {
   return (
