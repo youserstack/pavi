@@ -6,6 +6,10 @@ import { SiAdidas, SiFila, SiNewbalance, SiNike, SiPuma, SiReebok } from "react-
 // 레벨1
 export const categoryItems = [
   {
+    id: "all",
+    name: "전체",
+  },
+  {
     id: "tops",
     name: "상의",
     // 레벨2

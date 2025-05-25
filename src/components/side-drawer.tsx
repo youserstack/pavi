@@ -37,12 +37,25 @@ export function SideDrawer() {
       <DrawerContent>
         <DrawerHeader>
           <div className="flex items-center">
-            <Link href="/" className="uppercase mr-auto">
-              <DrawerTitle>home</DrawerTitle>
-            </Link>
-            {session ? <UserAvatar user={user} /> : <SignInButton />}
+            <DrawerClose asChild>
+              <Link href="/" className="uppercase mr-auto">
+                <DrawerTitle>home</DrawerTitle>
+              </Link>
+            </DrawerClose>
+
+            {session ? (
+              <UserAvatar user={user} />
+            ) : (
+              <DrawerClose asChild>
+                <Link href="/signin">
+                  <Button variant={"link"}>로그인</Button>
+                </Link>
+              </DrawerClose>
+            )}
           </div>
+
           <Separator className="my-4" />
+
           <AccordionNavMenu />
         </DrawerHeader>
 

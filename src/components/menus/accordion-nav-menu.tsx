@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { DrawerClose } from "@/components/ui/drawer";
 import { navItems } from "@/data/items";
 import Link from "next/link";
 
@@ -15,17 +16,18 @@ export function AccordionNavMenu() {
           <AccordionTrigger>{navItem.name}</AccordionTrigger>
           <AccordionContent className="flex flex-col">
             {navItem.children?.map((v1) => (
-              <Link
-                href={
-                  navItem.id === "category" || navItem.id === "brand"
-                    ? `/products?${navItem.id}=${v1.id}`
-                    : `/${navItem.id}?type=${v1.id}`
-                }
-                key={v1.id}
-                className="px-2 py-1.5 text-sm font-medium list-none hover:underline"
-              >
-                {v1.name}
-              </Link>
+              <DrawerClose asChild key={v1.id}>
+                <Link
+                  href={
+                    navItem.id === "category" || navItem.id === "brand"
+                      ? `/products?${navItem.id}=${v1.id}`
+                      : `/${navItem.id}?type=${v1.id}`
+                  }
+                  className="px-2 py-1.5 text-sm font-medium list-none hover:underline"
+                >
+                  {v1.name}
+                </Link>
+              </DrawerClose>
             ))}
           </AccordionContent>
         </AccordionItem>
