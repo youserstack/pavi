@@ -34,7 +34,7 @@ export function CarouselList({ products }: { products: Product[] }) {
         onMouseUp={() => setIsDragging(false)}
         onMouseLeave={() => setIsDragging(false)}
       >
-        {products.map((product, index) => (
+        {products?.map((product, index) => (
           <CarouselItem
             key={index}
             // padding left 로 간격조절가능

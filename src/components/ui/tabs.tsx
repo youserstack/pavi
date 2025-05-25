@@ -32,7 +32,7 @@ function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPr
       className={cn(
         // 상태 관련 스타일
         "data-[state=active]:text-foreground",
-        "data-[state=active]:border-foreground",
+        "data-[state=active]:before:bg-foreground",
 
         // 텍스트 및 색상
         "text-muted-foreground dark:text-muted-foreground",
@@ -40,11 +40,17 @@ function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPr
 
         // 레이아웃 및 크기
         "inline-flex flex-1 items-center justify-center gap-1.5",
-        "h-[calc(100%-1px)]",
+        "h-full",
         "px-2 py-1",
 
-        // 테두리 및 배경
-        "border-b-2 border-transparent",
+        // 가상요소
+        "relative",
+        "before:absolute",
+        "before:top-full",
+        "before:w-full",
+        "before:content-['']",
+        "before:h-[2px]",
+        "before:bg-transparent",
 
         // 인터랙션 및 전환
         "transition-[color]",

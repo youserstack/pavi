@@ -6,7 +6,7 @@ import { getProducts } from "@/lib/api/fetchers";
 import { useQueryParams } from "@/lib/hooks/useQueryParams";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import MyTabs from "@/components/MyTabs";
 
 interface Data {
   products: Product[];
@@ -42,18 +42,8 @@ export default function ProductsPage() {
     return (
       <main>
         <section className="min-h-screen space-y-10">
-          <Tabs defaultValue="men-to-men" className="w-[400px] ml-auto border">
-            <TabsList>
-              <TabsTrigger value="men-to-men">맨투맨/스웨트</TabsTrigger>
-              <TabsTrigger value="hood">후드</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="men-to-men">탭 1 내용</TabsContent>
-            <TabsContent value="hood">탭 2 내용</TabsContent>
-          </Tabs>
-
-          <ProductList products={products} />
-
+          <MyTabs items={items} />
+          {/* <ProductList products={products} /> */}
           {/* <ClientPagination page={page} totalPages={totalPages} /> */}
         </section>
       </main>
@@ -62,3 +52,27 @@ export default function ProductsPage() {
 
   return null;
 }
+
+const items = [
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+  { value: "men-to-men", label: "맨투맨/스웨트" },
+];

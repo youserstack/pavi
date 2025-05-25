@@ -193,3 +193,8 @@
   @apply border border-purple-500;
   @apply font-orbitron;
 }
+
+@utility scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
