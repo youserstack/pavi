@@ -2,10 +2,10 @@
 
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { useEffect, useRef, useState } from "react";
 
-export default function CarouselTabs({ items }: { items: any[] }) {
+export default function CarouselTabsV1({ items }: { items: { value: string; label: string }[] }) {
   const [isDragging, setIsDragging] = useState(false);
 
   // 드레그시 포인터변경을위한 이벤트
@@ -16,7 +16,7 @@ export default function CarouselTabs({ items }: { items: any[] }) {
   }, []);
 
   return (
-    <Tabs defaultValue="0">
+    <Tabs defaultValue={items[0].value}>
       <TabsList onPointerDown={() => setIsDragging(true)} className="w-full">
         <Carousel
           opts={{ dragFree: true }}
@@ -29,10 +29,10 @@ export default function CarouselTabs({ items }: { items: any[] }) {
           )}
         >
           <CarouselContent className="-ml-0">
-            {items.map((item: any, index) => (
+            {items.map((item) => (
               <TabsTrigger
-                key={index}
-                value={index.toString()}
+                key={item.value}
+                value={item.value}
                 className={isDragging ? "cursor-grabbing" : "cursor-pointer"}
               >
                 <CarouselItem className="pl-0">{item.label}</CarouselItem>
@@ -42,9 +42,9 @@ export default function CarouselTabs({ items }: { items: any[] }) {
         </Carousel>
       </TabsList>
 
-      {items.map((item: any, index) => (
-        <TabsContent key={index} value={index.toString()}>
-          {item.label} {index.toString()} 내용....
+      {items.map((item) => (
+        <TabsContent key={item.value} value={item.value}>
+          {item.label} ....
         </TabsContent>
       ))}
     </Tabs>

@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
 import "swiper/css";
 
-export default function CarouselTabs({ items }: { items: { value: string; label: string }[] }) {
+export default function CarouselTabsV2({ items }: { items: { value: string; label: string }[] }) {
   const [isDragging, setIsDragging] = useState(false);
   const [activeTab, setActiveTab] = useState<string>(items[0]?.value); // 초기 탭 값 설정
   const swiperRef = useRef<SwiperCore>(null);

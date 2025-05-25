@@ -1,7 +1,7 @@
 "use client";
 
-import CarouselTabs from "@/components/carousel-tabs";
-import MySwiper from "@/components/MySwiper";
+import CarouselTabsV1 from "@/components/carousel-tabs-v1";
+import CarouselTabsV2 from "@/components/carousel-tabs-v2";
 import ProductList from "@/components/product-list";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getProducts } from "@/lib/api/fetchers";
@@ -44,8 +44,8 @@ export default function ProductsPage() {
   //   return (
   //     <main>
   //       <section className="min-h-screen space-y-10">
-  //         <MySwiper />
-  //         {/* <CarouselTabs items={items} /> */}
+  //         <CarouselTabsV2 />
+  //         {/* <CarouselTabsV1 items={items} /> */}
   //         {/* <ProductList products={products} /> */}
   //         {/* <ClientPagination page={page} totalPages={totalPages} /> */}
   //       </section>
@@ -58,7 +58,8 @@ export default function ProductsPage() {
   return (
     <main>
       <section>
-        <MySwiper items={items} />
+        <CarouselTabsV1 items={items} />
+        {/* <CarouselTabsV2 items={items} /> */}
       </section>
     </main>
   );
