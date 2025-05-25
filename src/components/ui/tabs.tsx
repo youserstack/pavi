@@ -51,6 +51,7 @@ function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPr
         "before:content-['']",
         "before:h-[2px]",
         "before:bg-transparent",
+        "before:pointer-events-none",
 
         // 인터랙션 및 전환
         "transition-[color]",
