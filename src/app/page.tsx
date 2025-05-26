@@ -1,7 +1,7 @@
 "use client";
 
-import { CarouselList } from "@/components/carousel-list";
-import { CarouselSlider } from "@/components/carousel-slider";
+import { ProductCarouselBar } from "@/components/product-carousel-bar";
+import { SlideBanner } from "@/components/slide-banner";
 import ProductList from "@/components/product-list";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getProducts } from "@/lib/api/fetchers";
@@ -10,8 +10,9 @@ import { useQuery } from "@tanstack/react-query";
 export default function Home() {
   const { data, status } = useQuery({
     queryKey: ["mock-products"],
-    queryFn: () => getProducts(process.env.TEMP_API_URL as string),
+    queryFn: () => getProducts(),
   });
+  console.log({ data });
 
   if (status === "pending") {
     return (
@@ -24,21 +25,19 @@ export default function Home() {
   }
 
   if (status === "success") {
-    // const { products, totalItems } = data;
-    // console.log({ products });
-    const products = data;
+    const { products, totalItems } = data;
 
     return (
       <main>
         {/* <section>
-          <CarouselSlider />
+          <SlideBanner />
         </section> */}
 
         <section className="bg-muted space-y-8">
           <div className=" space-y-8">
             <div>
               <h1 className="ml-3 mb-3 font-semibold">구매가 많은 제품들</h1>
-              <CarouselList products={products} />
+              <ProductCarouselBar products={products} />
             </div>
 
             {/* <div>

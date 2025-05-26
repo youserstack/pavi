@@ -1,5 +1,6 @@
-export async function getProducts(url: string, option?: any) {
-  const res = await fetch(url, option);
+export async function getProducts(queryString?: string) {
+  const url = `${process.env.TEMP_API_URL2}/api/products${queryString ? queryString : ""}`;
+  const res = await fetch(url);
   return res.json();
 }
 

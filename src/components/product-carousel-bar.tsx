@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import { Heart } from "lucide-react";
 import { useWishlistStore } from "@/stores/useWishlistStore";
 
-export function CarouselList({ products }: { products: Product[] }) {
+export function ProductCarouselBar({ products }: { products: Product[] }) {
   const [isDragging, setIsDragging] = useState(false);
 
   return (
@@ -28,7 +28,7 @@ export function CarouselList({ products }: { products: Product[] }) {
     >
       <CarouselContent
         // margin left 로 슬라이드의 그룹 간의 간격조절가능
-        className="-ml-0 /-ml-4 "
+        className="-ml-0 "
         // 드래그중 그래빙 커서로 변경하기 위해서 이벤트 처리
         onMouseDown={() => setIsDragging(true)}
         onMouseUp={() => setIsDragging(false)}
@@ -38,7 +38,7 @@ export function CarouselList({ products }: { products: Product[] }) {
           <CarouselItem
             key={index}
             // padding left 로 간격조절가능
-            className="basis-1/2 xs:basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/6 pl-0 /pl-4"
+            className="basis-1/2 xs:basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/6 pl-0"
           >
             <Item product={product} isDragging={isDragging} />
           </CarouselItem>
