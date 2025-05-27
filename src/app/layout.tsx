@@ -1,4 +1,4 @@
-import TanstackQueryProvider from "@/components/providers/tanstack-query-provider";
+import TanstackProvider from "@/components/providers/tanstack-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { inter, notoSansKR, orbitron } from "@/lib/fonts";
 import AuthProvider from "@/components/providers/auth-provider";
@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={cn(inter.variable, orbitron.variable, notoSansKR.variable, "antialiased")}>
         <AuthProvider>
-          <TanstackQueryProvider>
+          <TanstackProvider>
             <ThemeProvider
               attribute="class"
               defaultTheme="system"
@@ -33,7 +33,7 @@ export default function RootLayout({
               <Header />
               {children}
             </ThemeProvider>
-          </TanstackQueryProvider>
+          </TanstackProvider>
         </AuthProvider>
       </body>
     </html>

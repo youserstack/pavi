@@ -1,18 +1,20 @@
 "use client";
 
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
-import useFilterQueryEffect from "@/lib/hooks/useFilterQueryEffect";
-import usePointerUpEffect from "@/lib/hooks/usePointerUpEffect";
 import { useFilterStore } from "@/stores/useFilterStore";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 export function ButtonCarouselBar({ items }: { items: { value: string; label: string }[] }) {
-  const [isDragging, setIsDragging] = useState(false);
   const { setCategory, filter } = useFilterStore();
-  usePointerUpEffect(setIsDragging); // 커서스타일변경을위한 드래그이벤트설정
-  useFilterQueryEffect(filter); // 필터변경시 쿼리요청
+  const [isDragging, setIsDragging] = useState(false);
+
+  useEffect(() => {
+    const handlePointerUp = () => setIsDragging(false);
+    window.addEventListener("pointerup", handlePointerUp);
+    return () => window.removeEventListener("pointerup", handlePointerUp);
+  }, []);
 
   return (
     <Carousel

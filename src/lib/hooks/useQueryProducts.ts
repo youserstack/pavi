@@ -1,15 +1,31 @@
-import { getExistingSearchParams } from "@/lib/getExistingSearchParams";
-import { useSearchParams } from "next/navigation";
 import { getProducts } from "@/lib/api/fetchers";
 import { useQuery } from "@tanstack/react-query";
+import { useFilterStore } from "@/stores/useFilterStore";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export function useQueryProducts() {
-  const searchParams = useSearchParams();
-  const existingSearchParams = getExistingSearchParams(searchParams);
-  const queryString = "?" + existingSearchParams.toString();
+  // 스토어에서 필터객체를 가지고와서 쿼리스트링을 생성
+  const params = new URLSearchParams();
+  const { filter } = useFilterStore();
+  Object.entries(filter).forEach(([key, value]) => {
+    if (Array.isArray(value)) {
+      params.set(key, value.join(","));
+    } else {
+      params.set(key, value);
+    }
+  });
+  const queryString = "?" + params.toString();
+  console.log({ queryString });
+
+  // 클라이언트 브라우저 url 동기화
+  const router = useRouter();
+  useEffect(() => {
+    router.replace("/products" + queryString);
+  }, [filter]);
 
   return useQuery({
-    queryKey: ["products"],
+    queryKey: ["products", queryString],
     queryFn: () => getProducts(queryString),
   });
 }
