@@ -9,14 +9,12 @@ export function useQueryProducts() {
   const params = new URLSearchParams();
   const { filter } = useFilterStore();
   Object.entries(filter).forEach(([key, value]) => {
-    if (Array.isArray(value)) {
+    if (Array.isArray(value) && value.length > 0) {
       params.set(key, value.join(","));
-    } else {
-      params.set(key, value);
     }
   });
   const queryString = "?" + params.toString();
-  console.log({ queryString });
+  // console.log({ queryString });
 
   // 클라이언트 브라우저 url 동기화
   const router = useRouter();
@@ -25,7 +23,7 @@ export function useQueryProducts() {
   }, [filter]);
 
   return useQuery({
-    queryKey: ["products", queryString],
+    queryKey: ["products", filter],
     queryFn: () => getProducts(queryString),
   });
 }
