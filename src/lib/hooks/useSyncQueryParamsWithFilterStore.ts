@@ -2,18 +2,18 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useFilterStore } from "@/stores/useFilterStore";
 
-export default function useFilterQueryEffect() {
-  const router = useRouter();
+export default function useSyncQueryParamsWithFilterStore() {
   const { filter } = useFilterStore();
+  const router = useRouter();
 
   useEffect(() => {
-    const urlSearchParams = new URLSearchParams();
+    const queryParams = new URLSearchParams();
     Object.entries(filter).forEach(([key, value]) => {
       if (Array.isArray(value) && value.length > 0) {
-        urlSearchParams.set(key, value.join(","));
+        queryParams.set(key, value.join(","));
       }
     });
-    const queryString = urlSearchParams ? `?${urlSearchParams.toString()}` : "";
+    const queryString = queryParams ? `?${queryParams.toString()}` : "";
     router.push(`/products${queryString}`);
   }, [filter]);
 }
