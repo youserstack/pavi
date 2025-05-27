@@ -1,50 +1,25 @@
 "use client";
 
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
-import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { useQueryClient } from "@tanstack/react-query";
+import useFilterQueryEffect from "@/lib/hooks/useFilterQueryEffect";
+import usePointerUpEffect from "@/lib/hooks/usePointerUpEffect";
 import { useFilterStore } from "@/stores/useFilterStore";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
-type Props = {
-  items: { value: string; label: string }[];
-};
-
-export function ButtonCarouselBar({ items }: Props) {
+export function ButtonCarouselBar({ items }: { items: { value: string; label: string }[] }) {
   const [isDragging, setIsDragging] = useState(false);
   const { setCategory, filter } = useFilterStore();
-  const searchParams = useSearchParams();
-  const queryClient = useQueryClient();
-  const router = useRouter();
-
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams.toString());
-    Object.entries(filter).forEach(([key, value]) => {
-      if (Array.isArray(value)) {
-        params.set(key, value.join(","));
-      } else {
-        params.set(key, value);
-      }
-    });
-    queryClient.invalidateQueries({ queryKey: ["products"] });
-    router.push(`?${params.toString()}`);
-  }, [filter]);
-
-  // 드레그시 포인터변경을위한 이벤트
-  useEffect(() => {
-    const handlePointerUp = () => setIsDragging(false);
-    window.addEventListener("pointerup", handlePointerUp);
-    return () => window.removeEventListener("pointerup", handlePointerUp);
-  }, []);
+  usePointerUpEffect(setIsDragging); // 커서스타일변경을위한 드래그이벤트설정
+  useFilterQueryEffect(filter); // 필터변경시 쿼리요청
 
   return (
     <Carousel
       opts={{ dragFree: true }}
       onPointerDown={() => setIsDragging(true)}
       className={cn(
-        "group bg-background",
+        "group bg-background overflow-hidden",
         isDragging ? "cursor-grabbing [&_button]:cursor-[inherit]" : "cursor-pointer"
       )}
     >

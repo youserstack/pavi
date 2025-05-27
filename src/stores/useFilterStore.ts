@@ -2,26 +2,17 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
-type Filter = {
-  category?: string[];
-  brand?: string[];
-};
-
-type FilterStore = {
-  filter: Filter;
-  setFilter: (partialFilter: Partial<Filter>) => void;
-  setCategory: (category: string) => void;
-};
-
 export const useFilterStore = create<FilterStore>()(
   persist(
     immer((set, get) => ({
       filter: {},
+
       setFilter: (partialFilter) => {
         set((state) => {
           state.filter = { ...state.filter, ...partialFilter };
         });
       },
+
       setCategory: (category) => {
         set((state) => {
           const currentCategories = state.filter.category ?? [];
@@ -30,6 +21,23 @@ export const useFilterStore = create<FilterStore>()(
           } else {
             state.filter.category = [...currentCategories, category];
           }
+        });
+      },
+
+      setBrand: (brand) => {
+        set((state) => {
+          const current = state.filter.brand ?? [];
+          if (current.includes(brand)) {
+            state.filter.brand = current.filter((v) => v !== brand);
+          } else {
+            state.filter.brand = [...current, brand];
+          }
+        });
+      },
+
+      resetFilter: () => {
+        set((state) => {
+          state.filter = {};
         });
       },
     })),

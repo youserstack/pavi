@@ -8,8 +8,8 @@ import ProductList from "@/components/product-list";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getProducts } from "@/lib/api/fetchers";
-import { useQueryParams } from "@/lib/hooks/useQueryParams";
-import { useSearchProducts } from "@/lib/hooks/useSearchProducts";
+import { getExistingSearchParams } from "@/lib/getExistingSearchParams";
+import { useQueryProducts } from "@/lib/hooks/useQueryProducts";
 import { useFilterStore } from "@/stores/useFilterStore";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
@@ -22,19 +22,18 @@ interface Data {
 }
 
 export default function ProductsPage() {
-  const { data, status } = useSearchProducts();
+  const { data, status } = useQueryProducts();
   console.log({ data });
-  // useEffect(() => console.log({ products }), [products]);
 
-  if (status === "pending") {
-    return (
-      <main>
-        <section>
-          <Skeleton className="w-full h-[calc(100%-2rem)] rounded-lg" />
-        </section>
-      </main>
-    );
-  }
+  // if (status === "pending") {
+  //   return (
+  //     <main>
+  //       <section>
+  //         <Skeleton className="w-full h-[calc(100%-2rem)] rounded-lg" />
+  //       </section>
+  //     </main>
+  //   );
+  // }
 
   // if (status === "success") {
   //   const { products, totalItems } = data as Data;
@@ -59,10 +58,10 @@ export default function ProductsPage() {
   return (
     <main>
       <section>
-        {/* <CarouselTabsV1 items={items} /> */}
-        {/* <CarouselTabsV2 items={items} /> */}
-        {/* <FilterBar /> */}
-        <ButtonCarouselBar items={items} />
+        <div className="h-[500px]"></div>
+        {/* <CarouselTabsV1 items={items} />
+        <CarouselTabsV2 items={items} /> */}
+        <FilterBar />
       </section>
     </main>
   );
