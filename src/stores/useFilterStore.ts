@@ -35,6 +35,12 @@ export const useFilterStore = create<FilterStore>()(
         });
       },
 
+      setType: (type) => {
+        set((state) => {
+          state.filter.type = type;
+        });
+      },
+
       resetFilter: () => {
         set((state) => {
           state.filter = {};

@@ -10,6 +10,18 @@ export const categoryItems = [
     name: "전체",
   },
   {
+    id: "디지털/가전",
+    name: "디지털/가전",
+  },
+  {
+    id: "패션의류",
+    name: "패션의류",
+  },
+  {
+    id: "생활/건강",
+    name: "생활/건강",
+  },
+  {
     id: "tops",
     name: "상의",
     // 레벨2

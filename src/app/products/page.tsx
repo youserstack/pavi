@@ -6,15 +6,20 @@ import FilterBar from "@/components/filter-bar";
 import ProductList from "@/components/product-list";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useQueryProducts } from "@/lib/hooks/useQueryProducts";
+import { useFilterStore } from "@/stores/useFilterStore";
+import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
 export default function ProductsPage() {
   const { data, error, isPending, isError, isSuccess } = useQueryProducts();
+  const { setFilter } = useFilterStore();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (!data?.products) return;
-    console.log({ products: data?.products });
-  }, [data]);
+    setFilter({
+      category: searchParams.get("category")?.split(","),
+    });
+  }, [searchParams]);
 
   if (isPending || isError) {
     return (

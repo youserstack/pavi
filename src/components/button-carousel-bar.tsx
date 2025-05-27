@@ -1,10 +1,10 @@
 "use client";
 
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import useDraggingState from "@/lib/hooks/useDraggingState";
 import { useFilterStore } from "@/stores/useFilterStore";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import useDraggingState from "@/lib/hooks/useDraggingState";
 
 export function ButtonCarouselBar({ items }: { items: { value: string; label: string }[] }) {
   const { filter, setCategory } = useFilterStore();
