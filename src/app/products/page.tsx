@@ -6,9 +6,15 @@ import FilterBar from "@/components/filter-bar";
 import ProductList from "@/components/product-list";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useQueryProducts } from "@/lib/hooks/useQueryProducts";
+import { useEffect } from "react";
 
 export default function ProductsPage() {
   const { data, error, isPending, isError, isSuccess } = useQueryProducts();
+
+  useEffect(() => {
+    if (!data?.products) return;
+    console.log({ products: data?.products });
+  }, [data]);
 
   if (isPending || isError) {
     return (
@@ -25,7 +31,7 @@ export default function ProductsPage() {
     const { products, totalItems } = data as ProductQueryData;
     const itemsPerPage = 10;
     const totalPages = Math.ceil(totalItems / itemsPerPage);
-    console.log({ products });
+    // console.log({ products });
 
     return (
       <main>

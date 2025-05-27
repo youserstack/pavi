@@ -6,6 +6,7 @@ import Header from "@/components/header";
 import type { Metadata } from "next";
 import { cn } from "@/lib/utils";
 import "./globals.css";
+import EffectProvider from "@/components/providers/effect-provider";
 
 export const metadata: Metadata = {
   title: "PAVI | E-Commerce",
@@ -30,8 +31,10 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <Header />
-              {children}
+              <EffectProvider>
+                <Header />
+                {children}
+              </EffectProvider>
             </ThemeProvider>
           </TanstackProvider>
         </AuthProvider>

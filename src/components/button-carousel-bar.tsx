@@ -3,18 +3,12 @@
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { useFilterStore } from "@/stores/useFilterStore";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import useDraggingState from "@/lib/hooks/useDraggingState";
 
 export function ButtonCarouselBar({ items }: { items: { value: string; label: string }[] }) {
-  const { setCategory, filter } = useFilterStore();
-  const [isDragging, setIsDragging] = useState(false);
-
-  useEffect(() => {
-    const handlePointerUp = () => setIsDragging(false);
-    window.addEventListener("pointerup", handlePointerUp);
-    return () => window.removeEventListener("pointerup", handlePointerUp);
-  }, []);
+  const { filter, setCategory } = useFilterStore();
+  const { isDragging, setIsDragging } = useDraggingState();
 
   return (
     <Carousel
