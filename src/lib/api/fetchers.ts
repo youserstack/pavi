@@ -1,7 +1,9 @@
-export async function getProducts(queryString?: string) {
-  const url = `${process.env.TEMP_API_URL2}/api/products${queryString ? queryString : ""}`;
-  const res = await fetch(url);
-  return res.json();
+import axios from "axios";
+
+export async function getProducts(params?: Record<string, string>) {
+  const url = `${process.env.TEMP_API_URL2}/api/products`;
+  const res = await axios(url, { params });
+  return res.data;
 }
 
 export async function getUser(user: any) {

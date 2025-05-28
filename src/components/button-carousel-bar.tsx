@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { useQueryClient } from "@tanstack/react-query";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect } from "react";
+import { useQueryProducts } from "@/lib/hooks/useQueryProducts";
 
 export function ButtonCarouselBar({ items }: { items: { value: string; label: string }[] }) {
   const { filter } = useFilterStore();
@@ -24,16 +25,16 @@ export function ButtonCarouselBar({ items }: { items: { value: string; label: st
       : [...categories, currentCategory];
 
     // 기존쿼리파라미터객체 + 새쿼리파라미터객체
-    const newSearchParams = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(searchParams.toString());
     if (newCategories.length > 0) {
       // 새카테고리배열로 쉼표로구분하여 직렬화하여 새쿼리파라미터객체를 셋팅
-      newSearchParams.set("category", newCategories.join(","));
+      params.set("category", newCategories.join(","));
     } else {
-      newSearchParams.delete("category");
+      params.delete("category");
     }
 
     // 라우팅
-    router.push(`?${newSearchParams.toString()}`);
+    router.push(`?${params.toString()}`);
   };
 
   return (

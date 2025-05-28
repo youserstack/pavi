@@ -5,11 +5,11 @@ import { useSearchParams } from "next/navigation";
 // 쿼리파라미터를 이용한 쿼리요청
 export function useQueryProducts() {
   const searchParams = useSearchParams();
-  const queryString = "?" + searchParams.toString();
-  // console.log({ queryString });
+  const searchParamsObj = Object.fromEntries(searchParams.entries());
+  console.log({ searchParamsObj });
 
   return useQuery({
-    queryKey: ["products", queryString],
-    queryFn: () => getProducts(queryString),
+    queryKey: ["products", searchParamsObj],
+    queryFn: () => getProducts(searchParamsObj),
   });
 }
