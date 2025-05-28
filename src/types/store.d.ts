@@ -1,15 +1,15 @@
 type Filter = {
-  category?: string[];
-  brand?: string[];
+  categories?: string[];
+  brands?: string[];
   type?: string;
 };
 
 type FilterStore = {
   filter: Filter;
   setFilter: (partialFilter: Partial<Filter>) => void;
-  setCategory: (category: string) => void;
+  toggleCategory: (category: string) => void;
   setBrand: (brand: string) => void;
   setType: (type: string) => void;
   resetFilter: () => void;
-  reloadFilter: (filter: Filter) => void;
+  reloadFilter: (partialFilter: Partial<Filter>) => void;
 };

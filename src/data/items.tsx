@@ -117,7 +117,7 @@ export const recommendItems = [
 
 export const rankingItems = [
   { id: "overall", name: "전체 랭킹" },
-  { id: "category", name: "카테고리별 랭킹" },
+  { id: "category-rank", name: "카테고리별 랭킹" },
   { id: "new", name: "신상품 랭킹" },
 ];
 
@@ -141,7 +141,7 @@ type MenuItem = {
 };
 
 export const navItems: MenuItem[] = [
-  { id: "category", name: "카테고리", children: categoryItems },
+  { id: "categories", name: "카테고리", children: categoryItems },
   { id: "brand", name: "브랜드", children: brandItems },
   { id: "event", name: "이벤트", children: eventItems },
   { id: "recommend", name: "추천", children: recommendItems },

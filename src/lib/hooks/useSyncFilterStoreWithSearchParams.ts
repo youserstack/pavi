@@ -8,8 +8,8 @@ export function useSyncFilterStoreWithSearchParams() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    // const category = searchParams.get("category")?.split(",");
-    // setFilter({ category });
+    // const categories = searchParams.get("categories")?.split(",");
+    // setFilter({ categories });
     let filter: { [key: string]: any } = {};
     searchParams.entries().forEach(([key, value]) => {
       if (value) {
@@ -17,5 +17,5 @@ export function useSyncFilterStoreWithSearchParams() {
       }
     });
     reloadFilter(filter);
-  }, [searchParams]);
+  }, [searchParams.toString()]);
 }

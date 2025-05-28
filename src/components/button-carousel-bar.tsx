@@ -16,24 +16,26 @@ export function ButtonCarouselBar({ items }: { items: { value: string; label: st
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const handleClick = (currentCategoryItem: string) => {
+  const handleClick = (currentCategory: string) => {
     // 파라미터스트링 -> 배열 -> 토글적용된 배열 -> 파라미터스트링 -> 라우팅
 
     // 기존서치파라미터객체로부터 카테고리스트링을 받고
     // 카테고리스트링은 쉼표로 구분된 아이템들로서 스필릿하여 배열로 만들고(기존 클릭된 카테고리를 토글적용하기 위해서)
-    const category = searchParams.get("category") ?? "";
-    const categoryItems = category ? category.split(",") : [];
-    const newCategoryItems = categoryItems.includes(currentCategoryItem) // 토글적용
-      ? categoryItems.filter((c) => c !== currentCategoryItem)
-      : [...categoryItems, currentCategoryItem];
+    const categoriesString = searchParams.get("categories") ?? "";
+    const categories = categoriesString ? categoriesString.split(",") : [];
+    console.log({ categories });
+    const newCategories = categories.includes(currentCategory) // 토글적용
+      ? categories.filter((c) => c !== currentCategory)
+      : [...categories, currentCategory];
+    console.log({ newCategories });
 
     // 토글적용된 새카테고리배열로부터 직렬화한 스트링으로 만들어 새로운 서치파라미터객체에 설정해야함
     const params = new URLSearchParams(searchParams.toString());
     // 빈배열이 이라면 삭제하고, 아니라면 쿼리스트링으로 설정한다
-    if (newCategoryItems.length > 0) {
-      params.set("category", newCategoryItems.join(","));
+    if (newCategories.length > 0) {
+      params.set("categories", newCategories.join(","));
     } else {
-      params.delete("category");
+      params.delete("categories");
     }
 
     // 라우팅
@@ -55,7 +57,7 @@ export function ButtonCarouselBar({ items }: { items: { value: string; label: st
             <Button
               className="rounded-full text-xs"
               size="sm"
-              variant={filter.category?.includes(item.value) ? "default" : "outline"}
+              variant={filter.categories?.includes(item.value) ? "default" : "outline"}
               onClick={() => handleClick(item.value)}
             >
               {item.label}

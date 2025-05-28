@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 export function useQueryProducts() {
   const searchParams = useSearchParams();
   const searchParamsObj = Object.fromEntries(searchParams.entries());
-  console.log({ searchParamsObj });
+  // console.log({ searchParamsObj });
 
   return useQuery({
     queryKey: ["products", searchParamsObj],

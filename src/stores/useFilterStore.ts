@@ -13,24 +13,24 @@ export const useFilterStore = create<FilterStore>()(
         });
       },
 
-      setCategory: (category) => {
+      toggleCategory: (categoryItem) => {
         set((state) => {
-          const currentCategories = state.filter.category ?? [];
-          if (currentCategories.includes(category)) {
-            state.filter.category = currentCategories.filter((v) => v !== category);
+          const categoryItems = state.filter.categories ?? [];
+          if (categoryItems.includes(categoryItem)) {
+            state.filter.categories = categoryItems.filter((v) => v !== categoryItem);
           } else {
-            state.filter.category = [...currentCategories, category];
+            state.filter.categories = [...categoryItems, categoryItem];
           }
         });
       },
 
       setBrand: (brand) => {
         set((state) => {
-          const current = state.filter.brand ?? [];
+          const current = state.filter.brands ?? [];
           if (current.includes(brand)) {
-            state.filter.brand = current.filter((v) => v !== brand);
+            state.filter.brands = current.filter((v) => v !== brand);
           } else {
-            state.filter.brand = [...current, brand];
+            state.filter.brands = [...current, brand];
           }
         });
       },
@@ -47,9 +47,9 @@ export const useFilterStore = create<FilterStore>()(
         });
       },
 
-      reloadFilter: (filter) => {
+      reloadFilter: (partialFilter) => {
         set((state) => {
-          state.filter = filter;
+          state.filter = partialFilter;
         });
       },
     })),

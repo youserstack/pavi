@@ -19,7 +19,7 @@ export function AccordionNavMenu() {
               <DrawerClose asChild key={v1.id}>
                 <Link
                   href={
-                    navItem.id === "category" || navItem.id === "brand"
+                    navItem.id === "categories" || navItem.id === "brand"
                       ? `/products?${navItem.id}=${v1.id}`
                       : `/${navItem.id}?type=${v1.id}`
                   }
