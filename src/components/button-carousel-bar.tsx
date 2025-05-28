@@ -10,7 +10,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect } from "react";
 
 export function ButtonCarouselBar({ items }: { items: { value: string; label: string }[] }) {
-  const { filter, setCategory } = useFilterStore();
+  const { filter } = useFilterStore();
   const { isDragging, setIsDragging } = useDraggingState();
   const searchParams = useSearchParams();
   const router = useRouter();
