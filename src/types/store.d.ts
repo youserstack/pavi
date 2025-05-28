@@ -11,4 +11,5 @@ type FilterStore = {
   setBrand: (brand: string) => void;
   setType: (type: string) => void;
   resetFilter: () => void;
+  reloadFilter: (filter: Filter) => void;
 };

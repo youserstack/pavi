@@ -46,6 +46,12 @@ export const useFilterStore = create<FilterStore>()(
           state.filter = {};
         });
       },
+
+      reloadFilter: (filter) => {
+        set((state) => {
+          state.filter = filter;
+        });
+      },
     })),
     {
       name: "filter-storage",

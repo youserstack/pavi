@@ -6,13 +6,9 @@ import FilterBar from "@/components/filter-bar";
 import ProductList from "@/components/product-list";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useQueryProducts } from "@/lib/hooks/useQueryProducts";
-import { useSyncFilterStoreWithQueryParams } from "@/lib/hooks/useSyncFilterStoreWithQueryParams";
 
 export default function ProductsPage() {
   const { data, error, isPending, isError, isSuccess } = useQueryProducts();
-
-  // 쿼리파라미터 ---동기화--> 필터스토어
-  useSyncFilterStoreWithQueryParams();
 
   if (isPending || isError) {
     return (
