@@ -16,19 +16,22 @@ export function ButtonCarouselBar({ items }: { items: { value: string; label: st
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const handleClick = (currentCategory: string) => {
-    // 기존쿼리파라미터객체 -> 카테고리 -> 카테고리배열 -> 새카테고리배열
-    const category = searchParams.get("category") ?? "";
-    const categories = category ? category.split(",") : [];
-    const newCategories = categories.includes(currentCategory) // 토글적용
-      ? categories.filter((c) => c !== currentCategory)
-      : [...categories, currentCategory];
+  const handleClick = (currentCategoryItem: string) => {
+    // 파라미터스트링 -> 배열 -> 토글적용된 배열 -> 파라미터스트링 -> 라우팅
 
-    // 기존쿼리파라미터객체 + 새쿼리파라미터객체
+    // 기존서치파라미터객체로부터 카테고리스트링을 받고
+    // 카테고리스트링은 쉼표로 구분된 아이템들로서 스필릿하여 배열로 만들고(기존 클릭된 카테고리를 토글적용하기 위해서)
+    const category = searchParams.get("category") ?? "";
+    const categoryItems = category ? category.split(",") : [];
+    const newCategoryItems = categoryItems.includes(currentCategoryItem) // 토글적용
+      ? categoryItems.filter((c) => c !== currentCategoryItem)
+      : [...categoryItems, currentCategoryItem];
+
+    // 토글적용된 새카테고리배열로부터 직렬화한 스트링으로 만들어 새로운 서치파라미터객체에 설정해야함
     const params = new URLSearchParams(searchParams.toString());
-    if (newCategories.length > 0) {
-      // 새카테고리배열로 쉼표로구분하여 직렬화하여 새쿼리파라미터객체를 셋팅
-      params.set("category", newCategories.join(","));
+    // 빈배열이 이라면 삭제하고, 아니라면 쿼리스트링으로 설정한다
+    if (newCategoryItems.length > 0) {
+      params.set("category", newCategoryItems.join(","));
     } else {
       params.delete("category");
     }
