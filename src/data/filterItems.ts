@@ -8,6 +8,7 @@ export const filterItems = [
 ];
 
 export const categoryFilterItems = [
+  { value: "all", label: "전체" },
   { value: "디지털/가전", label: "디지털/가전" },
   { value: "패션의류", label: "패션의류" },
   { value: "생활/건강", label: "생활/건강" },
