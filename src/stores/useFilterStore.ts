@@ -13,24 +13,24 @@ export const useFilterStore = create<FilterStore>()(
         });
       },
 
-      toggleCategory: (categoryItem) => {
+      toggleCategory: (item) => {
         set((state) => {
-          const categoryItems = state.filter.category ?? [];
-          if (categoryItems.includes(categoryItem)) {
-            state.filter.category = categoryItems.filter((v) => v !== categoryItem);
+          const category = state.filter.category ?? [];
+          if (category.includes(item)) {
+            state.filter.category = category.filter((v) => v !== item);
           } else {
-            state.filter.category = [...categoryItems, categoryItem];
+            state.filter.category = [...category, item];
           }
         });
       },
 
       setBrand: (brand) => {
         set((state) => {
-          const current = state.filter.brands ?? [];
+          const current = state.filter.brand ?? [];
           if (current.includes(brand)) {
-            state.filter.brands = current.filter((v) => v !== brand);
+            state.filter.brand = current.filter((v) => v !== brand);
           } else {
-            state.filter.brands = [...current, brand];
+            state.filter.brand = [...current, brand];
           }
         });
       },

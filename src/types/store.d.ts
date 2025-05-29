@@ -1,6 +1,6 @@
 type Filter = {
   category?: string[];
-  brands?: string[];
+  brand?: string[];
   type?: string;
 };
 

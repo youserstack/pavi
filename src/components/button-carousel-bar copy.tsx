@@ -7,7 +7,15 @@ import { Button } from "@/components/ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-export function ButtonCarouselBar({ items }: { items: { value: string; label: string }[] }) {
+// 현재는 카테고리를 필터하기위한 버튼캐러셀바
+// 브랜드, 사이즈, 칼라, 가격, 유형 등의 필터를 추가로 만들어야함
+type Props = {
+  // type: "category" | "brand" | "size" | "color" | "price" | "productType";
+  type: keyof Filter; // "category" | "brand" | "productType"
+  items: { value: string; label: string }[];
+};
+
+export function ButtonCarouselBar({ type, items }: Props) {
   const { filter } = useFilterStore();
   const { isDragging, setIsDragging } = useDraggingState();
   const searchParams = useSearchParams();
@@ -44,7 +52,7 @@ export function ButtonCarouselBar({ items }: { items: { value: string; label: st
       opts={{ dragFree: true }}
       onPointerDown={() => setIsDragging(true)}
       className={cn(
-        "group bg-background overflow-hidden w-full",
+        "group bg-background overflow-hidden",
         isDragging ? "cursor-grabbing [&_button]:cursor-[inherit]" : "cursor-pointer"
       )}
     >
@@ -54,7 +62,7 @@ export function ButtonCarouselBar({ items }: { items: { value: string; label: st
             <Button
               className="rounded-full text-xs"
               size="sm"
-              variant={filter.category?.includes(item.value) ? "default" : "outline"}
+              variant={filter[type]?.includes(item.value) ? "default" : "outline"}
               onClick={() => handleClick(item.value)}
             >
               {item.label}
