@@ -36,7 +36,7 @@ export function NavMenu() {
                       <MenubarItem asChild>
                         <Link
                           href={
-                            navItem.id === "categories" || navItem.id === "brand"
+                            navItem.id === "category" || navItem.id === "brand"
                               ? `/products?${navItem.id}=${v1.id}`
                               : `/${navItem.id}?type=${v1.id}`
                           }
@@ -52,7 +52,7 @@ export function NavMenu() {
                         <MenubarItem key={v2.id} asChild>
                           <Link
                             href={
-                              navItem.id === "categories" || navItem.id === "brand"
+                              navItem.id === "category" || navItem.id === "brand"
                                 ? `/products?${navItem.id}=${v1.id}/${v2.id}`
                                 : `/${navItem.id}?type=${v1.id}/${v2.id}`
                             }
@@ -73,7 +73,7 @@ export function NavMenu() {
                   <MenubarItem key={v1.id} asChild>
                     <Link
                       href={
-                        navItem.id === "categories" || navItem.id === "brand"
+                        navItem.id === "category" || navItem.id === "brand"
                           ? `/products?${navItem.id}=${v1.id}`
                           : `/${navItem.id}?type=${v1.id}`
                       }
@@ -84,7 +84,7 @@ export function NavMenu() {
                     </Link>
                     {/* <Link
                       href={
-                        navItem.id === "categories" || navItem.id === "brand"
+                        navItem.id === "category" || navItem.id === "brand"
                           ? `/products?${navItem.id}=${v1.id}`
                           : `/${navItem.id}?type=${v1.id}`
                       }

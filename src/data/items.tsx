@@ -141,7 +141,7 @@ type MenuItem = {
 };
 
 export const navItems: MenuItem[] = [
-  { id: "categories", name: "카테고리", children: categoryItems },
+  { id: "category", name: "카테고리", children: categoryItems },
   { id: "brand", name: "브랜드", children: brandItems },
   { id: "event", name: "이벤트", children: eventItems },
   { id: "recommend", name: "추천", children: recommendItems },

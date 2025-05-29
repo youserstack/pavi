@@ -8,8 +8,8 @@ export function useSyncFilterStoreWithSearchParams() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    // const categories = searchParams.get("categories")?.split(",");
-    // setFilter({ categories });
+    // const category = searchParams.get("category")?.split(",");
+    // setFilter({ category });
     let filter: { [key: string]: any } = {};
     searchParams.entries().forEach(([key, value]) => {
       if (value) {

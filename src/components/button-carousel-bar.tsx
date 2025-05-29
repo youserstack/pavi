@@ -21,8 +21,8 @@ export function ButtonCarouselBar({ items }: { items: { value: string; label: st
 
     // 기존서치파라미터객체로부터 카테고리스트링을 받고
     // 카테고리스트링은 쉼표로 구분된 아이템들로서 스필릿하여 배열로 만들고(기존 클릭된 카테고리를 토글적용하기 위해서)
-    const categoriesString = searchParams.get("categories") ?? "";
-    const categories = categoriesString ? categoriesString.split(",") : [];
+    const categoryString = searchParams.get("category") ?? "";
+    const categories = categoryString ? categoryString.split(",") : [];
     console.log({ categories });
     const newCategories = categories.includes(currentCategory) // 토글적용
       ? categories.filter((c) => c !== currentCategory)
@@ -33,9 +33,9 @@ export function ButtonCarouselBar({ items }: { items: { value: string; label: st
     const params = new URLSearchParams(searchParams.toString());
     // 빈배열이 이라면 삭제하고, 아니라면 쿼리스트링으로 설정한다
     if (newCategories.length > 0) {
-      params.set("categories", newCategories.join(","));
+      params.set("category", newCategories.join(","));
     } else {
-      params.delete("categories");
+      params.delete("category");
     }
 
     // 라우팅
@@ -57,7 +57,7 @@ export function ButtonCarouselBar({ items }: { items: { value: string; label: st
             <Button
               className="rounded-full text-xs"
               size="sm"
-              variant={filter.categories?.includes(item.value) ? "default" : "outline"}
+              variant={filter.category?.includes(item.value) ? "default" : "outline"}
               onClick={() => handleClick(item.value)}
             >
               {item.label}

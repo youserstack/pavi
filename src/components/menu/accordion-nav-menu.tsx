@@ -17,7 +17,7 @@ export function AccordionNavMenu() {
             {navItem.children?.map((v1) => (
               <Link
                 href={
-                  navItem.id === "categories" || navItem.id === "brand"
+                  navItem.id === "category" || navItem.id === "brand"
                     ? `/products?${navItem.id}=${v1.id}`
                     : `/${navItem.id}?type=${v1.id}`
                 }

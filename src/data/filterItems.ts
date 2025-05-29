@@ -1,5 +1,5 @@
 export const filterItems = [
-  { value: "categories", label: "카테고리" },
+  { value: "category", label: "카테고리" },
   { value: "brand", label: "브랜드" },
   { value: "size", label: "사이즈" },
   { value: "color", label: "색상" },

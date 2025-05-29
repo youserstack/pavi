@@ -15,11 +15,11 @@ export const useFilterStore = create<FilterStore>()(
 
       toggleCategory: (categoryItem) => {
         set((state) => {
-          const categoryItems = state.filter.categories ?? [];
+          const categoryItems = state.filter.category ?? [];
           if (categoryItems.includes(categoryItem)) {
-            state.filter.categories = categoryItems.filter((v) => v !== categoryItem);
+            state.filter.category = categoryItems.filter((v) => v !== categoryItem);
           } else {
-            state.filter.categories = [...categoryItems, categoryItem];
+            state.filter.category = [...categoryItems, categoryItem];
           }
         });
       },

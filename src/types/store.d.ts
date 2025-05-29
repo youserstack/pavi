@@ -1,5 +1,5 @@
 type Filter = {
-  categories?: string[];
+  category?: string[];
   brands?: string[];
   type?: string;
 };
