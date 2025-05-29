@@ -1,7 +1,7 @@
 type Filter = {
   category?: string[];
   brand?: string[];
-  type?: string;
+  type?: string[];
 };
 
 type FilterStore = {

@@ -36,9 +36,9 @@ export const useFilterStore = create<FilterStore>()(
       },
 
       setType: (type) => {
-        set((state) => {
-          state.filter.type = type;
-        });
+        // set((state) => {
+        //   state.filter.type = type;
+        // });
       },
 
       resetFilter: () => {

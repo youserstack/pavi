@@ -1,12 +1,9 @@
-import TanstackProvider from "@/components/providers/tanstack-provider";
-import { ThemeProvider } from "@/components/providers/theme-provider";
+import Providers from "@/components/providers/providers";
 import { inter, notoSansKR, orbitron } from "@/lib/fonts";
-import AuthProvider from "@/components/providers/auth-provider";
 import Header from "@/components/header";
 import type { Metadata } from "next";
 import { cn } from "@/lib/utils";
 import "./globals.css";
-import EffectProvider from "@/components/providers/effect-provider";
 
 export const metadata: Metadata = {
   title: "PAVI | E-Commerce",
@@ -23,21 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(inter.variable, orbitron.variable, notoSansKR.variable, "antialiased")}>
-        <AuthProvider>
-          <TanstackProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <EffectProvider>
-                <Header />
-                {children}
-              </EffectProvider>
-            </ThemeProvider>
-          </TanstackProvider>
-        </AuthProvider>
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   );
