@@ -1,10 +1,9 @@
-import { ButtonCarouselBar } from "@/components/button-carousel-bar";
 import CategoryFilter from "@/components/filters/category-filter";
-import MobileFilter from "@/components/filters/mobile-filter";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
+import { Context } from "@/components/providers/providers";
 import { Button } from "@/components/ui/button";
 import { VscSettings } from "react-icons/vsc";
+import { useContext } from "react";
 import {
   Drawer,
   DrawerContent,
@@ -15,42 +14,21 @@ import {
 } from "@/components/ui/drawer";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Context } from "@/components/providers/providers";
-import { useContext } from "react";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { filterItems } from "@/data/filterItems";
 
 export default function FilterButton() {
-  const { isMobile, isTablet, isDesktop } = useContext(Context);
+  const { isMobile, isDesktop } = useContext(Context);
   const searchParams = useSearchParams();
   const router = useRouter();
-
-  // const handleClick = (value: string) => {
-  //   // 쿼리파라미터에서 해당하는 타입의 쿼리스트링을 추출 (category, brand, color,...)
-  //   const queryString = searchParams.get(type) ?? "";
-
-  //   // 배열로 변환
-  //   const values = queryString ? queryString.split(",") : [];
-
-  //   // 토클적용한 새로운 배열 생성
-  //   const newValues = values.includes(value)
-  //     ? values.filter((v) => v !== value)
-  //     : [...values, value];
-
-  //   // 다시 요청할 쿼리파라미터로 쿼리스트링을 생성
-  //   const params = new URLSearchParams(searchParams.toString());
-  //   if (newValues.length > 0) {
-  //     params.set(type, newValues.join(","));
-  //   } else {
-  //     params.delete(type);
-  //   }
-
-  //   // 라우팅
-  //   router.push(`?${params.toString()}`);
-  // };
 
   if (isMobile) {
     return (
@@ -73,7 +51,7 @@ export default function FilterButton() {
     );
   }
 
-  if (isTablet || isDesktop) {
+  if (isDesktop) {
     return (
       <Dialog>
         <DialogTrigger asChild>
@@ -83,14 +61,33 @@ export default function FilterButton() {
           </Button>
         </DialogTrigger>
 
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
-          </DialogHeader>
+        <DialogContent className="h-[50vh] sm:max-w-xl flex flex-col">
+          <Tabs defaultValue={filterItems[0].value} className="h-full">
+            <DialogHeader>
+              <TabsList>
+                {filterItems.map((item) => (
+                  <TabsTrigger value={item.value}>
+                    <DialogTitle>{item.label}</DialogTitle>
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </DialogHeader>
 
-          <div>
-            <CategoryFilter />
-          </div>
+            <ScrollArea className="overflow-auto rounded-md p-4">
+              {filterItems.map((item) => (
+                <TabsContent value={item.value} className="">
+                  {item.label} ...
+                  {/* <CategoryFilter />
+                <CategoryFilter />
+                <CategoryFilter /> */}
+                </TabsContent>
+              ))}
+            </ScrollArea>
+
+            <DialogFooter className="min-h-fit mt-auto">
+              <DialogClose>확인</DialogClose>
+            </DialogFooter>
+          </Tabs>
         </DialogContent>
       </Dialog>
     );

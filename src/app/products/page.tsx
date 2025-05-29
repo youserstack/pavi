@@ -10,7 +10,7 @@ export default function ProductsPage() {
     <main>
       <section className="min-h-screen space-y-10">
         <FilterBar />
-        <ProductList />
+        {/* <ProductList /> */}
 
         {/* <CarouselTabsV2 /> */}
         {/* <CarouselTabsV1 items={items} /> */}

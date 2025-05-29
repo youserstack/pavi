@@ -6,9 +6,8 @@ export default function FilterBar() {
   return (
     <div className="flex items-center gap-3">
       <FilterButton />
-
-      {/* <ButtonCarouselBar items={categoryFilterItems} /> */}
       <ButtonCarouselBar2 type="category" items={categoryFilterItems} />
+      {/* <ButtonCarouselBar items={categoryFilterItems} /> */}
     </div>
   );
 }
