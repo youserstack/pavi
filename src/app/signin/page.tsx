@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import OauthSignInButton from "@/components/buttons/oauth-sign-in-button";
-import SignInForm from "@/app/signin/sign-in-form";
+import OauthSigninButton from "@/components/buttons/oauth-signin-button";
+import SignInForm from "@/components/forms/signin-form";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { ShipWheel } from "lucide-react";
@@ -25,8 +25,8 @@ export default async function SignInPage() {
 
           <CardContent className="grid gap-6">
             <ul className="flex flex-col gap-2">
-              <OauthSignInButton provider="google" />
-              <OauthSignInButton provider="naver" />
+              <OauthSigninButton provider="google" />
+              <OauthSigninButton provider="naver" />
             </ul>
             <Divider />
 

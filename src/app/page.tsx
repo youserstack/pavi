@@ -1,54 +1,25 @@
-"use client";
-
-import { ProductCarouselBar } from "@/components/product-carousel-bar";
+import PopularProductSuggestion from "@/components/popular-product-suggestion";
 import { SlideBanner } from "@/components/slide-banner";
 import ProductList from "@/components/product-list";
+import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getProducts } from "@/lib/api/fetchers";
-import { useQuery } from "@tanstack/react-query";
+
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
 export default function Home() {
-  const { data, status } = useQuery({
-    queryKey: ["mock-products"],
-    queryFn: () => getProducts(),
-  });
-  console.log({ data });
+  return (
+    <main>
+      <section className="min-h-screen space-y-8">
+        {/* <SlideBanner /> */}
 
-  if (status === "pending") {
-    return (
-      <main>
-        <section className="w-full h-screen flex justify-center items-center">
-          <Skeleton className="w-full h-[calc(100%-2rem)] rounded-lg" />
-        </section>
-      </main>
-    );
-  }
+        {/* <Suspense fallback={<Skeleton className="h-[250px] rounded-lg" />}>
+          <PopularProductSuggestion />
+        </Suspense> */}
 
-  if (status === "success") {
-    const { products, totalItems } = data;
-
-    return (
-      <main>
-        {/* <section>
-          <SlideBanner />
-        </section> */}
-
-        <section className="bg-muted space-y-8">
-          <div className=" space-y-8">
-            <div>
-              <h1 className="ml-3 mb-3 font-semibold">구매가 많은 제품들</h1>
-              <ProductCarouselBar products={products} />
-            </div>
-
-            {/* <div>
-              <h1 className="ml-3 mb-3 font-semibold">전체 상품</h1>
-              <ProductList products={products} />
-            </div> */}
-          </div>
-        </section>
-      </main>
-    );
-  }
-
-  return null;
+        {/* <Suspense fallback={<Skeleton className="h-[250px] rounded-lg" />}>
+          <ProductList />
+        </Suspense> */}
+      </section>
+    </main>
+  );
 }

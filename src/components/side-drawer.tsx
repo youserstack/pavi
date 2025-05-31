@@ -4,7 +4,7 @@ import { AccordionNavMenu } from "@/components/menus/accordion-nav-menu";
 import { Button } from "@/components/ui/button";
 import UserAvatar from "@/components/user-avatar";
 import { useSession } from "next-auth/react";
-import SignOutButton from "@/components/buttons/sign-out-button";
+import SignoutButton from "@/components/buttons/signout-button";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import {
@@ -17,7 +17,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Separator } from "@/components/ui/separator";
-import SignInButton from "@/components/buttons/sign-in-button";
+import SigninButton from "@/components/buttons/signin-button";
 
 export function SideDrawer() {
   const { data: session } = useSession();
@@ -60,7 +60,7 @@ export function SideDrawer() {
         </DrawerHeader>
 
         <DrawerFooter>
-          {session && <SignOutButton />}
+          {session && <SignoutButton />}
           <DrawerClose asChild>
             <Button variant="outline">닫기</Button>
           </DrawerClose>

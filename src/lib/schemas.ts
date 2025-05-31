@@ -1,11 +1,11 @@
 import { number, object, string, z } from "zod";
 
-export const signInSchema = object({
+export const signinSchema = object({
   email: string().min(1, "").email("유효한 이메일 형식이 아닙니다."),
   password: string().min(1, "").max(32, "비밀번호는 32자 이하이어야 합니다."),
 });
 
-export const signUpSchema = object({
+export const signupSchema = object({
   email: string().min(1, "").email("유효한 이메일 형식이 아닙니다."),
   name: string().min(1, ""),
   password: string()
@@ -28,5 +28,5 @@ export const tableRowSchema = object({
   reviewer: string(),
 });
 
-export type SigninSchema = z.infer<typeof signInSchema>;
-export type SignupSchema = z.infer<typeof signUpSchema>;
+export type SigninSchema = z.infer<typeof signinSchema>;
+export type SignupSchema = z.infer<typeof signupSchema>;

@@ -3,6 +3,7 @@ import Google from "next-auth/providers/google";
 import Naver from "next-auth/providers/naver";
 import Credentials from "next-auth/providers/credentials";
 import type { NextAuthOptions } from "next-auth";
+import { authenticateUser } from "@/lib/api/fetchers";
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
@@ -25,22 +26,18 @@ export const authOptions: NextAuthOptions = {
         try {
           // ⚪ 스프링서버에서 인증처리
           console.log("✔️ 스프링서버에서 인증처리중...");
-          const res = await fetch(`${process.env.API_URL}/api/auth/signin`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email: credentials?.email, password: credentials?.password }),
-          });
-          if (!res.ok) {
-            const msg = "❌ 인증처리 실패";
-            console.error(msg);
-            throw new Error(msg);
+
+          if (!credentials?.email || !credentials?.password) {
+            throw new Error("이메일 또는 비밀번호가 누락되었습니다.");
           }
-          const user = await res.json();
-          console.log("✔️ 스프링서버로부터 인증된 사용자 데이터", { user });
+
+          const user = await authenticateUser(credentials.email, credentials.password);
 
           // ⚪ 넥스트서버에서 인가처리 (NextAuth는 이 객체를 기반으로 JWT/Session 생성)
+          console.log("✔️ 스프링서버로부터 인증된 사용자 데이터", { user });
           return user;
         } catch (error) {
+          console.log(error);
           throw error;
           // if (error instanceof CredentialsSignin) throw error;
           // throw new CredentialsSignin("알 수 없는 인증 오류");

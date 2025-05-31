@@ -1,4 +1,4 @@
-import SignOutButton from "@/components/buttons/sign-out-button";
+import SignoutButton from "@/components/buttons/signout-button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -51,7 +51,7 @@ export default function UserAvatar({
           <DropdownMenuSeparator />
 
           <DropdownMenuItem className="size-full cursor-pointer">
-            <SignOutButton plain />
+            <SignoutButton plain />
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

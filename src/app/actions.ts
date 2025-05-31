@@ -1,7 +1,7 @@
 "use server";
 
+import { signupSchema } from "@/lib/schemas";
 import { redirect } from "next/navigation";
-import { signUpSchema } from "@/lib/schemas";
 
 export async function signup(prevState: any, formData: FormData) {
   console.log("☑️ signup server action : 회원가입 서버액션 호출");
@@ -16,7 +16,7 @@ export async function signup(prevState: any, formData: FormData) {
   console.log("✔️ 회원가입 요청 폼데이터", { singupFormData });
 
   // ⚪ 유효성 검사
-  const result = signUpSchema.safeParse(singupFormData);
+  const result = signupSchema.safeParse(singupFormData);
   if (!result.success) {
     return { validationError: result.error.flatten().fieldErrors };
   }

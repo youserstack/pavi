@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signInSchema, SigninSchema } from "@/lib/schemas";
+import { signinSchema, SigninSchema } from "@/lib/schemas";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -18,7 +18,7 @@ export default function SignInForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<SigninSchema>({
-    resolver: zodResolver(signInSchema),
+    resolver: zodResolver(signinSchema),
   });
 
   const onSubmit = async (data: SigninSchema) => {

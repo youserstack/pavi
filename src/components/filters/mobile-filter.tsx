@@ -1,3 +1,5 @@
+"use client";
+
 import CategoryFilter from "@/components/filters/category-filter";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Context } from "@/components/providers/providers";

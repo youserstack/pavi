@@ -1,6 +1,6 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import SignInButton from "@/components/buttons/sign-in-button";
-import SignUpButton from "@/components/buttons/sign-up-button";
+import SigninButton from "@/components/buttons/signin-button";
+import SignupButton from "@/components/buttons/signup-button";
 import UserAvatar from "@/components/user-avatar";
 import { getServerSession } from "next-auth";
 
@@ -18,8 +18,8 @@ export default async function UserButtons() {
         <UserAvatar hasDropdownMenu user={user} />
       ) : (
         <>
-          <SignInButton />
-          <SignUpButton />
+          <SigninButton />
+          <SignupButton />
         </>
       )}
     </div>

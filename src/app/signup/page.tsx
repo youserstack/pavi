@@ -1,10 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import SignUpForm from "@/app/signup/sign-up-form";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import SignupForm from "@/components/forms/signup-form";
 
-export default async function SignUpPage() {
+export default async function SignupPage() {
   const session = await getServerSession(authOptions);
 
   if (session) {
@@ -20,7 +20,7 @@ export default async function SignUpPage() {
           </CardHeader>
 
           <CardContent className="grid gap-6">
-            <SignUpForm />
+            <SignupForm />
           </CardContent>
         </Card>
       </section>

@@ -1,5 +1,3 @@
-"use client";
-
 import CarouselTabsV1 from "@/components/carousel-tabs-v1";
 import CarouselTabsV2 from "@/components/carousel-tabs-v2";
 import FilterBar from "@/components/filter-bar";
@@ -10,7 +8,7 @@ export default function ProductsPage() {
     <main>
       <section className="min-h-screen space-y-10">
         <FilterBar />
-        {/* <ProductList /> */}
+        <ProductList />
 
         {/* <CarouselTabsV2 /> */}
         {/* <CarouselTabsV1 items={items} /> */}

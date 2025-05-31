@@ -40,7 +40,7 @@ export function ButtonCarouselBar2({ type, items }: Props) {
     }
 
     // 라우팅
-    router.push(`?${params.toString()}`);
+    router.replace(`?${params.toString()}`);
   };
 
   return (

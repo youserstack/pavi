@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { signOut } from "next-auth/react";
 
-export default function SignOutButton({
+export default function SignoutButton({
   plain,
   variant,
 }: {
