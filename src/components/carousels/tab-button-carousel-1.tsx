@@ -5,19 +5,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { filterItems } from "@/data/filterItems";
+import useDraggingState from "@/lib/hooks/useDraggingState";
 
 type Props = { items: { value: string; label: string }[] };
 const items = filterItems;
 
 export default function TabButtonCarousel1() {
-  const [isDragging, setIsDragging] = useState(false);
-
-  // 드레그시 포인터변경을위한 이벤트
-  useEffect(() => {
-    const handlePointerUp = () => setIsDragging(false);
-    window.addEventListener("pointerup", handlePointerUp);
-    return () => window.removeEventListener("pointerup", handlePointerUp);
-  }, []);
+  const { isDragging, setIsDragging } = useDraggingState();
 
   return (
     <Tabs defaultValue={items[0].value}>

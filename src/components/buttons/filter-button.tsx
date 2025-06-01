@@ -22,9 +22,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { filterItems } from "@/data/filterItems";
+import TabButtonCarousel3 from "@/components/carousels/tab-button-carousel-3";
+import TabButtonCarousel2 from "@/components/carousels/tab-button-carousel-2";
 
 export default function FilterButton() {
   const { isMobile, isDesktop } = useContext(Context);
@@ -54,7 +53,7 @@ export default function FilterButton() {
 
   if (isDesktop) {
     return (
-      <Dialog>
+      <Dialog open>
         <DialogTrigger asChild>
           <Button variant={"outline"} className="rounded-full text-xs" size={"sm"}>
             <VscSettings className="rotate-90" />
@@ -63,29 +62,11 @@ export default function FilterButton() {
         </DialogTrigger>
 
         <DialogContent className="h-[50vh] sm:max-w-xl flex flex-col">
-          <Tabs defaultValue={filterItems[0].value} className="h-full">
-            <DialogHeader>
-              <TabsList>
-                {filterItems.map((item) => (
-                  <TabsTrigger value={item.value}>
-                    <DialogTitle>{item.label}</DialogTitle>
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-            </DialogHeader>
+          <DialogTitle className="hidden">필터</DialogTitle>
+          {/* <TabButtonCarousel2 /> */}
+          <TabButtonCarousel3 />
 
-            <ScrollArea className="overflow-auto rounded-md p-4">
-              {filterItems.map((item) => (
-                <TabsContent value={item.value} className="">
-                  {item.label} ...
-                </TabsContent>
-              ))}
-            </ScrollArea>
-
-            <DialogFooter className="min-h-fit mt-auto">
-              <DialogClose>확인</DialogClose>
-            </DialogFooter>
-          </Tabs>
+          <DialogClose className="mt-auto">확인</DialogClose>
         </DialogContent>
       </Dialog>
     );

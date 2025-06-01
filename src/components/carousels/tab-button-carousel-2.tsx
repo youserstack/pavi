@@ -5,30 +5,25 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { filterItems } from "@/data/filterItems";
+import useDraggingState from "@/lib/hooks/useDraggingState";
 import SwiperCore from "swiper";
 import "swiper/css";
-import { filterItems } from "@/data/filterItems";
 
 type Props = { items: { value: string; label: string }[] };
 const items = filterItems;
 
 export default function TabButtonCarousel2() {
-  const [isDragging, setIsDragging] = useState(false);
+  const { isDragging, setIsDragging } = useDraggingState();
   const [activeTab, setActiveTab] = useState<string>(items[0]?.value); // 초기 탭 값 설정
   const swiperRef = useRef<SwiperCore>(null);
-
-  // 드레그시 포인터변경을위한 이벤트
-  useEffect(() => {
-    const handlePointerUp = () => setIsDragging(false);
-    window.addEventListener("pointerup", handlePointerUp);
-    return () => window.removeEventListener("pointerup", handlePointerUp);
-  }, []);
 
   return (
     <Tabs
       value={activeTab}
       // 탭 클릭 시 Swiper 슬라이드 이동 및 activeIndex 설정
       onValueChange={(value) => setActiveTab(value)}
+      className="h-full"
     >
       <TabsList onPointerDown={() => setIsDragging(true)} className="w-full">
         <Carousel
@@ -72,7 +67,7 @@ export default function TabButtonCarousel2() {
             setActiveTab(newValue);
             // console.log("onSlideChange");
           }}
-          className="size-[500px] border border-red-500"
+          className="h-full"
         >
           {items.map((item, index) => (
             <SwiperSlide key={index}>
@@ -81,27 +76,6 @@ export default function TabButtonCarousel2() {
           ))}
         </Swiper>
       </TabsContent>
-
-      {/* {items.map((item) => (
-          <TabsContent key={item.value} value={item.value}>
-            <Swiper
-              key={item.value} // Swiper 재마운트 트리거
-              initialSlide={items.findIndex((i) => i.value === activeTab)} // index 대신 value 기준
-              onSwiper={(swiper) => {
-                swiperRef.current = swiper;
-              }}
-              onSlideChange={(swiper) => {
-                const newValue = items[swiper.activeIndex].value;
-                setActiveTab(newValue);
-              }}
-              className="size-[500px] border border-red-500"
-            >
-              {items.map((item) => (
-                <SwiperSlide key={item.value}>{item.label} - 콘텐츠</SwiperSlide>
-              ))}
-            </Swiper>
-          </TabsContent>
-        ))} */}
     </Tabs>
   );
 }

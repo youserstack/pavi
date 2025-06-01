@@ -10,8 +10,7 @@ export default function ProductsPage() {
     <main>
       <section className="min-h-screen space-y-10">
         {/* 탭버튼 */}
-        {/* <TabButtonCarousel2 /> */}
-        {/* <TabButtonCarousel1 /> */}
+        <TabButtonCarousel1 />
 
         {/* 필터버튼 */}
         <div className="flex items-center gap-3">

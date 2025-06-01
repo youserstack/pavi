@@ -49,7 +49,7 @@ export function ToggleButtonCarousel({ type, items }: Props) {
       onPointerDown={() => setIsDragging(true)}
       className={cn(
         "group bg-background overflow-hidden w-full",
-        isDragging ? "cursor-grabbing [&_button]:cursor-[inherit]" : "cursor-pointer"
+        isDragging ? "cursor-grabbing [&_button]:cursor-[inherit]" : ""
       )}
     >
       <CarouselContent className="-ml-2">
