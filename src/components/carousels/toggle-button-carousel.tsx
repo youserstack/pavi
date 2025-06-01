@@ -7,32 +7,36 @@ import { Button } from "@/components/ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-export function ButtonCarouselBar({ items }: { items: { value: string; label: string }[] }) {
+type Props = {
+  // type: "category" | "brand" | "size" | "color" | "price" | "productType";
+  type: keyof Filter;
+  items: { value: string; label: string }[];
+};
+
+export function ToggleButtonCarousel({ type, items }: Props) {
   const { filter } = useFilterStore();
   const { isDragging, setIsDragging } = useDraggingState();
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const handleClick = (categoryItem: string) => {
-    // 파라미터스트링 -> 배열 -> 토글적용된 배열 -> 파라미터스트링 -> 라우팅
+  const handleClick = (value: string) => {
+    // 쿼리파라미터에서 해당하는 타입의 쿼리스트링을 추출 (category, brand, color,...)
+    const queryString = searchParams.get(type) ?? "";
 
-    // 기존서치파라미터객체로부터 카테고리스트링을 받고
-    // 카테고리스트링은 쉼표로 구분된 아이템들로서 스필릿하여 배열로 만들고(기존 클릭된 카테고리를 토글적용하기 위해서)
-    const category = searchParams.get("category") ?? "";
-    const categoryItems = category ? category.split(",") : [];
-    console.log({ categoryItems });
-    const newCategoryItems = categoryItems.includes(categoryItem) // 토글적용
-      ? categoryItems.filter((c) => c !== categoryItem)
-      : [...categoryItems, categoryItem];
-    console.log({ newCategoryItems });
+    // 배열로 변환
+    const values = queryString ? queryString.split(",") : [];
 
-    // 토글적용된 새카테고리배열로부터 직렬화한 스트링으로 만들어 새로운 서치파라미터객체에 설정해야함
+    // 토클적용한 새로운 배열 생성
+    const newValues = values.includes(value)
+      ? values.filter((v) => v !== value)
+      : [...values, value];
+
+    // 다시 요청할 쿼리파라미터로 쿼리스트링을 생성
     const params = new URLSearchParams(searchParams.toString());
-    // 빈배열이 이라면 삭제하고, 아니라면 쿼리스트링으로 설정한다
-    if (newCategoryItems.length > 0) {
-      params.set("category", newCategoryItems.join(","));
+    if (newValues.length > 0) {
+      params.set(type, newValues.join(","));
     } else {
-      params.delete("category");
+      params.delete(type);
     }
 
     // 라우팅
@@ -54,7 +58,7 @@ export function ButtonCarouselBar({ items }: { items: { value: string; label: st
             <Button
               className="rounded-full text-xs"
               size="sm"
-              variant={filter.category?.includes(item.value) ? "default" : "outline"}
+              variant={filter[type]?.includes(item.value) ? "default" : "outline"}
               onClick={() => handleClick(item.value)}
             >
               {item.label}

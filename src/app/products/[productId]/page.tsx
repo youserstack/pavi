@@ -6,19 +6,21 @@ import { getProduct, getProductIds } from "@/lib/api/fetchers";
 
 // export const revalidate = 30; // 재검증시간설정 : n초동안캐시
 
-export async function generateStaticParams() {
-  const data = await getProductIds();
-  const productIds = data.productIds.map((v: any) => ({ productId: v.productId }));
-  console.log({ productIds });
-  return productIds;
-}
+// export async function generateStaticParams() {
+//   const data = await getProductIds();
+//   const productIds = data.productIds.map((v: any) => ({ productId: v.productId }));
+//   console.log({ productIds });
+//   return productIds;
+// }
 
 type Params = Promise<{ productId: string }>;
 
 export default async function ProductDetailPage({ params }: { params: Params }) {
-  const productId = (await params).productId;
-  const { product } = await getProduct(productId);
-  console.log({ productId, product });
+  const { product } = await getProduct((await params).productId);
+  // const productId = (await params).productId;
+  // console.log({ productId, product });
+
+  if (!product) return null;
 
   return (
     <main className="ProductDetailPage">

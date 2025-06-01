@@ -5,9 +5,9 @@ import Sizes from "@/app/products/[productId]/widget/sizes";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { BsHandbag } from "react-icons/bs";
-import { useCartStore } from "@/lib/stores/useCartStore";
 import { toast } from "sonner";
 import Quantity from "@/app/products/[productId]/widget/quantity";
+import { useCartStore } from "@/stores/useCartStore";
 
 export default function WidgetCard({ product }: { product: Product }) {
   const { addToCart } = useCartStore();
@@ -29,7 +29,7 @@ export default function WidgetCard({ product }: { product: Product }) {
     }
 
     // 카트에 추가할 아이템
-    const newItem: Item = {
+    const newItem: any = {
       mallName: product.mallName,
       productId: product.productId,
       name: product.title,

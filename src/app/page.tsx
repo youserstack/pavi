@@ -4,8 +4,6 @@ import ProductList from "@/components/product-list";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 
-type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
-
 export default function Home() {
   return (
     <main>

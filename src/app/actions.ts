@@ -24,7 +24,7 @@ export async function signup(prevState: any, formData: FormData) {
 
   // ⚪ 스프링서버에서 가입처리
   console.log("✔️ 스프링서버에서 회원가입 처리중...");
-  const res = await fetch(`${process.env.API_URL}/api/users`, {
+  const res = await fetch(`${process.env.TOOPA_API_URL}/api/users`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({

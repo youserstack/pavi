@@ -1,6 +1,5 @@
 "use client";
 
-import CategoryFilter from "@/components/filters/category-filter";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Context } from "@/components/providers/providers";
 import { Button } from "@/components/ui/button";
@@ -79,9 +78,6 @@ export default function FilterButton() {
               {filterItems.map((item) => (
                 <TabsContent value={item.value} className="">
                   {item.label} ...
-                  {/* <CategoryFilter />
-                <CategoryFilter />
-                <CategoryFilter /> */}
                 </TabsContent>
               ))}
             </ScrollArea>

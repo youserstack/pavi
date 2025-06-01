@@ -4,8 +4,12 @@ import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carouse
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { filterItems } from "@/data/filterItems";
 
-export default function CarouselTabsV1({ items }: { items: { value: string; label: string }[] }) {
+type Props = { items: { value: string; label: string }[] };
+const items = filterItems;
+
+export default function TabButtonCarousel1() {
   const [isDragging, setIsDragging] = useState(false);
 
   // 드레그시 포인터변경을위한 이벤트
