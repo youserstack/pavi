@@ -7,6 +7,7 @@ import { VscSettings } from "react-icons/vsc";
 import { useContext } from "react";
 import {
   Drawer,
+  DrawerClose,
   DrawerContent,
   DrawerFooter,
   DrawerHeader,
@@ -23,7 +24,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import TabButtonCarousel3 from "@/components/carousels/tab-button-carousel-3";
-import TabButtonCarousel2 from "@/components/carousels/tab-button-carousel-2";
 
 export default function FilterButton() {
   const { isMobile, isDesktop } = useContext(Context);
@@ -32,7 +32,7 @@ export default function FilterButton() {
 
   if (isMobile) {
     return (
-      <Drawer direction="top">
+      <Drawer>
         <DrawerTrigger asChild>
           <Button variant={"outline"} className="rounded-full text-xs" size={"sm"}>
             <VscSettings className="rotate-90" />
@@ -42,10 +42,14 @@ export default function FilterButton() {
 
         <DrawerContent>
           <DrawerHeader>
-            <DrawerTitle>title</DrawerTitle>
+            <DrawerTitle>필터</DrawerTitle>
           </DrawerHeader>
 
-          <DrawerFooter>footer</DrawerFooter>
+          <DrawerFooter>
+            <DrawerClose>
+              <Button className="w-full">확인</Button>
+            </DrawerClose>
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     );
@@ -53,7 +57,7 @@ export default function FilterButton() {
 
   if (isDesktop) {
     return (
-      <Dialog open>
+      <Dialog>
         <DialogTrigger asChild>
           <Button variant={"outline"} className="rounded-full text-xs" size={"sm"}>
             <VscSettings className="rotate-90" />
@@ -62,11 +66,17 @@ export default function FilterButton() {
         </DialogTrigger>
 
         <DialogContent className="h-[50vh] sm:max-w-xl flex flex-col">
-          <DialogTitle className="hidden">필터</DialogTitle>
-          {/* <TabButtonCarousel2 /> */}
+          <DialogHeader>
+            <DialogTitle>필터</DialogTitle>
+          </DialogHeader>
+
           <TabButtonCarousel3 />
 
-          <DialogClose className="mt-auto">확인</DialogClose>
+          <DialogFooter>
+            <DialogClose className="w-full">
+              <Button className="w-full">확인</Button>
+            </DialogClose>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     );

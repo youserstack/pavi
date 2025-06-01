@@ -7,6 +7,7 @@ import { filterItems } from "@/data/filterItems";
 import { useRef, useState } from "react";
 import SwiperCore from "swiper";
 import "swiper/css";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const items = filterItems;
 
@@ -18,10 +19,10 @@ export default function TabButtonCarousel3() {
   return (
     <div
       onPointerDown={() => setIsDragging(true)}
-      className={`h-full 
+      className={`flex-1 flex flex-col min-h-0
       ${isDragging ? "[&_button]:cursor-grabbing" : "[&_button]:cursor-pointer"} `}
     >
-      <Carousel className="w-full">
+      <Carousel>
         <CarouselContent className="-ml-0">
           {items.map((item) => (
             <button
@@ -31,7 +32,7 @@ export default function TabButtonCarousel3() {
                 const index = items.findIndex((i) => i.value === item.value);
                 if (index !== -1) swiperRef.current?.slideTo(index, 0); // 0ms 속도로 즉시 이동
               }}
-              className={`px-2 py-1 text-sm border-muted border-b-2 relative basis-full/ flex-1
+              className={`px-2 py-1 text-sm border-muted border-b-2 relative flex-1
               ${activeTab === item.value ? "text-foreground" : "text-muted-foreground"}  `}
             >
               <CarouselItem className="pl-0">{item.label}</CarouselItem>
@@ -45,7 +46,8 @@ export default function TabButtonCarousel3() {
       </Carousel>
 
       <Swiper
-        className="h-full border border-blue-500"
+        // className="flex-1 w-full h-full min-h-0"
+        className="w-full" // 스와이프 엔트리에 가로 명시
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         onSlideChange={(swiper) => {
           const newIndex = swiper.realIndex;
@@ -55,7 +57,36 @@ export default function TabButtonCarousel3() {
       >
         {items.map((item, index) => (
           <SwiperSlide key={index}>
-            {item.label} - 콘텐츠 {index}
+            <ScrollArea
+              className="h-full" // 스크롤 엔트리에 높이 명시
+            >
+              {item.label} - 콘텐츠 {index}
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. At voluptas exercitationem,
+                sit nostrum et ipsum magnam consectetur, enim architecto tenetur recusandae neque
+                fugit omnis incidunt, quidem doloribus non! Numquam, incidunt.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. At voluptas exercitationem,
+                sit nostrum et ipsum magnam consectetur, enim architecto tenetur recusandae neque
+                fugit omnis incidunt, quidem doloribus non! Numquam, incidunt.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. At voluptas exercitationem,
+                sit nostrum et ipsum magnam consectetur, enim architecto tenetur recusandae neque
+                fugit omnis incidunt, quidem doloribus non! Numquam, incidunt.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. At voluptas exercitationem,
+                sit nostrum et ipsum magnam consectetur, enim architecto tenetur recusandae neque
+                fugit omnis incidunt, quidem doloribus non! Numquam, incidunt.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. At voluptas exercitationem,
+                sit nostrum et ipsum magnam consectetur, enim architecto tenetur recusandae neque
+                fugit omnis incidunt, quidem doloribus non! Numquam, incidunt.
+              </p>
+            </ScrollArea>
           </SwiperSlide>
         ))}
       </Swiper>
