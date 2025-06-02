@@ -11,6 +11,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { ColorFilter } from "@/components/filters/color-filter";
 import { ColorFilter2 } from "@/components/filters/color-filter-2";
 import { ColorFilter3 } from "@/components/filters/color-filter-3";
+import { BrandFilter } from "@/components/filters/brand-filter";
 
 const items = filterItems;
 
@@ -64,6 +65,7 @@ export default function TabButtonCarousel3() {
             >
               {item.label} - 콘텐츠 {index}
               {item.value === "color" && <ColorFilter3 />}
+              {item.value === "brand" && <BrandFilter />}
             </ScrollArea>
           </SwiperSlide>
         ))}

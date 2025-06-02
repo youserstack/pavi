@@ -2,7 +2,6 @@
 
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import useDraggingState from "@/lib/hooks/useDraggingState";
-import { useFilterStore } from "@/stores/useFilterStore";
 import { Button } from "@/components/ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -14,7 +13,6 @@ type Props = {
 };
 
 export function ToggleButtonCarousel({ type, items }: Props) {
-  const { filter } = useFilterStore();
   const { isDragging, setIsDragging } = useDraggingState();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -55,7 +53,9 @@ export function ToggleButtonCarousel({ type, items }: Props) {
             <Button
               className="rounded-full text-xs"
               size="sm"
-              variant={filter[type]?.includes(item.value) ? "default" : "outline"}
+              variant={
+                searchParams.get(type as string)?.includes(item.value) ? "default" : "outline"
+              }
               onClick={() => handleClick(item.value)}
             >
               {item.label}

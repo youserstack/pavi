@@ -6,8 +6,9 @@ import { Checkbox } from "@/components/ui/checkbox-custom";
 import { bgLightColors } from "@/lib/colors";
 import { useForm } from "react-hook-form";
 import { cn } from "@/lib/utils";
+import { useMemo } from "react";
 
-const colors = [
+const colorOptions = [
   // 화이트 / 아이보리 / 베이지 계열
   { id: "white", label: "화이트" },
   { id: "ivory", label: "아이보리" },
@@ -111,71 +112,97 @@ const bgColorMap: Record<string, string> = {
   darkbrown: "bg-stone-900",
 };
 
+type Color = (typeof colorOptions)[number]["id"];
+
 export function ColorFilter3() {
-  const form = useForm<{ colors: ColorId[] }>({ defaultValues: { colors: [] } });
   const searchParams = useSearchParams();
   const router = useRouter();
+
+  const defaultValues = useMemo(() => {
+    const colorParams = searchParams.get("color")?.split(",") ?? [];
+    return {
+      colors: colorParams.filter((param) =>
+        colorOptions.some((option) => option.id === param)
+      ) as Color[],
+    };
+  }, [searchParams]);
+
+  const form = useForm<{ colors: Color[] }>({ defaultValues });
 
   // 체크/해제 시 쿼리 파라미터 업데이트 함수
   const updateQueryParam = (checked: boolean, colorId: string) => {
     // 쿼리파라미터 배열로 추출
     const params = new URLSearchParams(searchParams);
-    const colors = params.get("color")?.split(",") ?? [];
+    const colorParams = params.get("color")?.split(",") ?? [];
     // console.log({ colors });
 
     // 토글된 배열로 생성
-    const newColors = colors.includes(colorId)
-      ? colors.filter((id) => id !== colorId) // 체크해제
-      : [...colors, colorId]; // 체크
-    // const newColors = checked
-    //   ? [...new Set([...colors, colorId])] // 체크
-    //   : colors.filter((id) => id !== colorId); // 체크해제
-    // console.log({ newColors });
+    const newColorParams = colorParams.includes(colorId)
+      ? colorParams.filter((param) => param !== colorId) // 체크해제
+      : [...colorParams, colorId]; // 체크
+    // const newColorParams = checked
+    //   ? [...new Set([...colorParams, colorId])] // 체크
+    //   : colorParams.filter((param) => param !== colorId); // 체크해제
+    // console.log({ newColorParams });
 
     // 쿼리파라미터 추가 및 삭제
-    newColors.length > 0 ? params.set("color", newColors.join(",")) : params.delete("color");
+    newColorParams.length > 0
+      ? params.set("color", newColorParams.join(","))
+      : params.delete("color");
 
     // 설정된 쿼리파라미터로 라우팅
     router.push(`?${params.toString()}`);
   };
 
+  function onSubmit(data: any) {
+    // console.log({ data });
+    // toast("You submitted the following values", {
+    //   description: (
+    //     <pre className="mt-2 w-[320px] rounded-md bg-neutral-950 p-4">
+    //       <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+    //     </pre>
+    //   ),
+    // });
+  }
+
   return (
     <Form {...form}>
-      <form className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <ul className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4  items-center gap-2">
-          {colors.map((color) => (
+          {colorOptions.map((option) => (
             <FormField
-              key={color.id}
+              key={option.id}
               control={form.control}
               name="colors"
               render={({ field }) => {
                 return (
-                  <FormItem key={color.id} className="flex flex-row items-center gap-2">
+                  <FormItem key={option.id} className="flex flex-row items-center gap-2">
                     <FormControl>
                       <Checkbox
+                        checked={field.value?.includes(option.id)}
                         onCheckedChange={(checked) => {
                           const updated = checked
-                            ? [...field.value, color.id] // 체크
-                            : field.value?.filter((v) => v !== color.id); // 체크해제
+                            ? [...field.value, option.id] // 체크
+                            : field.value?.filter((v) => v !== option.id); // 체크해제
                           field.onChange(updated);
 
-                          updateQueryParam(!!checked, color.id);
+                          updateQueryParam(!!checked, option.id);
                         }}
-                        checked={field.value?.includes(color.id)}
                         className={cn(
                           "rounded-full size-5",
-                          bgColorMap[color.id], // 맵객체로 해당칼라 설정
-                          bgLightColors.includes(color.id) ? "text-black" : "text-white"
+                          bgColorMap[option.id], // 맵객체로 해당칼라 설정
+                          bgLightColors.includes(option.id) ? "text-black" : "text-white"
                         )}
                       />
                     </FormControl>
-                    <FormLabel className="text-sm font-normal">{color.label}</FormLabel>
+                    <FormLabel className="text-sm font-normal">{option.label}</FormLabel>
                   </FormItem>
                 );
               }}
             />
           ))}
         </ul>
+        <button type="submit">Submit</button>
       </form>
     </Form>
   );
