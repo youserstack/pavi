@@ -177,11 +177,20 @@ export function CheckboxReactHookFormMultiple() {
                             <Checkbox
                               className={cn(
                                 "rounded-full size-5",
-                                // 밝은계열색상은 체크시 체크표시가 보이지 않기때문에 대비색상으로 변경
-                                "data-[state=checked]:" +
-                                  getContrastTextColor(colorClassMap[item.id]),
                                 colorClassMap[item.id],
-                                "dark:" + colorClassMap[item.id]
+                                [
+                                  "white",
+                                  "ivory",
+                                  "beige",
+                                  "oatmeal",
+                                  "camel",
+                                  "sand",
+                                  "lightyellow",
+                                ].includes(item.id)
+                                  ? "text-black"
+                                  : "text-white"
+                                // 밝은계열색상은 체크시 텍스트칼라가 보이지 않기때문에 백그라운드칼라의 대비색상으로 변경
+                                // getContrastTextColor(colorClassMap[item.id])
                               )}
                               checked={field.value?.includes(item.id)}
                               onCheckedChange={(checked) => {

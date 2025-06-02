@@ -1,6 +1,4 @@
-export function getContrastTextColor(
-  bgClass: string
-): "text-foreground" | "text-primary-foreground" {
+export function getContrastTextColor(bgClass: string): "text-black" | "text-white" {
   const lightBackgrounds = [
     "bg-white",
     "bg-neutral-100",
@@ -11,6 +9,6 @@ export function getContrastTextColor(
     "bg-yellow-200",
   ];
 
-  if (lightBackgrounds.includes(bgClass)) return "text-foreground";
-  return "text-primary-foreground";
+  if (lightBackgrounds.includes(bgClass)) return "text-black";
+  return "text-white";
 }
