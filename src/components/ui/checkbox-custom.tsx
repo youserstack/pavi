@@ -17,12 +17,12 @@ function Checkbox({ className, ...props }: React.ComponentProps<typeof CheckboxP
       className={cn(
         // 상태 관련
         "data-[state=checked]:text-primary-foreground",
-        "data-[state=checked]:bg-primary",
-        "data-[state=checked]:border-primary",
-        "aria-invalid:border-destructive",
-        "aria-invalid:ring-destructive/20",
-        "dark:data-[state=checked]:bg-primary",
-        "dark:aria-invalid:ring-destructive/40",
+        // "data-[state=checked]:bg-primary",
+        // "data-[state=checked]:border-primary",
+        // "aria-invalid:border-destructive",
+        // "aria-invalid:ring-destructive/20",
+        // "dark:data-[state=checked]:bg-primary",
+        // "dark:aria-invalid:ring-destructive/40",
 
         // 포커스
         "focus-visible:border-ring",

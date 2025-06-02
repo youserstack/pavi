@@ -46,7 +46,7 @@ export default function TabButtonCarousel3() {
       </Carousel>
 
       <Swiper
-        className="w-full" // 스와이프 엔트리에 가로 명시
+        className="size-full /w-full /h-full" // 스와이프 루트에 가로, 높이 명시
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         onSlideChange={(swiper) => {
           const newIndex = swiper.realIndex;
@@ -57,33 +57,33 @@ export default function TabButtonCarousel3() {
         {items.map((item, index) => (
           <SwiperSlide key={index}>
             <ScrollArea
-              className="h-full" // 스크롤 엔트리에 높이 명시
+              className="h-full" // 스크롤 루트에 높이 명시
             >
               {item.label} - 콘텐츠 {index}
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. At voluptas exercitationem,
-                sit nostrum et ipsum magnam consectetur, enim architecto tenetur recusandae neque
-                fugit omnis incidunt, quidem doloribus non! Numquam, incidunt.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet repudiandae eaque sed
+                nam cupiditate cum odio quam, neque natus, consectetur quibusdam hic dolorem nulla
+                harum. Minima natus exercitationem inventore quaerat.
               </p>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. At voluptas exercitationem,
-                sit nostrum et ipsum magnam consectetur, enim architecto tenetur recusandae neque
-                fugit omnis incidunt, quidem doloribus non! Numquam, incidunt.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet repudiandae eaque sed
+                nam cupiditate cum odio quam, neque natus, consectetur quibusdam hic dolorem nulla
+                harum. Minima natus exercitationem inventore quaerat.
               </p>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. At voluptas exercitationem,
-                sit nostrum et ipsum magnam consectetur, enim architecto tenetur recusandae neque
-                fugit omnis incidunt, quidem doloribus non! Numquam, incidunt.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet repudiandae eaque sed
+                nam cupiditate cum odio quam, neque natus, consectetur quibusdam hic dolorem nulla
+                harum. Minima natus exercitationem inventore quaerat.
               </p>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. At voluptas exercitationem,
-                sit nostrum et ipsum magnam consectetur, enim architecto tenetur recusandae neque
-                fugit omnis incidunt, quidem doloribus non! Numquam, incidunt.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet repudiandae eaque sed
+                nam cupiditate cum odio quam, neque natus, consectetur quibusdam hic dolorem nulla
+                harum. Minima natus exercitationem inventore quaerat.
               </p>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. At voluptas exercitationem,
-                sit nostrum et ipsum magnam consectetur, enim architecto tenetur recusandae neque
-                fugit omnis incidunt, quidem doloribus non! Numquam, incidunt.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet repudiandae eaque sed
+                nam cupiditate cum odio quam, neque natus, consectetur quibusdam hic dolorem nulla
+                harum. Minima natus exercitationem inventore quaerat.
               </p>
             </ScrollArea>
           </SwiperSlide>
