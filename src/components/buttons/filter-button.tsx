@@ -73,9 +73,9 @@ export default function FilterButton() {
           <TabButtonCarousel3 />
 
           <DialogFooter>
-            <DialogClose className="w-full">
-              <Button className="w-full">확인</Button>
-            </DialogClose>
+            <Button asChild>
+              <DialogClose className="w-full">확인</DialogClose>
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

@@ -46,7 +46,6 @@ export default function TabButtonCarousel3() {
       </Carousel>
 
       <Swiper
-        // className="flex-1 w-full h-full min-h-0"
         className="w-full" // 스와이프 엔트리에 가로 명시
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         onSlideChange={(swiper) => {
