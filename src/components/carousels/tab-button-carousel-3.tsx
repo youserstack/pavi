@@ -8,8 +8,9 @@ import { useRef, useState } from "react";
 import SwiperCore from "swiper";
 import "swiper/css";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { ColorFilter } from "@/components/color-filter";
-import { ColorFilter2 } from "@/components/color-filter-2";
+import { ColorFilter } from "@/components/filters/color-filter";
+import { ColorFilter2 } from "@/components/filters/color-filter-2";
+import { ColorFilter3 } from "@/components/filters/color-filter-3";
 
 const items = filterItems;
 
@@ -62,7 +63,7 @@ export default function TabButtonCarousel3() {
               className="h-full" // 스크롤 루트에 높이 명시
             >
               {item.label} - 콘텐츠 {index}
-              {item.value === "color" && <ColorFilter2 />}
+              {item.value === "color" && <ColorFilter3 />}
             </ScrollArea>
           </SwiperSlide>
         ))}

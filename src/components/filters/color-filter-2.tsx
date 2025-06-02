@@ -68,7 +68,7 @@ const colors = [
   { id: "darkbrown", label: "다크브라운" },
 ] as const;
 
-const colorClassMap: Record<string, string> = {
+const bgColorMap: Record<string, string> = {
   // 화이트/아이보리/베이지 계열
   white: "bg-white",
   ivory: "bg-neutral-100",
@@ -186,7 +186,7 @@ export function ColorFilter2() {
                               checked={field.value?.includes(color.id)}
                               className={cn(
                                 "rounded-full size-5",
-                                colorClassMap[color.id],
+                                bgColorMap[color.id], // 맵객체로 해당칼라 설정
                                 [
                                   "white",
                                   "ivory",
@@ -199,7 +199,7 @@ export function ColorFilter2() {
                                   ? "text-black"
                                   : "text-white"
                                 // 밝은계열색상은 체크시 텍스트칼라가 보이지 않기때문에 백그라운드칼라의 대비색상으로 변경
-                                // getContrastTextColor(colorClassMap[color.id])
+                                // getContrastTextColor(bgColorMap[color.id])
                               )}
                               onCheckedChange={(checked) => {
                                 const updated = checked

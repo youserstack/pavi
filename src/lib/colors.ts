@@ -12,3 +12,5 @@ export function getContrastTextColor(bgClass: string): "text-black" | "text-whit
   if (lightBackgrounds.includes(bgClass)) return "text-black";
   return "text-white";
 }
+
+export const bgLightColors = ["white", "ivory", "beige", "oatmeal", "camel", "sand", "lightyellow"];
