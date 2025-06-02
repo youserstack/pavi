@@ -4,7 +4,6 @@ import TabButtonCarousel1 from "@/components/carousels/tab-button-carousel-1";
 import TabButtonCarousel2 from "@/components/carousels/tab-button-carousel-2";
 import ProductList from "@/components/product-list";
 import { categoryFilterItems } from "@/data/filterItems";
-import { CheckboxReactHookFormMultiple } from "@/components/CheckboxReactHookFormMultiple";
 
 export default function ProductsPage() {
   return (
@@ -17,10 +16,6 @@ export default function ProductsPage() {
         <div className="flex items-center gap-3">
           <FilterButton />
           <ToggleButtonCarousel type="category" items={categoryFilterItems} />
-        </div>
-
-        <div className="flex justify-end">
-          <CheckboxReactHookFormMultiple />
         </div>
 
         {/* 제품리스트 */}

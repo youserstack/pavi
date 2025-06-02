@@ -129,7 +129,7 @@ const FormSchema = z.object({
   }),
 });
 
-export function CheckboxReactHookFormMultiple() {
+export function ColorFilter() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: { items: [] }, // 초기값 설정

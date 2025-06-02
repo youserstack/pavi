@@ -20,19 +20,16 @@ export function ToggleButtonCarousel({ type, items }: Props) {
   const router = useRouter();
 
   const handleClick = (value: string) => {
-    // 쿼리파라미터에서 해당하는 타입의 쿼리스트링을 추출 (category, brand, color,...)
-    const queryString = searchParams.get(type) ?? "";
-
-    // 배열로 변환
-    const values = queryString ? queryString.split(",") : [];
+    // 쿼리스트링을 추출하고 배열로 변환 (category, brand, color,...)
+    const params = new URLSearchParams(searchParams);
+    const values = params.get(type)?.split(",") ?? [];
 
     // 토클적용한 새로운 배열 생성
     const newValues = values.includes(value)
-      ? values.filter((v) => v !== value)
-      : [...values, value];
+      ? values.filter((v) => v !== value) // 삭제
+      : [...values, value]; // 추가
 
-    // 다시 요청할 쿼리파라미터로 쿼리스트링을 생성
-    const params = new URLSearchParams(searchParams.toString());
+    // 쿼리파라미터 추가 및 삭제
     if (newValues.length > 0) {
       params.set(type, newValues.join(","));
     } else {

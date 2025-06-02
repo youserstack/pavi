@@ -8,6 +8,8 @@ import { useRef, useState } from "react";
 import SwiperCore from "swiper";
 import "swiper/css";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { ColorFilter } from "@/components/color-filter";
+import { ColorFilter2 } from "@/components/color-filter-2";
 
 const items = filterItems;
 
@@ -60,31 +62,7 @@ export default function TabButtonCarousel3() {
               className="h-full" // 스크롤 루트에 높이 명시
             >
               {item.label} - 콘텐츠 {index}
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet repudiandae eaque sed
-                nam cupiditate cum odio quam, neque natus, consectetur quibusdam hic dolorem nulla
-                harum. Minima natus exercitationem inventore quaerat.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet repudiandae eaque sed
-                nam cupiditate cum odio quam, neque natus, consectetur quibusdam hic dolorem nulla
-                harum. Minima natus exercitationem inventore quaerat.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet repudiandae eaque sed
-                nam cupiditate cum odio quam, neque natus, consectetur quibusdam hic dolorem nulla
-                harum. Minima natus exercitationem inventore quaerat.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet repudiandae eaque sed
-                nam cupiditate cum odio quam, neque natus, consectetur quibusdam hic dolorem nulla
-                harum. Minima natus exercitationem inventore quaerat.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet repudiandae eaque sed
-                nam cupiditate cum odio quam, neque natus, consectetur quibusdam hic dolorem nulla
-                harum. Minima natus exercitationem inventore quaerat.
-              </p>
+              {item.value === "color" && <ColorFilter2 />}
             </ScrollArea>
           </SwiperSlide>
         ))}
