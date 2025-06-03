@@ -1,8 +1,8 @@
 export const filterItems = [
-  { value: "category", label: "카테고리" },
-  { value: "brand", label: "브랜드" },
+  // { value: "category", label: "카테고리" },
+  { value: "color", label: "칼라" },
   { value: "size", label: "사이즈" },
-  { value: "color", label: "색상" },
+  { value: "brand", label: "브랜드" },
   { value: "price", label: "가격" },
   { value: "productType", label: "제품유형" },
 ];

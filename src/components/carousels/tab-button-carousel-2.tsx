@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { filterItems } from "@/data/filterItems";
+import { filterItems } from "@/data/filter-items";
 import useDraggingState from "@/lib/hooks/useDraggingState";
 import SwiperCore from "swiper";
 import "swiper/css";

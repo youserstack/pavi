@@ -3,7 +3,7 @@ import FilterButton from "@/components/buttons/filter-button";
 import TabButtonCarousel1 from "@/components/carousels/tab-button-carousel-1";
 import TabButtonCarousel2 from "@/components/carousels/tab-button-carousel-2";
 import ProductList from "@/components/product-list";
-import { categoryFilterItems } from "@/data/filterItems";
+import { categoryFilterItems } from "@/data/filter-items";
 
 export default function ProductsPage() {
   return (

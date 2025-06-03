@@ -130,16 +130,11 @@ export function ColorFilter() {
     // 쿼리파라미터 배열로 추출
     const params = new URLSearchParams(searchParams);
     const colorFilterValues = params.get("color")?.split(",") ?? [];
-    // console.log({ colors });
 
     // 토글된 배열로 생성
-    const newColorFilterValues = colorFilterValues.includes(colorFilterValue)
-      ? colorFilterValues.filter((v) => v !== colorFilterValue) // 체크해제
-      : [...colorFilterValues, colorFilterValue]; // 체크
-    // const newColorFilterValues = checked
-    //   ? [...new Set([...colorFilterValues, colorFilterValue])] // 체크
-    //   : colorFilterValues.filter((v) => v !== colorFilterValue); // 체크해제
-    // console.log({ newColorFilterValues });
+    const newColorFilterValues = checked
+      ? [...new Set([...colorFilterValues, colorFilterValue])] // 체크
+      : colorFilterValues.filter((v) => v !== colorFilterValue); // 체크해제
 
     // 쿼리파라미터 추가 및 삭제
     newColorFilterValues.length > 0
@@ -150,20 +145,9 @@ export function ColorFilter() {
     router.push(`?${params.toString()}`);
   };
 
-  function onSubmit(data: any) {
-    // console.log({ data });
-    // toast("You submitted the following values", {
-    //   description: (
-    //     <pre className="mt-2 w-[320px] rounded-md bg-neutral-950 p-4">
-    //       <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-    //     </pre>
-    //   ),
-    // });
-  }
-
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form className="space-y-8">
         <ul className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4  items-center gap-2">
           {colorOptions.map((option) => (
             <FormField
@@ -198,7 +182,6 @@ export function ColorFilter() {
             />
           ))}
         </ul>
-        <button type="submit">Submit</button>
       </form>
     </Form>
   );

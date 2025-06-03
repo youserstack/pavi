@@ -4,7 +4,7 @@ import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carouse
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { filterItems } from "@/data/filterItems";
+import { filterItems } from "@/data/filter-items";
 import useDraggingState from "@/lib/hooks/useDraggingState";
 
 type Props = { items: { value: string; label: string }[] };
