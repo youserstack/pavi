@@ -32,36 +32,37 @@ export function NavMenu() {
               if (v1.children && v1.children.length > 0) {
                 return (
                   <MenubarSub key={v1.id}>
-                    <MenubarSubTrigger>
-                      <MenubarItem asChild>
-                        <Link
-                          href={
-                            navItem.id === "category" || navItem.id === "brand"
-                              ? `/products?${navItem.id}=${v1.id}`
-                              : `/${navItem.id}?type=${v1.id}`
-                          }
-                        >
+                    <Link
+                      href={
+                        navItem.id === "category" || navItem.id === "brand"
+                          ? `/products?${navItem.id}=${v1.id}`
+                          : `/${navItem.id}?type=${v1.id}`
+                      }
+                    >
+                      <MenubarSubTrigger>
+                        <MenubarItem>
                           {v1.icon && <span>{v1.icon}</span>}
                           <span>{v1.name}</span>
                           {v1.emoji && <span>{v1.emoji}</span>}
-                        </Link>
-                      </MenubarItem>
-                    </MenubarSubTrigger>
+                        </MenubarItem>
+                      </MenubarSubTrigger>
+                    </Link>
                     <MenubarSubContent>
                       {v1.children?.map((v2) => (
-                        <MenubarItem key={v2.id} asChild>
-                          <Link
-                            href={
-                              navItem.id === "category" || navItem.id === "brand"
-                                ? `/products?${navItem.id}=${v2.id}`
-                                : `/${navItem.id}?type=${v2.id}`
-                            }
-                          >
+                        <Link
+                          key={v2.id}
+                          href={
+                            navItem.id === "category" || navItem.id === "brand"
+                              ? `/products?${navItem.id}=${v2.id}`
+                              : `/${navItem.id}?type=${v2.id}`
+                          }
+                        >
+                          <MenubarItem>
                             {v2.icon && <span>{v2.icon}</span>}
                             <MenubarLabel>{v2.name}</MenubarLabel>
                             {v2.emoji && <span>{v2.emoji}</span>}
-                          </Link>
-                        </MenubarItem>
+                          </MenubarItem>
+                        </Link>
                       ))}
                     </MenubarSubContent>
                   </MenubarSub>
@@ -70,28 +71,19 @@ export function NavMenu() {
               // 레벨1(children)
               else {
                 return (
-                  <MenubarItem key={v1.id} asChild>
-                    <Link
-                      href={
-                        navItem.id === "category" || navItem.id === "brand"
-                          ? `/products?${navItem.id}=${v1.id}`
-                          : `/${navItem.id}?type=${v1.id}`
-                      }
-                    >
+                  <Link
+                    href={
+                      navItem.id === "category" || navItem.id === "brand"
+                        ? `/products?${navItem.id}=${v1.id}`
+                        : `/${navItem.id}?type=${v1.id}`
+                    }
+                  >
+                    <MenubarItem key={v1.id}>
                       {v1.icon && <span>{v1.icon}</span>}
                       <MenubarLabel>{v1.name}</MenubarLabel>
                       {v1.emoji && <span>{v1.emoji}</span>}
-                    </Link>
-                    {/* <Link
-                      href={
-                        navItem.id === "category" || navItem.id === "brand"
-                          ? `/products?${navItem.id}=${v1.id}`
-                          : `/${navItem.id}?type=${v1.id}`
-                      }
-                    >
-                      <MenubarLabel>{v1.name}</MenubarLabel>
-                    </Link> */}
-                  </MenubarItem>
+                    </MenubarItem>
+                  </Link>
                 );
               }
             })}

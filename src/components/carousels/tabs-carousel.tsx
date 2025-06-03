@@ -16,17 +16,17 @@ export default function TabsCarousel({ items }: { items: { value: string; label:
 
   const foundCategory = categoryItems.find((item) => item.id === categoryParam);
   const subCategoryItems = foundCategory?.children?.length
-    ? foundCategory.children
+    ? [{ id: "all", name: "전체" }, ...foundCategory.children]
     : [{ id: "all", name: "전체" }];
 
-  // console.log({ foundCategory });
+  console.log({ subCategoryItems });
 
   if (!categoryParam) return null;
 
   return (
     <Tabs defaultValue={subCategoryItems[0].id}>
-      <TabsList onPointerDown={() => setIsDragging(true)} className="/w-full">
-        <Carousel opts={{ dragFree: true }} className="/w-full">
+      <TabsList onPointerDown={() => setIsDragging(true)}>
+        <Carousel opts={{ dragFree: true }}>
           <CarouselContent className="-ml-0">
             {subCategoryItems.map((item) => (
               <TabsTrigger
