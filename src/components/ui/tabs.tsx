@@ -44,14 +44,14 @@ function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPr
         "px-2 py-1",
 
         // 가상요소
-        "relative",
-        "before:absolute",
-        "before:top-full",
-        "before:w-full",
-        "before:content-['']",
-        "before:h-[2px]",
-        "before:bg-transparent",
-        "before:pointer-events-none",
+        // "relative",
+        // "before:absolute",
+        // "before:top-full",
+        // "before:w-full",
+        // "before:content-['']",
+        // "before:h-[2px]",
+        // "before:bg-transparent",
+        // "before:pointer-events-none",
 
         // 인터랙션 및 전환
         "transition-[color]",

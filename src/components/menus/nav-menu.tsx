@@ -53,8 +53,8 @@ export function NavMenu() {
                           <Link
                             href={
                               navItem.id === "category" || navItem.id === "brand"
-                                ? `/products?${navItem.id}=${v1.id}/${v2.id}`
-                                : `/${navItem.id}?type=${v1.id}/${v2.id}`
+                                ? `/products?${navItem.id}=${v2.id}`
+                                : `/${navItem.id}?type=${v2.id}`
                             }
                           >
                             {v2.icon && <span>{v2.icon}</span>}

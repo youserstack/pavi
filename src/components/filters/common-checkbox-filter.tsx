@@ -11,7 +11,7 @@ type FilterOption = {
 };
 
 type Props = {
-  name: "brand" | "size" | "productType" | "color"; // 필터옵션의 키, 이름 + 쿼리파라미터 이름 (예: "brand", "size") // 필터옵션의 키
+  name: "color" | "size" | "brand" | "price" | "productType"; // 필터옵션의 키, 이름 + 쿼리파라미터 이름 (예: "brand", "size") // 필터옵션의 키
   // name: string; // 필터옵션의 키, 이름 + 쿼리파라미터 이름 (예: "brand", "size") // 필터옵션의 키
   options: FilterOption[];
   checkboxClassName?: (option: FilterOption, checked: boolean) => string;
@@ -20,10 +20,12 @@ type Props = {
 export function CommonCheckboxFilter({ name, options, checkboxClassName }: Props) {
   const searchParams = useSearchParams();
   const router = useRouter();
+
   const defaultValues = useMemo(() => {
     const filterValues = searchParams.get(name)?.split(",") ?? [];
     return { [name]: filterValues.filter((v) => options.some((o) => o.value === v)) };
   }, [searchParams, name, options]);
+
   const form = useForm<{ [key: string]: string[] }>({ defaultValues });
 
   const updateQueryParam = (checked: boolean, filterValue: string) => {
@@ -58,6 +60,8 @@ export function CommonCheckboxFilter({ name, options, checkboxClassName }: Props
                   <FormItem className="flex flex-row items-center gap-2">
                     <FormControl>
                       {name === "color" ? (
+                        // Checkbox 를 그대로 사용하기에는 변경할 스타일이 너무 많아서
+                        // Checkbox 를 복사하고 기본 몇가지 스타일을 제거후 사용
                         <CustomCheckbox
                           checked={isChecked}
                           onCheckedChange={(checked) => {

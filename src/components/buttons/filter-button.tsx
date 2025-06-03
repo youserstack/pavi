@@ -57,7 +57,7 @@ export default function FilterButton() {
 
   if (isDesktop) {
     return (
-      <Dialog open>
+      <Dialog>
         <DialogTrigger asChild>
           <Button variant={"outline"} className="rounded-full text-xs" size={"sm"}>
             <VscSettings className="rotate-90" />

@@ -1,3 +1,10 @@
+export const tabsItems = [
+  { value: "all", label: "전체" },
+  { value: "디지털/가전", label: "디지털/가전" },
+  { value: "패션의류", label: "패션의류" },
+  { value: "생활/건강", label: "생활/건강" },
+];
+
 export const filterItems = [
   // { value: "category", label: "카테고리" },
   { value: "color", label: "칼라" },

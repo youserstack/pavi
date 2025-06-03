@@ -17,10 +17,12 @@ import {
   bgLightColors,
   brandOptions,
   colorOptions,
+  priceOptions,
   productTypeOptions,
   sizeOptions,
 } from "@/data/filter-options";
 import { cn } from "@/lib/utils";
+import { CommonRadioGroupFilter } from "@/components/filters/common-radio-group-filter";
 
 export default function FiltersCarousel() {
   const { isDragging, setIsDragging } = useDraggingState();
@@ -38,7 +40,7 @@ export default function FiltersCarousel() {
           <CommonCheckboxFilter
             name="color"
             options={colorOptions}
-            checkboxClassName={(option) =>
+            checkboxClassName={(option, checked) =>
               cn(
                 "rounded-full size-5",
                 bgColorMap[option.value],
@@ -47,6 +49,8 @@ export default function FiltersCarousel() {
             }
           />
         );
+      case "price":
+        return <CommonRadioGroupFilter name="price" options={priceOptions} />;
       case "productType":
         return <CommonCheckboxFilter name="productType" options={productTypeOptions} />;
       default:
