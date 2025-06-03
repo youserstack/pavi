@@ -1,21 +1,21 @@
 "use client";
 
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { ColorFilter3 } from "@/components/filters/color-filter-3";
+import { BrandFilter } from "@/components/filters/brand-filter";
 import useDraggingState from "@/lib/hooks/useDraggingState";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { filterItems } from "@/data/filterItems";
 import { useRef, useState } from "react";
 import SwiperCore from "swiper";
 import "swiper/css";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { CommonFilter } from "@/components/filters/common-filter";
 import { ColorFilter } from "@/components/filters/color-filter";
-import { ColorFilter2 } from "@/components/filters/color-filter-2";
-import { ColorFilter3 } from "@/components/filters/color-filter-3";
-import { BrandFilter } from "@/components/filters/brand-filter";
 
 const items = filterItems;
 
-export default function TabButtonCarousel3() {
+export default function FiltersCarousel() {
   const { isDragging, setIsDragging } = useDraggingState();
   const [activeTab, setActiveTab] = useState<string>(items[0]?.value); // 초기 탭 값 설정
   const swiperRef = useRef<SwiperCore>(null);
@@ -64,8 +64,26 @@ export default function TabButtonCarousel3() {
               className="h-full" // 스크롤 루트에 높이 명시
             >
               {item.label} - 콘텐츠 {index}
-              {item.value === "color" && <ColorFilter3 />}
-              {item.value === "brand" && <BrandFilter />}
+              {item.value === "color" && <ColorFilter />}
+              {item.value === "size" && (
+                <CommonFilter
+                  name="size"
+                  options={[
+                    { value: "small", label: "S" },
+                    { value: "medium", label: "M" },
+                    { value: "large", label: "L" },
+                  ]}
+                />
+              )}
+              {item.value === "brand" && (
+                <CommonFilter
+                  name="brand"
+                  options={[
+                    { value: "nike", label: "나이키" },
+                    { value: "adidas", label: "아디다스" },
+                  ]}
+                />
+              )}
             </ScrollArea>
           </SwiperSlide>
         ))}

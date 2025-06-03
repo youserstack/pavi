@@ -22,8 +22,8 @@ export default function TabButtonCarousel1() {
           className={cn(
             "w-full overflow-hidden",
             "[&_[data-slot=carousel-content]]:overflow-visible",
-            "[&_[data-slot=carousel-content]]:border-b-2",
-            "[&_[data-slot=carousel-content]]:border-muted"
+            "[&_[data-slot=carousel-content]]:border-b-2"
+            // "[&_[data-slot=carousel-content]]:border-muted"
           )}
         >
           <CarouselContent className="-ml-0">

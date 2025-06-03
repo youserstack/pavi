@@ -10,54 +10,54 @@ import { useMemo } from "react";
 
 const colorOptions = [
   // 화이트 / 아이보리 / 베이지 계열
-  { id: "white", label: "화이트" },
-  { id: "ivory", label: "아이보리" },
-  { id: "beige", label: "베이지" },
-  { id: "oatmeal", label: "오트밀" },
-  { id: "camel", label: "카멜" },
-  { id: "sand", label: "샌드" },
+  { value: "white", label: "화이트" },
+  { value: "ivory", label: "아이보리" },
+  { value: "beige", label: "베이지" },
+  { value: "oatmeal", label: "오트밀" },
+  { value: "camel", label: "카멜" },
+  { value: "sand", label: "샌드" },
 
   // 블랙 / 그레이 계열
-  { id: "black", label: "블랙" },
-  { id: "gray", label: "그레이" },
-  { id: "darkgray", label: "다크그레이" },
+  { value: "black", label: "블랙" },
+  { value: "gray", label: "그레이" },
+  { value: "darkgray", label: "다크그레이" },
 
   // 핑크 / 퍼플 계열
-  { id: "pink", label: "핑크" },
-  { id: "lightpink", label: "라이트핑크" },
-  { id: "darkpink", label: "다크핑크" },
-  { id: "rosegold", label: "로즈골드" },
-  { id: "lavender", label: "라벤더" },
+  { value: "pink", label: "핑크" },
+  { value: "lightpink", label: "라이트핑크" },
+  { value: "darkpink", label: "다크핑크" },
+  { value: "rosegold", label: "로즈골드" },
+  { value: "lavender", label: "라벤더" },
 
   // 레드 계열
-  { id: "red", label: "레드" },
-  { id: "burgundy", label: "버건디" },
+  { value: "red", label: "레드" },
+  { value: "burgundy", label: "버건디" },
 
   // 오렌지 / 옐로우 계열
-  { id: "lightyellow", label: "라이트옐로우" },
-  { id: "orange", label: "오렌지" },
-  { id: "peach", label: "피치" },
-  { id: "darkorange", label: "다크오렌지" },
+  { value: "lightyellow", label: "라이트옐로우" },
+  { value: "orange", label: "오렌지" },
+  { value: "peach", label: "피치" },
+  { value: "darkorange", label: "다크오렌지" },
 
   // 그린 계열
-  { id: "lime", label: "라임" },
-  { id: "lightgreen", label: "라이트그린" },
-  { id: "green", label: "그린" },
-  { id: "darkgreen", label: "다크그린" },
-  { id: "mint", label: "민트" },
-  { id: "olivegreen", label: "올리브그린" },
-  { id: "khaki", label: "카키" },
+  { value: "lime", label: "라임" },
+  { value: "lightgreen", label: "라이트그린" },
+  { value: "green", label: "그린" },
+  { value: "darkgreen", label: "다크그린" },
+  { value: "mint", label: "민트" },
+  { value: "olivegreen", label: "올리브그린" },
+  { value: "khaki", label: "카키" },
 
   // 블루 계열
-  { id: "skyblue", label: "스카이블루" },
-  { id: "blue", label: "블루" },
-  { id: "navy", label: "네이비" },
-  { id: "darknavy", label: "다크네이비" },
+  { value: "skyblue", label: "스카이블루" },
+  { value: "blue", label: "블루" },
+  { value: "navy", label: "네이비" },
+  { value: "darknavy", label: "다크네이비" },
 
   // 브라운 계열
-  { id: "lightbrown", label: "라이트브라운" },
-  { id: "brown", label: "브라운" },
-  { id: "darkbrown", label: "다크브라운" },
+  { value: "lightbrown", label: "라이트브라운" },
+  { value: "brown", label: "브라운" },
+  { value: "darkbrown", label: "다크브라운" },
 ] as const;
 
 const bgColorMap: Record<string, string> = {
@@ -112,42 +112,38 @@ const bgColorMap: Record<string, string> = {
   darkbrown: "bg-stone-900",
 };
 
-type Color = (typeof colorOptions)[number]["id"];
+type Color = (typeof colorOptions)[number]["value"];
 
 export function ColorFilter3() {
   const searchParams = useSearchParams();
   const router = useRouter();
-
   const defaultValues = useMemo(() => {
-    const colorParams = searchParams.get("color")?.split(",") ?? [];
+    const colorFilterValues = searchParams.get("color")?.split(",") ?? [];
     return {
-      colors: colorParams.filter((param) =>
-        colorOptions.some((option) => option.id === param)
-      ) as Color[],
+      colors: colorFilterValues.filter((v) => colorOptions.some((o) => o.value === v)) as Color[],
     };
   }, [searchParams]);
-
   const form = useForm<{ colors: Color[] }>({ defaultValues });
 
   // 체크/해제 시 쿼리 파라미터 업데이트 함수
-  const updateQueryParam = (checked: boolean, colorId: string) => {
+  const updateQueryParam = (checked: boolean, colorFilterValue: string) => {
     // 쿼리파라미터 배열로 추출
     const params = new URLSearchParams(searchParams);
-    const colorParams = params.get("color")?.split(",") ?? [];
+    const colorFilterValues = params.get("color")?.split(",") ?? [];
     // console.log({ colors });
 
     // 토글된 배열로 생성
-    const newColorParams = colorParams.includes(colorId)
-      ? colorParams.filter((param) => param !== colorId) // 체크해제
-      : [...colorParams, colorId]; // 체크
-    // const newColorParams = checked
-    //   ? [...new Set([...colorParams, colorId])] // 체크
-    //   : colorParams.filter((param) => param !== colorId); // 체크해제
-    // console.log({ newColorParams });
+    const newColorFilterValues = colorFilterValues.includes(colorFilterValue)
+      ? colorFilterValues.filter((v) => v !== colorFilterValue) // 체크해제
+      : [...colorFilterValues, colorFilterValue]; // 체크
+    // const newColorFilterValues = checked
+    //   ? [...new Set([...colorFilterValues, colorFilterValue])] // 체크
+    //   : colorFilterValues.filter((v) => v !== colorFilterValue); // 체크해제
+    // console.log({ newColorFilterValues });
 
     // 쿼리파라미터 추가 및 삭제
-    newColorParams.length > 0
-      ? params.set("color", newColorParams.join(","))
+    newColorFilterValues.length > 0
+      ? params.set("color", newColorFilterValues.join(","))
       : params.delete("color");
 
     // 설정된 쿼리파라미터로 라우팅
@@ -171,27 +167,27 @@ export function ColorFilter3() {
         <ul className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4  items-center gap-2">
           {colorOptions.map((option) => (
             <FormField
-              key={option.id}
+              key={option.value}
               control={form.control}
               name="colors"
               render={({ field }) => {
                 return (
-                  <FormItem key={option.id} className="flex flex-row items-center gap-2">
+                  <FormItem key={option.value} className="flex flex-row items-center gap-2">
                     <FormControl>
                       <Checkbox
-                        checked={field.value?.includes(option.id)}
+                        checked={field.value?.includes(option.value)}
                         onCheckedChange={(checked) => {
                           const updated = checked
-                            ? [...field.value, option.id] // 체크
-                            : field.value?.filter((v) => v !== option.id); // 체크해제
+                            ? [...field.value, option.value] // 체크
+                            : field.value?.filter((v) => v !== option.value); // 체크해제
                           field.onChange(updated);
 
-                          updateQueryParam(!!checked, option.id);
+                          updateQueryParam(!!checked, option.value);
                         }}
                         className={cn(
                           "rounded-full size-5",
-                          bgColorMap[option.id], // 맵객체로 해당칼라 설정
-                          bgLightColors.includes(option.id) ? "text-black" : "text-white"
+                          bgColorMap[option.value], // 맵객체로 해당칼라 설정
+                          bgLightColors.includes(option.value) ? "text-black" : "text-white"
                         )}
                       />
                     </FormControl>

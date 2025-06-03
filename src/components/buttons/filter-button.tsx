@@ -23,7 +23,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import TabButtonCarousel3 from "@/components/carousels/tab-button-carousel-3";
+import FiltersCarousel from "@/components/carousels/filters-carousel";
 
 export default function FilterButton() {
   const { isMobile, isDesktop } = useContext(Context);
@@ -70,7 +70,7 @@ export default function FilterButton() {
             <DialogTitle>필터</DialogTitle>
           </DialogHeader>
 
-          <TabButtonCarousel3 />
+          <FiltersCarousel />
 
           <DialogFooter>
             <Button asChild>

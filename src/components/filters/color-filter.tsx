@@ -1,77 +1,66 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
-// import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { cn } from "@/lib/utils";
-import { getContrastTextColor } from "@/lib/colors";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox-custom";
+import { bgLightColors } from "@/lib/colors";
+import { useForm } from "react-hook-form";
+import { cn } from "@/lib/utils";
+import { useMemo } from "react";
 
-const items = [
+const colorOptions = [
   // 화이트 / 아이보리 / 베이지 계열
-  { id: "white", label: "화이트" },
-  { id: "ivory", label: "아이보리" },
-  { id: "beige", label: "베이지" },
-  { id: "oatmeal", label: "오트밀" },
-  { id: "camel", label: "카멜" },
-  { id: "sand", label: "샌드" },
+  { value: "white", label: "화이트" },
+  { value: "ivory", label: "아이보리" },
+  { value: "beige", label: "베이지" },
+  { value: "oatmeal", label: "오트밀" },
+  { value: "camel", label: "카멜" },
+  { value: "sand", label: "샌드" },
 
   // 블랙 / 그레이 계열
-  { id: "black", label: "블랙" },
-  { id: "gray", label: "그레이" },
-  { id: "darkgray", label: "다크그레이" },
+  { value: "black", label: "블랙" },
+  { value: "gray", label: "그레이" },
+  { value: "darkgray", label: "다크그레이" },
 
   // 핑크 / 퍼플 계열
-  { id: "pink", label: "핑크" },
-  { id: "lightpink", label: "라이트핑크" },
-  { id: "darkpink", label: "다크핑크" },
-  { id: "rosegold", label: "로즈골드" },
-  { id: "lavender", label: "라벤더" },
+  { value: "pink", label: "핑크" },
+  { value: "lightpink", label: "라이트핑크" },
+  { value: "darkpink", label: "다크핑크" },
+  { value: "rosegold", label: "로즈골드" },
+  { value: "lavender", label: "라벤더" },
 
   // 레드 계열
-  { id: "red", label: "레드" },
-  { id: "burgundy", label: "버건디" },
+  { value: "red", label: "레드" },
+  { value: "burgundy", label: "버건디" },
 
   // 오렌지 / 옐로우 계열
-  { id: "lightyellow", label: "라이트옐로우" },
-  { id: "orange", label: "오렌지" },
-  { id: "peach", label: "피치" },
-  { id: "darkorange", label: "다크오렌지" },
+  { value: "lightyellow", label: "라이트옐로우" },
+  { value: "orange", label: "오렌지" },
+  { value: "peach", label: "피치" },
+  { value: "darkorange", label: "다크오렌지" },
 
   // 그린 계열
-  { id: "lime", label: "라임" },
-  { id: "lightgreen", label: "라이트그린" },
-  { id: "green", label: "그린" },
-  { id: "darkgreen", label: "다크그린" },
-  { id: "mint", label: "민트" },
-  { id: "olivegreen", label: "올리브그린" },
-  { id: "khaki", label: "카키" },
+  { value: "lime", label: "라임" },
+  { value: "lightgreen", label: "라이트그린" },
+  { value: "green", label: "그린" },
+  { value: "darkgreen", label: "다크그린" },
+  { value: "mint", label: "민트" },
+  { value: "olivegreen", label: "올리브그린" },
+  { value: "khaki", label: "카키" },
 
   // 블루 계열
-  { id: "skyblue", label: "스카이블루" },
-  { id: "blue", label: "블루" },
-  { id: "navy", label: "네이비" },
-  { id: "darknavy", label: "다크네이비" },
+  { value: "skyblue", label: "스카이블루" },
+  { value: "blue", label: "블루" },
+  { value: "navy", label: "네이비" },
+  { value: "darknavy", label: "다크네이비" },
 
   // 브라운 계열
-  { id: "lightbrown", label: "라이트브라운" },
-  { id: "brown", label: "브라운" },
-  { id: "darkbrown", label: "다크브라운" },
+  { value: "lightbrown", label: "라이트브라운" },
+  { value: "brown", label: "브라운" },
+  { value: "darkbrown", label: "다크브라운" },
 ] as const;
 
-const colorClassMap: Record<string, string> = {
+const bgColorMap: Record<string, string> = {
   // 화이트/아이보리/베이지 계열
   white: "bg-white",
   ivory: "bg-neutral-100",
@@ -123,98 +112,93 @@ const colorClassMap: Record<string, string> = {
   darkbrown: "bg-stone-900",
 };
 
-const FormSchema = z.object({
-  items: z.array(z.string()).refine((value) => value.some((item) => item), {
-    message: "You have to select at least one item.",
-  }),
-});
+type Color = (typeof colorOptions)[number]["value"];
 
 export function ColorFilter() {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: { items: [] }, // 초기값 설정
-  });
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const defaultValues = useMemo(() => {
+    const colorFilterValues = searchParams.get("color")?.split(",") ?? [];
+    return {
+      colors: colorFilterValues.filter((v) => colorOptions.some((o) => o.value === v)) as Color[],
+    };
+  }, [searchParams]);
+  const form = useForm<{ colors: Color[] }>({ defaultValues });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log({ data });
-    toast("You submitted the following values", {
-      description: (
-        <pre className="mt-2 w-[320px] rounded-md bg-neutral-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
+  // 체크/해제 시 쿼리 파라미터 업데이트 함수
+  const updateQueryParam = (checked: boolean, colorFilterValue: string) => {
+    // 쿼리파라미터 배열로 추출
+    const params = new URLSearchParams(searchParams);
+    const colorFilterValues = params.get("color")?.split(",") ?? [];
+    // console.log({ colors });
+
+    // 토글된 배열로 생성
+    const newColorFilterValues = colorFilterValues.includes(colorFilterValue)
+      ? colorFilterValues.filter((v) => v !== colorFilterValue) // 체크해제
+      : [...colorFilterValues, colorFilterValue]; // 체크
+    // const newColorFilterValues = checked
+    //   ? [...new Set([...colorFilterValues, colorFilterValue])] // 체크
+    //   : colorFilterValues.filter((v) => v !== colorFilterValue); // 체크해제
+    // console.log({ newColorFilterValues });
+
+    // 쿼리파라미터 추가 및 삭제
+    newColorFilterValues.length > 0
+      ? params.set("color", newColorFilterValues.join(","))
+      : params.delete("color");
+
+    // 설정된 쿼리파라미터로 라우팅
+    router.push(`?${params.toString()}`);
+  };
+
+  function onSubmit(data: any) {
+    // console.log({ data });
+    // toast("You submitted the following values", {
+    //   description: (
+    //     <pre className="mt-2 w-[320px] rounded-md bg-neutral-950 p-4">
+    //       <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+    //     </pre>
+    //   ),
+    // });
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        {/* items 필드를 폼으로 감싸기 */}
-        <FormField
-          control={form.control}
-          name="items"
-          render={() => (
-            <FormItem className="border border-red-500">
-              {/* 제목 및 설명 */}
-              <div className="mb-4">
-                <FormLabel className="text-base">Sidebar</FormLabel>
-                <FormDescription>
-                  Select the items you want to display in the sidebar.
-                </FormDescription>
-              </div>
+        <ul className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4  items-center gap-2">
+          {colorOptions.map((option) => (
+            <FormField
+              key={option.value}
+              control={form.control}
+              name="colors"
+              render={({ field }) => {
+                return (
+                  <FormItem key={option.value} className="flex flex-row items-center gap-2">
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value?.includes(option.value)}
+                        onCheckedChange={(checked) => {
+                          const updated = checked
+                            ? [...field.value, option.value] // 체크
+                            : field.value?.filter((v) => v !== option.value); // 체크해제
+                          field.onChange(updated);
 
-              <ul className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4  items-center gap-2">
-                {/* 각 항목에 대한 체크박스 렌더링 */}
-                {items.map((item) => (
-                  <FormField
-                    key={item.id}
-                    control={form.control}
-                    name="items"
-                    render={({ field }) => {
-                      return (
-                        <FormItem key={item.id} className="flex flex-row items-center gap-2 ">
-                          <FormControl>
-                            <Checkbox
-                              className={cn(
-                                "rounded-full size-5",
-                                colorClassMap[item.id],
-                                [
-                                  "white",
-                                  "ivory",
-                                  "beige",
-                                  "oatmeal",
-                                  "camel",
-                                  "sand",
-                                  "lightyellow",
-                                ].includes(item.id)
-                                  ? "text-black"
-                                  : "text-white"
-                                // 밝은계열색상은 체크시 텍스트칼라가 보이지 않기때문에 백그라운드칼라의 대비색상으로 변경
-                                // getContrastTextColor(colorClassMap[item.id])
-                              )}
-                              checked={field.value?.includes(item.id)}
-                              onCheckedChange={(checked) => {
-                                return checked
-                                  ? field.onChange([...field.value, item.id]) // 추가
-                                  : field.onChange(
-                                      field.value?.filter((value) => value !== item.id)
-                                    ); // 제거
-                              }}
-                            />
-                          </FormControl>
-                          <FormLabel className="text-sm font-normal">{item.label}</FormLabel>
-                        </FormItem>
-                      );
-                    }}
-                  />
-                ))}
-                {/* <FormMessage /> */}
-              </ul>
-            </FormItem>
-          )}
-        />
-
-        {/* <Button type="submit">Submit</Button> */}
+                          updateQueryParam(!!checked, option.value);
+                        }}
+                        className={cn(
+                          "rounded-full size-5",
+                          bgColorMap[option.value], // 맵객체로 해당칼라 설정
+                          bgLightColors.includes(option.value) ? "text-black" : "text-white"
+                        )}
+                      />
+                    </FormControl>
+                    <FormLabel className="text-sm font-normal">{option.label}</FormLabel>
+                  </FormItem>
+                );
+              }}
+            />
+          ))}
+        </ul>
+        <button type="submit">Submit</button>
       </form>
     </Form>
   );
