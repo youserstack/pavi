@@ -7,7 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { categoryItems } from "@/data/items";
 import { cn } from "@/lib/utils";
 
-export default function TabsCarousel({ items }: { items: { value: string; label: string }[] }) {
+export default function TabsCarousel() {
   const { isDragging, setIsDragging } = useDraggingState();
 
   const params = useSearchParams();
@@ -25,24 +25,26 @@ export default function TabsCarousel({ items }: { items: { value: string; label:
 
   return (
     <Tabs defaultValue={subCategoryItems[0].id}>
-      <TabsList onPointerDown={() => setIsDragging(true)} className="w-full justify-start">
-        <Carousel opts={{ dragFree: true }} className="overflow-hidden">
+      <TabsList onPointerDown={() => setIsDragging(true)} className="w-full">
+        <Carousel opts={{ dragFree: true }} className="w-full">
           <CarouselContent className="-ml-0">
             {subCategoryItems.map((item) => (
-              <TabsTrigger
-                key={item.id}
-                value={item.id}
-                className={cn(
-                  "block relative pt-[4px] pb-[6px] data-[state=active]:[&_.line-bar]:bg-primary",
-                  // "block  data-[state=active]:border-b-2 data-[state=active]:border-b-primary",
-                  isDragging ? "cursor-grabbing" : "cursor-pointer"
-                )}
-              >
-                <CarouselItem className="pl-0">{item.name}</CarouselItem>
-                <div className="line-bar absolute left-0 right-0 bottom-0 w-full h-[2px] bg-transparent"></div>
-              </TabsTrigger>
+              <CarouselItem key={item.id} className="pl-0 basis-auto">
+                <TabsTrigger
+                  value={item.id}
+                  className={cn(
+                    "block relative pt-[4px] pb-[6px] data-[state=active]:[&_.line-bar]:bg-primary",
+                    // "block  data-[state=active]:border-b-2 data-[state=active]:border-b-primary",
+                    isDragging ? "cursor-grabbing" : "cursor-pointer"
+                  )}
+                >
+                  {item.name}
+                  <div className="line-bar absolute left-0 right-0 bottom-0 w-full h-[2px] bg-transparent"></div>
+                </TabsTrigger>
+              </CarouselItem>
             ))}
           </CarouselContent>
+          <div className="absolute left-0 right-0 bottom-0 w-full h-[2px] bg-muted z-[-1]"></div>
         </Carousel>
       </TabsList>
 
