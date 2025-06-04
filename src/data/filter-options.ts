@@ -20,8 +20,7 @@ export const priceOptions = [
   { value: "0-1", label: "1만원 이하" },
   { value: "1-3", label: "1만원 ~ 3만원" },
   { value: "3-10", label: "3만원 ~ 10만원" },
-  { value: "10-*", label: "10만원 이상" },
-  //
+  { value: "10-", label: "10만원 이상" },
 ];
 
 export const productTypeOptions = [

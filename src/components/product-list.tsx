@@ -1,17 +1,21 @@
 "use client";
 
+import { Skeleton } from "@/components/ui/skeleton";
 import { useQueryProducts } from "@/lib/hooks/useQueryProducts";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "sonner";
 
 export default function ProductList() {
   const { data, error, isPending, isError, isSuccess } = useQueryProducts();
 
   if (isPending || isError) {
-    <div>
-      {isPending && "pending..."}
-      {isError && error.message}
-    </div>;
+    return (
+      <>
+        {isPending && <Skeleton className="rounded-lg flex-1 mb-4" />}
+        {isError && toast(error.message)}
+      </>
+    );
   }
 
   if (isSuccess) {

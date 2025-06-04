@@ -7,8 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  // type: "category" | "brand" | "size" | "color" | "price" | "productType";
-  type: keyof Filter;
+  type: "suggestions";
   items: { value: string; label: string }[];
 };
 

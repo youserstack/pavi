@@ -35,6 +35,13 @@ export const categoryFilterItems = [
   // { value: "suits", label: "정장/수트" },
 ];
 
+export const keywordItems = [
+  { value: "rating-gte-4.8", label: "4.8 이상" },
+  { value: "free-shipping", label: "무료배송" },
+  { value: "include-shipping", label: "배송비포함" },
+  { value: "official-certified", label: "공식인증" },
+];
+
 // 브랜드 필터
 // 사이즈 필터
 // 색상 필터

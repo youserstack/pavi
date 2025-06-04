@@ -15,6 +15,12 @@ type Product = {
   category4: string | null;
 };
 
+type CategoryItem = {
+  id: string;
+  name: string;
+  children?: CategoryItem[];
+};
+
 type ColorId =
   | "white"
   | "ivory"
