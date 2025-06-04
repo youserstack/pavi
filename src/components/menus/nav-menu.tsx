@@ -72,13 +72,14 @@ export function NavMenu() {
               else {
                 return (
                   <Link
+                    key={v1.id}
                     href={
                       navItem.id === "category" || navItem.id === "brand"
                         ? `/products?${navItem.id}=${v1.id}`
                         : `/${navItem.id}?type=${v1.id}`
                     }
                   >
-                    <MenubarItem key={v1.id}>
+                    <MenubarItem>
                       {v1.icon && <span>{v1.icon}</span>}
                       <MenubarLabel>{v1.name}</MenubarLabel>
                       {v1.emoji && <span>{v1.emoji}</span>}
