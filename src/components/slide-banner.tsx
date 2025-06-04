@@ -12,7 +12,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-export function SlideBanner() {
+export default function SlideBanner() {
   const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
 
   return (
@@ -28,7 +28,7 @@ export function SlideBanner() {
       onMouseLeave={() => plugin.current.play()}
       className={cn(
         "group",
-        "w-full h-[300px]",
+        "w-full h-[250px]",
         // 내부 속성 변경
         "[&_[data-slot='carousel-content']]:h-full"
       )}
