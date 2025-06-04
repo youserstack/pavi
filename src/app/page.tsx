@@ -8,11 +8,11 @@ export default function Home() {
   return (
     <main>
       <section className="min-h-screen space-y-8">
-        <SlideBanner />
+        {/* <SlideBanner /> */}
 
-        {/* <Suspense fallback={<Skeleton className="h-[250px] rounded-lg" />}>
+        <Suspense fallback={<Skeleton className="h-[250px] rounded-lg" />}>
           <PopularProductSuggestion />
-        </Suspense> */}
+        </Suspense>
 
         {/* <Suspense fallback={<Skeleton className="h-[250px] rounded-lg" />}>
           <ProductList />

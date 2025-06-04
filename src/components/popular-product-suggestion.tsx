@@ -1,4 +1,4 @@
-import { ProductCarouselBar } from "@/components/product-carousel-bar";
+import { ProductListCarousel } from "@/components/carousels/product-list-carousel";
 import { getProducts } from "@/lib/api/fetchers";
 
 export default async function PopularProductSuggestion() {
@@ -7,14 +7,14 @@ export default async function PopularProductSuggestion() {
   return (
     <div>
       <h1 className="ml-3 mb-3 font-semibold">구매가 많은 제품들</h1>
-      <ProductCarouselBar products={products} />
+      <ProductListCarousel products={products} />
     </div>
   );
 }
 
 // "use client";
 
-// import { ProductCarouselBar } from "@/components/product-carousel-bar";
+// import { ProductListCarousel } from "@/components/product-carousel-bar";
 // import { Skeleton } from "@/components/ui/skeleton";
 // import { getProducts } from "@/lib/api/fetchers";
 // import { useQuery } from "@tanstack/react-query";
@@ -40,7 +40,7 @@ export default async function PopularProductSuggestion() {
 //   return (
 //     <div>
 //       <h1 className="ml-3 mb-3 font-semibold">구매가 많은 제품들</h1>
-//       <ProductCarouselBar products={products} />
+//       <ProductListCarousel products={products} />
 //     </div>
 //   );
 // }
