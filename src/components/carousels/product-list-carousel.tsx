@@ -16,7 +16,7 @@ export function ProductListCarousel({ products }: { products: Product[] }) {
 
   return (
     <Carousel
-      opts={{ align: "start", slidesToScroll: "auto" }}
+      opts={{ align: "start", slidesToScroll: "auto", dragFree: true }}
       onPointerDown={() => setIsDragging(true)}
       className={cn("group bg-background", isDragging ? "[&_a]:cursor-grabbing" : "")}
     >

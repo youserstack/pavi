@@ -9,7 +9,8 @@ import Link from "next/link";
 export default function ProductItem({ product }: { product: Product }) {
   const { toggleWishlist, isInWishlist } = useWishlistStore();
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
     toggleWishlist({
       id: product.productId,
       name: product.title,
@@ -36,8 +37,8 @@ export default function ProductItem({ product }: { product: Product }) {
           onClick={handleClick}
           className={cn(
             "absolute bottom-4 right-4 size-4",
-            "stroke-red-500 hover:fill-red-500",
-            isInWishlist(product.productId) ? "fill-red-500" : ""
+            "stroke-zinc-400 /stroke-red-500 hover:fill-red-500 hover:stroke-red-500",
+            isInWishlist(product.productId) ? "fill-red-500 stroke-red-500" : ""
           )}
         />
       </div>

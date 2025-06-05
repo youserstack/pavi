@@ -2,7 +2,11 @@ import ProductImageCard from "@/app/products/[productId]/product-image-card";
 // import { BreadcrumbWithSeparator } from "@/components/breadcrumb-with-separator";
 import ProductInfoCard from "@/app/products/[productId]/product-info-card";
 import WidgetCard from "@/app/products/[productId]/widget/widget-card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { getProduct, getProductIds } from "@/lib/api/fetchers";
+import Link from "next/link";
+import { IoIosStar } from "react-icons/io";
 
 // export const revalidate = 30; // 재검증시간설정 : n초동안캐시
 
@@ -23,7 +27,7 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
   if (!product) return null;
 
   return (
-    <main className="ProductDetailPage">
+    <main>
       <section>
         {/* <BreadcrumbWithSeparator category={product.category1} /> */}
 
@@ -35,6 +39,68 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
             <WidgetCard product={product} />
           </div>
         </div>
+
+        <div className="flex py-4">
+          {/* 좌측 */}
+          <div
+            className="flex-[6.5] min-h-[calc(100vh-40px)] 
+            /border border-dashed border-green-500"
+          >
+            {Array.from({ length: 30 }).map((v, i) => (
+              <p key={i}>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima quis animi
+                doloribus quasi eos? Illum quaerat culpa eos eum ullam facere, magnam nesciunt?
+                Pariatur mollitia voluptatibus cupiditate tempore excepturi esse.
+              </p>
+            ))}
+          </div>
+
+          {/* 우측 */}
+          <div
+            className="flex-[3.5] h-[calc(100vh-40px)] sticky top-[40px] overflow-y-auto 
+            /border border-dashed border-orange-500 bg-sidebar"
+          >
+            <ScrollArea className="h-full p-4">
+              <div className="flex flex-col gap-4">
+                <Link href={"#"} className="flex items-center gap-2">
+                  <Avatar className="size-6">
+                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+
+                  <span className="text-sm font-semibold">나이키</span>
+                </Link>
+
+                <h1 className="text-lg font-bold">아이폰 16 프로 256GB [자급제]</h1>
+
+                <Link href={""} className="text-xs inline-flex gap-2">
+                  <span className="inline-flex gap-1">
+                    <IoIosStar className="text-amber-500 text-sm" />
+                    <span className="font-semibold ">4.3</span>
+                  </span>
+
+                  <span className="underline">리뷰 300개</span>
+                </Link>
+              </div>
+
+              {/* {Array.from({ length: 30 }).map((v, i) => (
+                <p key={i}>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima quis animi
+                  doloribus quasi eos? Illum quaerat culpa eos eum ullam facere, magnam nesciunt?
+                  Pariatur mollitia voluptatibus cupiditate tempore excepturi esse.
+                </p>
+              ))} */}
+            </ScrollArea>
+          </div>
+        </div>
+
+        {Array.from({ length: 30 }).map((v, i) => (
+          <p key={i}>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima quis animi doloribus
+            quasi eos? Illum quaerat culpa eos eum ullam facere, magnam nesciunt? Pariatur mollitia
+            voluptatibus cupiditate tempore excepturi esse.
+          </p>
+        ))}
       </section>
     </main>
   );

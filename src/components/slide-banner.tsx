@@ -22,6 +22,7 @@ export default function SlideBanner() {
         loop: true,
         slidesToScroll: "auto",
         // slidesToScroll: 3,
+        dragFree: true,
       }}
       plugins={[plugin.current]}
       onMouseEnter={() => plugin.current.stop()}

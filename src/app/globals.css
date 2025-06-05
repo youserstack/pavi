@@ -173,7 +173,7 @@
 
   main {
     section {
-      @apply max-w-7xl mx-auto;
+      @apply max-w-[1440px] mx-auto;
       /* @apply border border-emerald-500 border-dashed; */
       @apply pt-[40px];
       @apply px-2 sm:px-3 lg:px-4;
