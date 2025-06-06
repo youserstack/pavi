@@ -5,7 +5,7 @@ import { Mousewheel, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-export default function SomeCarousel() {
+export default function MousewheelControlCarousel() {
   return (
     <Swiper
       direction={"vertical"}

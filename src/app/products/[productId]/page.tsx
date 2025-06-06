@@ -2,8 +2,7 @@ import ProductImageCard from "@/app/products/[productId]/product-image-card";
 // import { BreadcrumbWithSeparator } from "@/components/breadcrumb-with-separator";
 import ProductInfoCard from "@/app/products/[productId]/product-info-card";
 import WidgetCard from "@/app/products/[productId]/widget/widget-card";
-import { DefaultCarousel } from "@/components/carousels/default-carousel";
-import SomeCarousel from "@/components/carousels/some-carousel";
+import ThumbsCarousel from "@/components/carousels/thumbs-carousel";
 import { ProductDetailOrderForm } from "@/components/product-detail-order-form";
 import { ProductImage } from "@/components/product-image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -24,32 +23,30 @@ import { IoIosStar } from "react-icons/io";
 type Params = Promise<{ productId: string }>;
 
 export default async function ProductDetailPage({ params }: { params: Params }) {
-  const { product } = await getProduct((await params).productId);
+  // const { product } = await getProduct((await params).productId);
   // const productId = (await params).productId;
   // console.log({ productId, product });
 
-  if (!product) return null;
+  // if (!product) return null;
 
   return (
     <main>
       <section>
         {/* <BreadcrumbWithSeparator category={product.category1} /> */}
 
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        {/* <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           <ProductImageCard src={product.image} />
 
           <div className="flex flex-col gap-4 sm:gap-6">
             <ProductInfoCard product={product} />
             <WidgetCard product={product} />
           </div>
-        </div>
+        </div> */}
 
         <div className="flex gap-4 py-4">
           {/* 좌측 */}
-          <div className="flex-[6.5] min-h-[calc(100vh-40px)] bg-orange-50">
-            {/* <ProductImage imageUrl={product.image} /> */}
-            {/* <DefaultCarousel /> */}
-            <SomeCarousel />
+          <div className="w-[65%] /flex-[6.5] min-h-[calc(100vh-40px)] bg-orange-50">
+            <ThumbsCarousel />
 
             {/* {Array.from({ length: 30 }).map((v, i) => (
               <p key={i}>
@@ -61,8 +58,8 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
           </div>
 
           {/* 우측 */}
-          <div
-            className="flex-[3.5] h-[calc(100vh-40px)] sticky top-[40px] overflow-y-auto 
+          {/* <div
+            className="w-[35%] /flex-[3.5] h-[calc(100vh-40px)] sticky top-[40px] overflow-y-auto 
             /border border-dashed border-orange-500 bg-sidebar"
           >
             <ScrollArea className="h-full p-4">
@@ -103,7 +100,7 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
                 <ProductDetailOrderForm />
               </div>
             </ScrollArea>
-          </div>
+          </div> */}
         </div>
       </section>
     </main>
