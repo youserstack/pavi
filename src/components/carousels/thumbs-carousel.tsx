@@ -9,14 +9,26 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
+import { cn } from "@/lib/utils";
 // import "swiper/css/bundle";
 
-export default function ThumbsCarousel() {
+export default function ThumbsCarousel({
+  items,
+  className,
+}: {
+  items: { image: string }[];
+  className?: {
+    swiper?: string;
+    swiperSlide?: string;
+    thumbSwiper?: string;
+    thumbSwiperSlide?: string;
+  };
+}) {
   const mainSwiperRef = useRef<SwiperType | null>(null);
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden ">
       <Swiper
         // Swiper가 초기화될 때 메인 Swiper 인스턴스를 ref에 저장
         onSwiper={(swiper) => (mainSwiperRef.current = swiper)}
@@ -40,14 +52,15 @@ export default function ThumbsCarousel() {
         navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className=" 
-        [&_.swiper-button-prev]:text-white!
-        [&_.swiper-button-next]:text-white!
-        "
+        className={cn(
+          "[&_.swiper-button-prev]:text-primary!",
+          "[&_.swiper-button-next]:text-primary!",
+          className?.swiper
+        )}
       >
-        {Array.from({ length: 10 }).map((_, i) => (
-          <SwiperSlide key={i}>
-            <img src={`https://swiperjs.com/demos/images/nature-${i + 1}.jpg`} />
+        {items.map((item, index) => (
+          <SwiperSlide key={index}>
+            <img src={item.image} className={cn("mx-auto", className?.swiperSlide)} />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -59,11 +72,14 @@ export default function ThumbsCarousel() {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="py-2! [&_.swiper-slide-thumb-active_div]:border-black"
+        className={cn(
+          "py-2! [&_.swiper-slide-thumb-active_div]:border-primary",
+          className?.thumbSwiper
+        )}
       >
-        {Array.from({ length: 10 }).map((_, i) => (
-          <SwiperSlide key={i} className="relative cursor-pointer">
-            <img src={`https://swiperjs.com/demos/images/nature-${i + 1}.jpg`} />
+        {items.map((item, index) => (
+          <SwiperSlide key={index}>
+            <img src={item.image} className={cn(className?.thumbSwiperSlide)} />
             <div className="absolute inset-0 border-2 border-transparent"></div>
           </SwiperSlide>
         ))}

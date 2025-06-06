@@ -48,7 +48,9 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
         <div className="flex gap-4 py-4">
           {/* 좌측 */}
           <div className="w-[65%] /flex-[6.5] min-h-[calc(100vh-40px)]">
-            <ThumbsCarousel />
+            <ThumbsCarousel
+              items={Array.from({ length: 10 }).map((_, i) => ({ image: product.image }))}
+            />
             {/* <DefaultCarousel /> */}
             <ProductDetailTabsCarousel />
 
@@ -63,8 +65,8 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
 
           {/* 우측 */}
           <div
-            className="w-[35%] /flex-[3.5] h-[calc(100vh-40px)] sticky top-[40px] overflow-y-auto 
-            /border border-dashed border-orange-500 bg-sidebar"
+            className="w-[35%] h-[calc(100vh-40px)] 
+            sticky top-[40px] overflow-y-auto bg-sidebar"
           >
             <ScrollArea className="h-full p-4">
               <div className="flex flex-col gap-4">

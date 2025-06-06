@@ -14,8 +14,8 @@ import {
 import { CreditCard, Minus, Plus } from "lucide-react";
 
 export function ProductDetailOrderForm() {
-  const form = useForm<{ color: string; count: number }>({
-    defaultValues: { color: "", count: 1 },
+  const form = useForm<{ color: string; size: string; count: number }>({
+    defaultValues: { color: "", size: "", count: 1 },
   });
 
   function onSubmit(data: any) {
@@ -46,6 +46,32 @@ export function ProductDetailOrderForm() {
                   <SelectItem value="red">레드</SelectItem>
                   <SelectItem value="green">그린</SelectItem>
                   <SelectItem value="blue">블루</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="size"
+          render={({ field }) => (
+            <FormItem>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="옵션 선택" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="xs">XS</SelectItem>
+                  <SelectItem value="s">S</SelectItem>
+                  <SelectItem value="m">M</SelectItem>
+                  <SelectItem value="l">L</SelectItem>
+                  <SelectItem value="xl">XL</SelectItem>
+                  <SelectItem value="2xl">2XL</SelectItem>
                 </SelectContent>
               </Select>
 
