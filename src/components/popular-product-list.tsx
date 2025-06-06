@@ -1,7 +1,7 @@
 import { ProductListCarousel } from "@/components/carousels/product-list-carousel";
 import { getProducts } from "@/lib/api/fetchers";
 
-export default async function PopularProductSuggestion() {
+export default async function PopularProductList() {
   const { products } = await getProducts();
 
   return (
@@ -19,7 +19,7 @@ export default async function PopularProductSuggestion() {
 // import { getProducts } from "@/lib/api/fetchers";
 // import { useQuery } from "@tanstack/react-query";
 
-// export default function PopularProductSuggestion() {
+// export default function PopularProductList() {
 //   const { data, error, isPending, isError } = useQuery({
 //     queryKey: ["mock-products"],
 //     queryFn: () => getProducts(),

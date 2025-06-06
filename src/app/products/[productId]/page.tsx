@@ -2,8 +2,10 @@ import ProductImageCard from "@/app/products/[productId]/product-image-card";
 // import { BreadcrumbWithSeparator } from "@/components/breadcrumb-with-separator";
 import ProductInfoCard from "@/app/products/[productId]/product-info-card";
 import WidgetCard from "@/app/products/[productId]/widget/widget-card";
-import { CountController } from "@/components/count-controller";
+import { DefaultCarousel } from "@/components/carousels/default-carousel";
+import SomeCarousel from "@/components/carousels/some-carousel";
 import { ProductDetailOrderForm } from "@/components/product-detail-order-form";
+import { ProductImage } from "@/components/product-image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { getProduct, getProductIds } from "@/lib/api/fetchers";
@@ -42,19 +44,20 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
           </div>
         </div>
 
-        <div className="flex py-4">
+        <div className="flex gap-4 py-4">
           {/* 좌측 */}
-          <div
-            className="flex-[6.5] min-h-[calc(100vh-40px)] 
-            /border border-dashed border-green-500"
-          >
-            {Array.from({ length: 30 }).map((v, i) => (
+          <div className="flex-[6.5] min-h-[calc(100vh-40px)] bg-orange-50">
+            {/* <ProductImage imageUrl={product.image} /> */}
+            {/* <DefaultCarousel /> */}
+            <SomeCarousel />
+
+            {/* {Array.from({ length: 30 }).map((v, i) => (
               <p key={i}>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima quis animi
                 doloribus quasi eos? Illum quaerat culpa eos eum ullam facere, magnam nesciunt?
                 Pariatur mollitia voluptatibus cupiditate tempore excepturi esse.
               </p>
-            ))}
+            ))} */}
           </div>
 
           {/* 우측 */}
@@ -99,26 +102,18 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
 
                 <ProductDetailOrderForm />
               </div>
-
-              {/* {Array.from({ length: 30 }).map((v, i) => (
-                <p key={i}>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima quis animi
-                  doloribus quasi eos? Illum quaerat culpa eos eum ullam facere, magnam nesciunt?
-                  Pariatur mollitia voluptatibus cupiditate tempore excepturi esse.
-                </p>
-              ))} */}
             </ScrollArea>
           </div>
         </div>
-
-        {Array.from({ length: 30 }).map((v, i) => (
-          <p key={i}>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima quis animi doloribus
-            quasi eos? Illum quaerat culpa eos eum ullam facere, magnam nesciunt? Pariatur mollitia
-            voluptatibus cupiditate tempore excepturi esse.
-          </p>
-        ))}
       </section>
     </main>
   );
 }
+
+//  {Array.from({ length: 30 }).map((v, i) => (
+//         <p key={i}>
+//           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima quis animi doloribus
+//           quasi eos? Illum quaerat culpa eos eum ullam facere, magnam nesciunt? Pariatur mollitia
+//           voluptatibus cupiditate tempore excepturi esse.
+//         </p>
+//       ))}

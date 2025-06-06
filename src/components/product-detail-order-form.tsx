@@ -11,9 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { CountController } from "@/components/count-controller";
 import { CreditCard, Minus, Plus } from "lucide-react";
-import { Input } from "@/components/ui/input";
 
 export function ProductDetailOrderForm() {
   const form = useForm<{ color: string; count: number }>({

@@ -174,11 +174,11 @@
   main {
     section {
       @apply max-w-[1440px] mx-auto;
-      /* @apply border border-emerald-500 border-dashed; */
-      @apply pt-[40px];
       @apply px-2 sm:px-3 lg:px-4;
-      /* @apply space-y-8; */
-      /* @apply flex flex-col justify-center items-center; */
+      /* @apply border border-emerald-500 border-dashed; */
+      &:first-of-type(1) {
+        @apply pt-[40px];
+      }
     }
   }
 
