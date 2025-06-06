@@ -2,6 +2,8 @@ import ProductImageCard from "@/app/products/[productId]/product-image-card";
 // import { BreadcrumbWithSeparator } from "@/components/breadcrumb-with-separator";
 import ProductInfoCard from "@/app/products/[productId]/product-info-card";
 import WidgetCard from "@/app/products/[productId]/widget/widget-card";
+import { CountController } from "@/components/count-controller";
+import { ProductDetailOrderForm } from "@/components/product-detail-order-form";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { getProduct, getProductIds } from "@/lib/api/fetchers";
@@ -73,14 +75,29 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
 
                 <h1 className="text-lg font-bold">아이폰 16 프로 256GB [자급제]</h1>
 
-                <Link href={""} className="text-xs inline-flex gap-2">
-                  <span className="inline-flex gap-1">
-                    <IoIosStar className="text-amber-500 text-sm" />
-                    <span className="font-semibold ">4.3</span>
-                  </span>
+                <div className="flex items-center justify-between">
+                  <Link href={""} className="text-xs inline-flex gap-2">
+                    <span className="inline-flex gap-1">
+                      <IoIosStar className="text-amber-500 text-sm" />
+                      <span className="font-semibold ">4.3</span>
+                    </span>
 
-                  <span className="underline">리뷰 300개</span>
-                </Link>
+                    <span className="underline">리뷰 300개</span>
+                  </Link>
+
+                  <span className="text-xs font-semibold inline-flex items-center gap-1">
+                    <span className="text-red-600 dark:text-red-500 flex flex-col">
+                      <span>할인가</span>
+                      <span className="text-lg">12%</span>
+                    </span>
+                    <span className="flex flex-col">
+                      <span className="line-through">23,500원</span>
+                      <span className="text-lg">23,500원</span>
+                    </span>
+                  </span>
+                </div>
+
+                <ProductDetailOrderForm />
               </div>
 
               {/* {Array.from({ length: 30 }).map((v, i) => (
