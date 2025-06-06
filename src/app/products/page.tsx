@@ -2,14 +2,14 @@ import { ToggleButtonCarousel } from "@/components/carousels/toggle-button-carou
 import FilterButton from "@/components/buttons/filter-button";
 import ProductList from "@/components/product-list";
 import { categoryFilterItems, keywordItems, tabsItems } from "@/data/filter-items";
-import TabsCarousel from "@/components/carousels/tabs-carousel";
+import CategoryTabsCarousel from "@/components/carousels/category-tabs-carousel";
 
 export default function ProductsPage() {
   return (
     <main>
       <section className="min-h-screen flex flex-col gap-4">
         {/* 탭버튼 */}
-        <TabsCarousel />
+        <CategoryTabsCarousel />
 
         {/* 필터버튼 */}
         <div className="flex items-center gap-3">

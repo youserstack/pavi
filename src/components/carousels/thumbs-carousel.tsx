@@ -16,13 +16,13 @@ export default function ThumbsCarousel() {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
   return (
-    <>
+    <div className="overflow-hidden">
       <Swiper
+        // Swiper가 초기화될 때 메인 Swiper 인스턴스를 ref에 저장
         onSwiper={(swiper) => (mainSwiperRef.current = swiper)}
         onSlideChange={(swiper) => {
-          // 메인 슬라이드가 바뀔 때 썸네일을 이동시킴
           if (thumbsSwiper) {
-            // thumbsSwiper.slideTo(swiper.realIndex);
+            // 메인 슬라이드 변경 시 썸네일 슬라이더도 중앙에 해당하는 인덱스로 이동
             thumbsSwiper.slideTo(
               swiper.realIndex - Math.floor((thumbsSwiper.params.slidesPerView as number) / 2),
               300,
@@ -30,48 +30,26 @@ export default function ThumbsCarousel() {
             );
           }
         }}
-        style={
-          {
-            "--swiper-navigation-color": "#fff",
-            "--swiper-pagination-color": "#fff",
-          } as React.CSSProperties
-        }
+        // style={
+        //   {
+        //     "--swiper-navigation-color": "#fff",
+        //     "--swiper-pagination-color": "#fff",
+        //   } as React.CSSProperties
+        // }
         spaceBetween={0}
         navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper2"
+        className=" 
+        [&_.swiper-button-prev]:text-white!
+        [&_.swiper-button-next]:text-white!
+        "
       >
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
-        </SwiperSlide>
+        {Array.from({ length: 10 }).map((_, i) => (
+          <SwiperSlide key={i}>
+            <img src={`https://swiperjs.com/demos/images/nature-${i + 1}.jpg`} />
+          </SwiperSlide>
+        ))}
       </Swiper>
 
       <Swiper
@@ -81,42 +59,15 @@ export default function ThumbsCarousel() {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper 
-        [&_.swiper-slide-thumb-active]:border
-        [&_.swiper-slide-thumb-active]:border-blue-500
-        "
+        className="py-2! [&_.swiper-slide-thumb-active_div]:border-black"
       >
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
-        </SwiperSlide>
+        {Array.from({ length: 10 }).map((_, i) => (
+          <SwiperSlide key={i} className="relative cursor-pointer">
+            <img src={`https://swiperjs.com/demos/images/nature-${i + 1}.jpg`} />
+            <div className="absolute inset-0 border-2 border-transparent"></div>
+          </SwiperSlide>
+        ))}
       </Swiper>
-    </>
+    </div>
   );
 }

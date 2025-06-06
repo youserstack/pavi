@@ -8,7 +8,7 @@ import { categoryItems } from "@/data/items";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-export default function TabsCarousel() {
+export default function CategoryTabsCarousel() {
   const { isDragging, setIsDragging } = useDraggingState();
 
   // 현재 파라미터로 동일레벨의 카테고리 리스트를 찾는다
