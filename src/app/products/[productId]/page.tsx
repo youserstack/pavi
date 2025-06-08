@@ -34,24 +34,24 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
   return (
     <main>
       <section>
-        {/* <BreadcrumbWithSeparator category={product.category1} /> */}
-
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        {/* <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           <ProductImageCard src={product.image} />
 
           <div className="flex flex-col gap-4 sm:gap-6">
             <ProductInfoCard product={product} />
             <WidgetCard product={product} />
           </div>
-        </div>
+        </div> */}
 
         <div className="flex gap-4 py-4">
           {/* 좌측 */}
           <div className="w-[65%] /flex-[6.5] min-h-[calc(100vh-40px)]">
             <ThumbsCarousel
-              items={Array.from({ length: 10 }).map((_, i) => ({ image: product.image }))}
+              items={Array.from({ length: 10 }).map((_, i) => ({
+                image:
+                  "https://image.msscdn.net/thumbnails/images/prd_img/20250310/4876181/detail_4876181_17419318496874_big.jpg?w=1200",
+              }))}
             />
-            {/* <DefaultCarousel /> */}
             <ProductDetailTabsCarousel />
 
             {Array.from({ length: 30 }).map((v, i) => (
@@ -64,7 +64,7 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
           </div>
 
           {/* 우측 */}
-          <div
+          {/* <div
             className="w-[35%] h-[calc(100vh-40px)] 
             sticky top-[40px] overflow-y-auto bg-sidebar"
           >
@@ -106,17 +106,9 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
                 <ProductDetailOrderForm />
               </div>
             </ScrollArea>
-          </div>
+          </div> */}
         </div>
       </section>
     </main>
   );
 }
-
-//  {Array.from({ length: 30 }).map((v, i) => (
-//         <p key={i}>
-//           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima quis animi doloribus
-//           quasi eos? Illum quaerat culpa eos eum ullam facere, magnam nesciunt? Pariatur mollitia
-//           voluptatibus cupiditate tempore excepturi esse.
-//         </p>
-//       ))}
