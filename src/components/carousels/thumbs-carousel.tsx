@@ -32,9 +32,11 @@ export default function ThumbsCarousel({
     thumbSwiperSlide?: string;
   };
 }) {
-  const mainSwiperRef = useRef<SwiperType | null>(null);
+  // 메인, 섬네일 상태관리
+  const mainSwiperRef = useRef<SwiperType | null>(null); // 참조만을 위한거라서 useRef로 상태관리
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
+  // 다이얼로그 상태관리
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -73,8 +75,7 @@ export default function ThumbsCarousel({
               setIsDialogOpen(true);
             }}
           >
-            <img src={item.image} className={cn("", className?.swiperSlide)} />
-            {/* <div className="text-5xl absolute top-1/2 left-1/2">{index + 1}</div> */}
+            <img src={item.image} className={cn("mx-auto", className?.swiperSlide)} />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -139,7 +140,6 @@ export default function ThumbsCarousel({
             {items.map((item, index) => (
               <SwiperSlide key={index} onClick={(e) => e.stopPropagation()}>
                 <img src={item.image} className="size-full object-contain" />
-                {/* <div className="text-5xl absolute top-1/2 left-1/2">{index + 1}</div> */}
               </SwiperSlide>
             ))}
           </Swiper>

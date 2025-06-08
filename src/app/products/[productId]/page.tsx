@@ -48,8 +48,9 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
           <div className="w-[65%] /flex-[6.5] min-h-[calc(100vh-40px)]">
             <ThumbsCarousel
               items={Array.from({ length: 10 }).map((_, i) => ({
-                image:
-                  "https://image.msscdn.net/thumbnails/images/prd_img/20250310/4876181/detail_4876181_17419318496874_big.jpg?w=1200",
+                // image:
+                //   "https://image.msscdn.net/thumbnails/images/prd_img/20250310/4876181/detail_4876181_17419318496874_big.jpg?w=1200",
+                image: product.image,
               }))}
             />
             <ProductDetailTabsCarousel />
