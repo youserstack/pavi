@@ -5,18 +5,18 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { spareImageUrl } from "@/data/image-urls";
+import { mockupProductImage } from "@/data/mockups";
 import Image from "next/image";
 
 export function DefaultCarousel() {
   return (
-    <Carousel className="w-full" opts={{}}>
+    <Carousel className="w-full">
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index} className="pl-0">
             <div className="p-1 /p-10 border">
               <Image
-                src={spareImageUrl}
+                src={mockupProductImage}
                 alt=""
                 width={300}
                 height={300}

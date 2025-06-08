@@ -5,7 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { DrawerClose } from "@/components/ui/drawer";
-import { navItems } from "@/data/items";
+import { navItems } from "@/data/nav-items";
 import Link from "next/link";
 
 export function AccordionNavMenu() {

@@ -1,6 +1,5 @@
 import { List } from "lucide-react";
 import { JSX } from "react";
-import { IconType } from "react-icons/lib";
 import { SiAdidas, SiFila, SiNewbalance, SiNike, SiPuma, SiReebok } from "react-icons/si";
 
 // 레벨1

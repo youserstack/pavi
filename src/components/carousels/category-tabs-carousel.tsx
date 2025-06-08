@@ -4,7 +4,7 @@ import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carouse
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import useDraggingState from "@/lib/hooks/useDraggingState";
 import { useSearchParams } from "next/navigation";
-import { categoryItems } from "@/data/items";
+import { categoryItems } from "@/data/nav-items";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 

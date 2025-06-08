@@ -2,7 +2,7 @@ import ProductDetailTabsCarousel from "@/components/carousels/product-detail-tab
 import ProductDetailWidget from "@/app/products/[productId]/product-detail-widget";
 import { getProduct, getProductIds } from "@/lib/api/fetchers";
 import ThumbsCarousel from "@/components/carousels/thumbs-carousel";
-import { mockupTextItems } from "@/data/mockups";
+import { mockupTextElements } from "@/data/mockups";
 
 // export const revalidate = 30; // 재검증시간설정 : n초동안캐시
 
@@ -37,7 +37,7 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
               }))}
             />
             <ProductDetailTabsCarousel />
-            {/* {mockupTextItems} */}
+            {/* {mockupTextElements} */}
           </div>
 
           {/* 우측 위젯으로 가격, 주문옵션, 할인, 배송정보 등... */}

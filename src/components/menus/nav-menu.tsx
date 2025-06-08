@@ -1,4 +1,4 @@
-import { navItems } from "@/data/items";
+import { navItems } from "@/data/nav-items";
 import Link from "next/link";
 import React from "react";
 import {

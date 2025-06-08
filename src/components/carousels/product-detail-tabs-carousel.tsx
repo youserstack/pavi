@@ -3,8 +3,8 @@
 import { Context } from "@/components/providers/providers";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { mockupImages } from "@/data/mockups";
-// import { mockupImages } from "@/data/image-urls";
+import { mockupProductImages } from "@/data/mockups";
+// import { mockupProductImages } from "@/data/image-urls";
 import useDraggingState from "@/lib/hooks/useDraggingState";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -45,8 +45,8 @@ export default function ProductDetailTabsCarousel() {
         <TabsContent key={item.value} value={item.value}>
           {item.label} ....
           {item.value === "info" &&
-            mockupImages.map((image) => (
-              <Image src={image} alt="" width={1000} height={1000} className="w-full" />
+            mockupProductImages.map((image, index) => (
+              <Image key={index} src={image} alt="" width={1000} height={1000} className="w-full" />
             ))}
         </TabsContent>
       ))}

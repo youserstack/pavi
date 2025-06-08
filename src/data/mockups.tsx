@@ -1,4 +1,4 @@
-export const mockupTextItems = Array.from({ length: 30 }).map((v) => (
+export const mockupTextElements = Array.from({ length: 30 }).map((v) => (
   <p>
     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero odio officiis doloribus possimus
     provident cum soluta illo hic! Officia vitae itaque non debitis voluptas quam aut molestias
@@ -6,7 +6,10 @@ export const mockupTextItems = Array.from({ length: 30 }).map((v) => (
   </p>
 ));
 
-export const mockupImages = [
+export const mockupProductImages = [
   "https://res.cloudinary.com/dzktdrw7o/image/upload/v1749361651/mockup/dmitry-mashkin-DY3Nt1MrOrw-unsplash_nvhjsp.jpg",
   "https://res.cloudinary.com/dzktdrw7o/image/upload/v1749361651/mockup/f0e00565739035.5afe4a6ec09c2_ssd0iy.jpg",
 ];
+
+export const mockupProductImage =
+  "https://shopping-phinf.pstatic.net/main_4683155/46831553621.20240403112809.jpg";

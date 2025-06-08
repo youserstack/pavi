@@ -1,9 +1,9 @@
 import Providers from "@/components/providers/providers";
 import { inter, notoSansKR, orbitron } from "@/lib/fonts";
-import Header from "@/components/header";
 import type { Metadata } from "next";
 import { cn } from "@/lib/utils";
 import "./globals.css";
+import Header from "@/components/layouts/header";
 import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
