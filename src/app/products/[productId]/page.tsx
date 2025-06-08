@@ -1,15 +1,10 @@
-import ProductImageCard from "@/app/products/[productId]/product-image-card";
-// import { BreadcrumbWithSeparator } from "@/components/breadcrumb-with-separator";
-import ProductInfoCard from "@/app/products/[productId]/product-info-card";
-import WidgetCard from "@/app/products/[productId]/widget/widget-card";
-import { DefaultCarousel } from "@/components/carousels/default-carousel";
 import ProductDetailTabsCarousel from "@/components/carousels/product-detail-tabs-carousel";
 import ThumbsCarousel from "@/components/carousels/thumbs-carousel";
 import { ProductDetailOrderForm } from "@/components/product-detail-order-form";
-import { ProductImage } from "@/components/product-image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { getProduct, getProductIds } from "@/lib/api/fetchers";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { IoIosStar } from "react-icons/io";
 
@@ -34,18 +29,12 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
   return (
     <main>
       <section>
-        {/* <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-          <ProductImageCard src={product.image} />
-
-          <div className="flex flex-col gap-4 sm:gap-6">
-            <ProductInfoCard product={product} />
-            <WidgetCard product={product} />
-          </div>
-        </div> */}
-
-        <div className="flex gap-4 py-4">
+        <div className="grid grid-cols-1 md:grid-cols-[65%_35%] gap-4 py-4">
           {/* 좌측 */}
-          <div className="w-[65%] /flex-[6.5] min-h-[calc(100vh-40px)]">
+          <div
+            className="order-2 md:order-1 
+            min-h-[calc(100vh-40px)]"
+          >
             <ThumbsCarousel
               items={Array.from({ length: 10 }).map((_, i) => ({
                 // image:
@@ -55,7 +44,7 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
             />
             <ProductDetailTabsCarousel />
 
-            {Array.from({ length: 30 }).map((v, i) => (
+            {Array.from({ length: 70 }).map((v, i) => (
               <p key={i}>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima quis animi
                 doloribus quasi eos? Illum quaerat culpa eos eum ullam facere, magnam nesciunt?
@@ -65,9 +54,16 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
           </div>
 
           {/* 우측 */}
-          {/* <div
-            className="w-[35%] h-[calc(100vh-40px)] 
-            sticky top-[40px] overflow-y-auto bg-sidebar"
+          <div
+            className={cn(
+              // 모바일에서는 순서변경
+              "order-1 md:order-2 ",
+
+              // 데스크탑에서는 스티키로 변경
+              "md:h-[calc(100vh-40px)] md:sticky md:top-[40px]",
+
+              "overflow-y-auto/ bg-sidebar"
+            )}
           >
             <ScrollArea className="h-full p-4">
               <div className="flex flex-col gap-4">
@@ -106,8 +102,16 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
 
                 <ProductDetailOrderForm />
               </div>
+
+              {/* {Array.from({ length: 10 }).map((v, i) => (
+                <p key={i}>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error quas dolorem unde
+                  fuga recusandae consectetur. Architecto cum delectus neque nulla molestiae
+                  commodi, voluptatum excepturi! Hic laborum consectetur rem unde necessitatibus.
+                </p>
+              ))} */}
             </ScrollArea>
-          </div> */}
+          </div>
         </div>
       </section>
     </main>
