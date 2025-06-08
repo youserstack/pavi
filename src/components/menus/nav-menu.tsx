@@ -35,7 +35,9 @@ export function NavMenu() {
                     <Link
                       href={
                         navItem.id === "category" || navItem.id === "brand"
-                          ? `/products?${navItem.id}=${v1.id}`
+                          ? v1.id === "all"
+                            ? "/products"
+                            : `/products?${navItem.id}=${v1.id}`
                           : `/${navItem.id}?type=${v1.id}`
                       }
                     >
@@ -53,7 +55,7 @@ export function NavMenu() {
                           key={v2.id}
                           href={
                             navItem.id === "category" || navItem.id === "brand"
-                              ? `/products?${navItem.id}=${v2.id}`
+                              ? `/products?${navItem.id}=${v1.id},${v2.id}`
                               : `/${navItem.id}?type=${v2.id}`
                           }
                         >
@@ -75,7 +77,9 @@ export function NavMenu() {
                     key={v1.id}
                     href={
                       navItem.id === "category" || navItem.id === "brand"
-                        ? `/products?${navItem.id}=${v1.id}`
+                        ? v1.id === "all"
+                          ? "/products"
+                          : `/products?${navItem.id}=${v1.id}`
                         : `/${navItem.id}?type=${v1.id}`
                     }
                   >

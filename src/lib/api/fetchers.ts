@@ -39,7 +39,8 @@ export async function getProductIds() {
 }
 
 export async function getProduct(productId: string) {
-  const url = `${process.env.COOZA_API_URL}/api/products/${productId}`;
+  const url = `${process.env.TOOPA_API_URL}/api/products/${productId}`;
+  // const url = `${process.env.COOZA_API_URL}/api/products/${productId}`;
   const res = await fetch(url);
   return res.json();
 }

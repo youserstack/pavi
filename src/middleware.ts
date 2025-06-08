@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 // 라우트 그룹
-const protectedRoutes = ["/dashboard"];
+const protectedRoutes = ["/dashboard", "/orders"];
 const guestOnlyRoutes = ["/signin", "/signup"];
 const publicRoutes = ["/"];
 

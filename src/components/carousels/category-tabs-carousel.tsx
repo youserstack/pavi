@@ -13,11 +13,11 @@ export default function CategoryTabsCarousel() {
 
   // 현재 파라미터로 동일레벨의 카테고리 리스트를 찾는다
   const params = useSearchParams();
-  const categoryParam = params.get("category") ?? "";
+  const categoryParam = params.get("category") ?? "all";
   const items = findCategorySiblings(categoryParam);
   // console.log({ items });
 
-  if (!categoryParam || !items?.length) return null;
+  if (!items?.length) return null;
 
   const defaultTab = items.find((i) => i.id === categoryParam)?.id ?? items[0].id;
 
@@ -28,7 +28,8 @@ export default function CategoryTabsCarousel() {
           <CarouselContent className="-ml-0">
             {items?.map((item) => (
               <CarouselItem key={item.id} className="pl-0 basis-auto">
-                <Link href={`/products?category=${item.id}`}>
+                {/* <Link href={`/products?category=${item.id}`}> */}
+                <Link href={item.id === "all" ? "/products" : `/products?category=${item.id}`}>
                   <TabsTrigger
                     value={item.id}
                     className={cn(
@@ -72,6 +73,8 @@ const findCategorySiblings = (categoryParam: string): CategoryItem[] | undefined
   //     }
   //   }
   // }
+
+  if (categoryParam === "all") return categoryItems;
 
   for (const item of categoryItems) {
     // 1단계: 최상위에서 찾은 경우
