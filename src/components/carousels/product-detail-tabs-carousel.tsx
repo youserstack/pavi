@@ -1,16 +1,22 @@
 "use client";
 
+import { Context } from "@/components/providers/providers";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { mockupImages } from "@/data/mockups";
+// import { mockupImages } from "@/data/image-urls";
 import useDraggingState from "@/lib/hooks/useDraggingState";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
 
 export default function ProductDetailTabsCarousel() {
   const { isDragging, setIsDragging } = useDraggingState();
+  const { currentTab, setCurrentTab } = useContext(Context);
 
   return (
-    <Tabs defaultValue={items[0].value}>
+    <Tabs value={currentTab} onValueChange={setCurrentTab}>
       <TabsList onPointerDown={() => setIsDragging(true)} className="w-full">
         <Carousel opts={{ dragFree: true }} className="w-full">
           <CarouselContent className="-ml-0">
@@ -38,6 +44,10 @@ export default function ProductDetailTabsCarousel() {
       {items.map((item) => (
         <TabsContent key={item.value} value={item.value}>
           {item.label} ....
+          {item.value === "info" &&
+            mockupImages.map((image) => (
+              <Image src={image} alt="" width={1000} height={1000} className="w-full" />
+            ))}
         </TabsContent>
       ))}
     </Tabs>
