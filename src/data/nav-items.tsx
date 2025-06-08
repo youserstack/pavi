@@ -9,11 +9,11 @@ export const categoryItems = [
     name: "전체",
   },
   {
-    id: "디지털/가전",
+    id: "electronics",
     name: "디지털/가전",
   },
   {
-    id: "패션의류",
+    id: "fashion",
     name: "패션의류",
   },
   {

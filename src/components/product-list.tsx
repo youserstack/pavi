@@ -6,7 +6,7 @@ import { useQueryProducts } from "@/lib/hooks/useQueryProducts";
 import { toast } from "sonner";
 
 export default function ProductList() {
-  const { data, error, isPending, isError, isSuccess } = useQueryProducts();
+  const { data: products, error, isPending, isError, isSuccess } = useQueryProducts();
 
   if (isPending || isError) {
     return (
@@ -18,14 +18,15 @@ export default function ProductList() {
   }
 
   if (isSuccess) {
-    const { products, totalItems } = data;
-    const itemsPerPage = 10;
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    console.log({ products });
+    // const { products, totalItems } = data;
+    // const itemsPerPage = 10;
+    // const totalPages = Math.ceil(totalItems / itemsPerPage);
 
     return (
       <ul className="grid grid-cols-8 xs:grid-cols-12 sm:grid-cols-16 md:grid-cols-20 lg:grid-cols-24">
         {products?.map((product: Product) => (
-          <ProductItem key={product.productId} product={product} />
+          <ProductItem key={product.id} product={product} />
         ))}
       </ul>
     );

@@ -3,7 +3,7 @@ import { persist, createJSONStorage } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
 interface Product {
-  id: string;
+  id: number;
   name: string;
   price: number;
   image: string;
@@ -13,7 +13,7 @@ interface WishlistStore {
   wishlist: Product[];
   toggleWishlist: (product: Product) => void;
   clearWishlist: () => void;
-  isInWishlist: (productId: string) => boolean;
+  isInWishlist: (productId: number) => boolean;
 }
 
 export const useWishlistStore = create<WishlistStore>()(

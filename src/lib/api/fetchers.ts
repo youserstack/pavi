@@ -1,25 +1,29 @@
 import { SignupSchema } from "@/lib/schemas";
-import axios from "axios";
+import { ReadonlyURLSearchParams } from "next/navigation";
 
-// client fetchers
-
-export async function getProducts(params?: Record<string, string>) {
-  const url = `${process.env.COOZA_API_URL}/api/products`;
-  const res = await axios(url, { params });
-  return res.data;
+export async function getProducts(params?: ReadonlyURLSearchParams) {
+  const url = `${process.env.TOOPA_API_URL}/api/products?${params?.toString()}`;
+  const res = await fetch(url);
+  return res.json();
+  // export async function getProducts(params?: Record<string, string>) {
+  // const url = `${process.env.COOZA_API_URL}/api/products`;
+  // const res = await axios(url, { params });
 }
 
 export async function signupUser(data: SignupSchema) {
   const url = `${process.env.TOOPA_API_URL}/api/users`;
-  const res = await axios(url, {
+  const res = await fetch(url, {
     method: "post",
     headers: { "Content-Type": "application/json" },
-    data,
+    body: JSON.stringify(data),
   });
-  return res.data;
+  return res.json();
+  // const res = await axios(url, {
+  //   method: "post",
+  //   headers: { "Content-Type": "application/json" },
+  //   data,
+  // });
 }
-
-// server fetchers
 
 export async function getPopularProducts() {
   // 엔드포인트에 쿼리파라미터를 추가하고 인기상품을 조회하도록 변경해야함
