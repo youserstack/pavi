@@ -2,7 +2,7 @@ import { ProductListCarousel } from "@/components/carousels/product-list-carouse
 import { getProducts } from "@/lib/api/fetchers";
 
 export default async function PopularProductList() {
-  const { products } = await getProducts();
+  const products = await getProducts();
 
   return (
     <div>
