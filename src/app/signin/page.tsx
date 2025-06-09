@@ -1,19 +1,9 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import OauthSigninButton from "@/components/buttons/oauth-signin-button";
 import SignInForm from "@/components/forms/signin-form";
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
-import { ShipWheel } from "lucide-react";
 import Link from "next/link";
 
 export default async function SignInPage() {
-  const session = await getServerSession(authOptions);
-
-  if (session) {
-    redirect("/dashboard");
-  }
-
   return (
     <main className="SigninPage">
       <section className="min-h-screen flex flex-col items-center justify-center">

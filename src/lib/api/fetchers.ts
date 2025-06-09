@@ -34,7 +34,7 @@ export async function getProduct(productId: string) {
   return res.json();
 }
 
-export async function getUser(user: any) {
+export async function getUser(user: { email: string }) {
   const url = `${process.env.TOOPA_API_URL}/api/users?email=${user.email}`;
   const res = await fetch(url);
   return res.json();

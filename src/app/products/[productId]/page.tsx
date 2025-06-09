@@ -16,7 +16,7 @@ type Params = Promise<{ productId: string }>;
 
 export default async function ProductDetailPage({ params }: { params: Params }) {
   const product = await getProduct((await params).productId);
-  console.log({ product });
+  // console.log({ product });
 
   if (!product) return null;
 

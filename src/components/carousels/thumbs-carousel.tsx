@@ -18,6 +18,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import Image from "next/image";
 // import "swiper/css/bundle";
 
 export default function ThumbsCarousel({
@@ -75,7 +76,13 @@ export default function ThumbsCarousel({
               setIsDialogOpen(true);
             }}
           >
-            <img src={item.image} className={cn("mx-auto", className?.swiperSlide)} />
+            <Image
+              src={item.image}
+              alt=""
+              width={1000}
+              height={1000}
+              className={cn("mx-auto", className?.swiperSlide)}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -95,7 +102,13 @@ export default function ThumbsCarousel({
       >
         {items.map((item, index) => (
           <SwiperSlide key={index}>
-            <img src={item.image} className={cn(className?.thumbSwiperSlide)} />
+            <Image
+              src={item.image}
+              alt=""
+              width={300}
+              height={300}
+              className={cn(className?.thumbSwiperSlide)}
+            />
             <div className="absolute inset-0 border-2 border-transparent"></div>
           </SwiperSlide>
         ))}
@@ -139,7 +152,13 @@ export default function ThumbsCarousel({
           >
             {items.map((item, index) => (
               <SwiperSlide key={index} onClick={(e) => e.stopPropagation()}>
-                <img src={item.image} className="size-full object-contain" />
+                <Image
+                  src={item.image}
+                  alt=""
+                  width={1200}
+                  height={1200}
+                  className="size-full object-contain"
+                />
               </SwiperSlide>
             ))}
           </Swiper>

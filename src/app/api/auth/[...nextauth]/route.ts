@@ -5,7 +5,7 @@ import Credentials from "next-auth/providers/credentials";
 import type { NextAuthOptions } from "next-auth";
 import { authenticateUser } from "@/lib/api/fetchers";
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     Google({
@@ -84,7 +84,6 @@ export const authOptions: NextAuthOptions = {
   },
 };
 
-// export default NextAuth(authOptions);
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

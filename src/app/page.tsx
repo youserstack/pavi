@@ -1,9 +1,8 @@
 import BannerCarousel from "@/components/carousels/banner-carousel";
+import DefaultSkeleton from "@/components/skeletons/DefaultSkeleton";
 import PopularProductList from "@/components/popular-product-list";
 import ProductSampleList from "@/components/product-sample-list";
 import { Suspense } from "react";
-import { Skeleton } from "@/components/ui/skeleton";
-import DefaultSkeleton from "@/components/skeletons/DefaultSkeleton";
 
 export default function Home() {
   return (

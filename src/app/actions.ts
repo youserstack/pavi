@@ -3,7 +3,7 @@
 import { signupSchema } from "@/lib/schemas";
 import { redirect } from "next/navigation";
 
-export async function signup(prevState: any, formData: FormData) {
+export async function signup(prevState: unknown, formData: FormData) {
   console.log("☑️ signup server action : 회원가입 서버액션 호출");
 
   // ⚪ 회원가입정보 추출

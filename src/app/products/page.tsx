@@ -1,24 +1,28 @@
 import { ToggleButtonCarousel } from "@/components/carousels/toggle-button-carousel";
+import CategoryTabsCarousel from "@/components/carousels/category-tabs-carousel";
 import FilterButton from "@/components/buttons/filter-button";
 import ProductList from "@/components/product-list";
-import { categoryFilterItems, keywordItems, tabsItems } from "@/data/filter-items";
-import CategoryTabsCarousel from "@/components/carousels/category-tabs-carousel";
+import { keywordItems } from "@/data/filter-items";
+import { Suspense } from "react";
 
 export default function ProductsPage() {
   return (
     <main>
       <section className="min-h-screen flex flex-col gap-4">
-        {/* 탭버튼 */}
-        <CategoryTabsCarousel />
+        <Suspense>
+          {/* 탭버튼 */}
+          <CategoryTabsCarousel />
 
-        {/* 필터버튼 */}
-        <div className="flex items-center gap-3">
-          <FilterButton />
-          <ToggleButtonCarousel type="suggestions" items={keywordItems} />
-        </div>
+          {/* 필터버튼 */}
+          <div className="flex items-center gap-3">
+            <FilterButton />
+            <ToggleButtonCarousel type="suggestions" items={keywordItems} />
+          </div>
 
-        {/* 제품리스트 */}
-        <ProductList />
+          {/* 제품리스트 */}
+          <ProductList />
+        </Suspense>
+
         {/* <ClientPagination page={page} totalPages={totalPages} /> */}
       </section>
     </main>

@@ -39,7 +39,11 @@ export function CommonCheckboxFilter({ name, options, checkboxClassName }: Props
       : filterValues.filter((v) => v !== filterValue);
 
     // 쿼리파라미터 추가 및 삭제
-    newFilterValues.length > 0 ? params.set(name, newFilterValues.join(",")) : params.delete(name);
+    if (newFilterValues.length > 0) {
+      params.set(name, newFilterValues.join(","));
+    } else {
+      params.delete(name);
+    }
 
     // 설정된 쿼리파라미터로 라우팅
     router.push(`?${params.toString()}`);

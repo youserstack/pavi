@@ -142,15 +142,17 @@ export function ColorFilter3() {
     // console.log({ newColorFilterValues });
 
     // 쿼리파라미터 추가 및 삭제
-    newColorFilterValues.length > 0
-      ? params.set("color", newColorFilterValues.join(","))
-      : params.delete("color");
+    if (newColorFilterValues.length > 0) {
+      params.set("color", newColorFilterValues.join(","));
+    } else {
+      params.delete("color");
+    }
 
     // 설정된 쿼리파라미터로 라우팅
     router.push(`?${params.toString()}`);
   };
 
-  function onSubmit(data: any) {
+  function onSubmit(data: unknown) {
     // console.log({ data });
     // toast("You submitted the following values", {
     //   description: (

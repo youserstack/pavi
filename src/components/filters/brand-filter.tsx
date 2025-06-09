@@ -45,9 +45,11 @@ export function BrandFilter() {
     // console.log({ newBrandFilterValues });
 
     // 쿼리파라미터 추가 및 삭제
-    newBrandFilterValues.length > 0
-      ? params.set("brand", newBrandFilterValues.join(","))
-      : params.delete("brand");
+    if (newBrandFilterValues.length > 0) {
+      params.set("brand", newBrandFilterValues.join(","));
+    } else {
+      params.delete("brand");
+    }
 
     // 설정된 쿼리파라미터로 라우팅
     router.push(`?${params.toString()}`);

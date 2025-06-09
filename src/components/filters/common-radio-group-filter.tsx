@@ -27,11 +27,17 @@ export function CommonRadioGroupFilter({ name, options }: Props) {
 
   const updateQueryParam = (selectedValue: string) => {
     const params = new URLSearchParams(searchParams);
-    selectedValue ? params.set(name, selectedValue) : params.delete(name);
+
+    if (selectedValue) {
+      params.set(name, selectedValue);
+    } else {
+      params.delete(name);
+    }
+
     router.push(`?${params.toString()}`);
   };
 
-  const onSubmit = (data: any) => console.log({ data });
+  const onSubmit = (data: unknown) => console.log({ data });
 
   return (
     <Form {...form}>

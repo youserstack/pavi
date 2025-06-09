@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
 import { Context } from "@/components/providers/providers";
 import { Button } from "@/components/ui/button";
 import { VscSettings } from "react-icons/vsc";
@@ -27,8 +26,6 @@ import FiltersCarousel from "@/components/carousels/filters-carousel";
 
 export default function FilterButton() {
   const { isMobile, isDesktop } = useContext(Context);
-  const searchParams = useSearchParams();
-  const router = useRouter();
 
   if (isMobile) {
     return (

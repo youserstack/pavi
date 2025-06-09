@@ -1,17 +1,16 @@
 "use client";
 
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { CommonCheckboxFilter } from "@/components/filters/common-checkbox-filter";
+import { CommonRadioGroupFilter } from "@/components/filters/common-radio-group-filter";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { ColorFilter3 } from "@/components/filters/color-filter-3";
-import { BrandFilter } from "@/components/filters/brand-filter";
 import useDraggingState from "@/lib/hooks/useDraggingState";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { filterItems } from "@/data/filter-items";
 import { useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 import SwiperCore from "swiper";
 import "swiper/css";
-import { CommonCheckboxFilter } from "@/components/filters/common-checkbox-filter";
-import { ColorFilter } from "@/components/filters/color-filter";
 import {
   bgColorMap,
   bgLightColors,
@@ -21,8 +20,6 @@ import {
   productTypeOptions,
   sizeOptions,
 } from "@/data/filter-options";
-import { cn } from "@/lib/utils";
-import { CommonRadioGroupFilter } from "@/components/filters/common-radio-group-filter";
 
 export default function FiltersCarousel() {
   const { isDragging, setIsDragging } = useDraggingState();

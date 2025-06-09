@@ -1,5 +1,5 @@
-export const mockupTextElements = Array.from({ length: 30 }).map((v) => (
-  <p>
+export const mockupTextElements = Array.from({ length: 30 }).map((v, i) => (
+  <p key={i}>
     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero odio officiis doloribus possimus
     provident cum soluta illo hic! Officia vitae itaque non debitis voluptas quam aut molestias
     distinctio similique asperiores.

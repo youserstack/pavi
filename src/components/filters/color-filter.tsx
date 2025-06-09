@@ -137,9 +137,11 @@ export function ColorFilter() {
       : colorFilterValues.filter((v) => v !== colorFilterValue); // 체크해제
 
     // 쿼리파라미터 추가 및 삭제
-    newColorFilterValues.length > 0
-      ? params.set("color", newColorFilterValues.join(","))
-      : params.delete("color");
+    if (newColorFilterValues.length > 0) {
+      params.set("color", newColorFilterValues.join(","));
+    } else {
+      params.delete("color");
+    }
 
     // 설정된 쿼리파라미터로 라우팅
     router.push(`?${params.toString()}`);

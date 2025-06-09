@@ -18,7 +18,7 @@ export function ProductDetailOrderForm() {
     defaultValues: { color: "", size: "", count: 1 },
   });
 
-  function onSubmit(data: any) {
+  function onSubmit(data: unknown) {
     toast("You submitted the following values", {
       description: (
         <pre className="mt-2 w-[320px] rounded-md bg-neutral-950 p-4">
