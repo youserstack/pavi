@@ -11,6 +11,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { mockupHomepageBannerImages } from "@/data/mockups";
 
 export default function BannerCarousel() {
   const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
@@ -35,15 +36,10 @@ export default function BannerCarousel() {
       )}
     >
       <CarouselContent className="ml-0 h-full">
-        {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-0 h-full">
-            <Image
-              src={imageUrl}
-              alt=""
-              width={500}
-              height={500}
-              className="size-full object-cover"
-            />
+        {mockupHomepageBannerImages.map((image, index) => (
+          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-0 h-full relative">
+            <Image src={image} alt="" width={500} height={500} className="size-full object-cover" />
+            {/* <div className="absolute inset-0 ">{index + 1}</div> */}
           </CarouselItem>
         ))}
       </CarouselContent>
@@ -52,5 +48,3 @@ export default function BannerCarousel() {
     </Carousel>
   );
 }
-
-const imageUrl = "https://shopping-phinf.pstatic.net/main_5025360/50253608620.20240910110137.jpg";

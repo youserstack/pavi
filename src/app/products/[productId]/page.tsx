@@ -4,14 +4,13 @@ import { getProduct, getProductIds } from "@/lib/api/fetchers";
 import ThumbsCarousel from "@/components/carousels/thumbs-carousel";
 import { mockupTextElements } from "@/data/mockups";
 
-// export const revalidate = 30; // 재검증시간설정 : n초동안캐시
+export const revalidate = 30; // 재검증시간설정 : n초동안캐시
 
-// export async function generateStaticParams() {
-//   const data = await getProductIds();
-//   const productIds = data.productIds.map((v: any) => ({ productId: v.productId }));
-//   console.log({ productIds });
-//   return productIds;
-// }
+export async function generateStaticParams() {
+  const ids = await getProductIds();
+  console.log({ ids });
+  return ids.map((id: number) => ({ productId: id.toString() }));
+}
 
 type Params = Promise<{ productId: string }>;
 
