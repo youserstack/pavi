@@ -22,8 +22,6 @@ export default function ProductsPage() {
           {/* 제품리스트 */}
           <ProductList />
         </Suspense>
-
-        {/* <ClientPagination page={page} totalPages={totalPages} /> */}
       </section>
     </main>
   );
