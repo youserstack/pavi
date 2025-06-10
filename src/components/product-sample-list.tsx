@@ -4,8 +4,6 @@ import { getProducts } from "@/lib/api/fetchers";
 export default async function ProductSampleList() {
   const products = await getProducts();
 
-  if (!Array.isArray(products)) return null;
-
   return (
     <div>
       <h1 className="ml-3 mb-3 font-semibold">제품 리스트</h1>

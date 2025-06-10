@@ -2,13 +2,14 @@ import ProductDetailTabsCarousel from "@/components/carousels/product-detail-tab
 import ProductDetailWidget from "@/app/products/[productId]/product-detail-widget";
 import { getProduct, getProductIds } from "@/lib/api/fetchers";
 import ThumbsCarousel from "@/components/carousels/thumbs-carousel";
-import { mockupTextElements } from "@/data/mockups";
+// import { mockupTextElements } from "@/data/mockups";
 
 export const revalidate = 30; // 재검증시간설정 : n초동안캐시
 
 export async function generateStaticParams() {
   const ids = await getProductIds();
   console.log({ ids });
+  if (!ids) return [];
   return ids.map((id: number) => ({ productId: id.toString() }));
 }
 

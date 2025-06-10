@@ -26,6 +26,7 @@ export default function SignupForm() {
       await signupUser(data);
       router.push("/signin");
     } catch (error) {
+      console.log(error);
       setSignupError("서버와의 통신 중 문제가 발생했습니다.");
     }
   };
