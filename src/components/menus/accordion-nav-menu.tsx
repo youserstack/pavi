@@ -5,13 +5,13 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { DrawerClose } from "@/components/ui/drawer";
-import { navItems } from "@/data/nav-items";
+import { menus } from "@/data/nav-items";
 import Link from "next/link";
 
 export function AccordionNavMenu() {
   return (
     <Accordion type="single" collapsible className="w-full ">
-      {navItems.map((navItem) => (
+      {menus.map((navItem) => (
         <AccordionItem key={navItem.id} value={navItem.id}>
           <AccordionTrigger>{navItem.name}</AccordionTrigger>
           <AccordionContent className="flex flex-col">

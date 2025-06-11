@@ -1,4 +1,4 @@
-import { navItems } from "@/data/nav-items";
+import { menus } from "@/data/nav-items";
 import Link from "next/link";
 import React from "react";
 import {
@@ -16,37 +16,41 @@ import {
 export function NavMenu() {
   return (
     <Menubar className="hidden md:flex border-none">
-      {navItems.map((navItem) => (
-        <MenubarMenu key={navItem.name}>
-          <MenubarTrigger className="navItem hover:bg-accent hover:text-accent-foreground">
-            {navItem.name}
-          </MenubarTrigger>
-          <MenubarContent
-            className="
-            [&_a]:w-full 
-            [&_a]:space-x-2
-            [&_*]:cursor-pointer"
-          >
-            {navItem.children?.map((v1) => {
+      {menus.map((menu) => (
+        <MenubarMenu key={menu.name}>
+          <MenubarTrigger>{menu.name}</MenubarTrigger>
+          <MenubarContent className="[&_a]:block [&_a]:w-full [&_*]:cursor-pointer">
+            {menu.children?.map((v1) => {
               // 레벨1(children)+레벨2(subChildren)
               if (v1.children && v1.children.length > 0) {
                 return (
                   <MenubarSub key={v1.id}>
                     <Link
                       href={
-                        navItem.id === "category" || navItem.id === "brand"
+                        menu.id === "category" || menu.id === "brand"
                           ? v1.id === "all"
                             ? "/products"
-                            : `/products?${navItem.id}=${v1.id}`
-                          : `/${navItem.id}?type=${v1.id}`
+                            : `/products?${menu.id}=${v1.id}`
+                          : `/${menu.id}?type=${v1.id}`
                       }
                     >
-                      <MenubarSubTrigger>
-                        <MenubarItem>
-                          {v1.icon && <span>{v1.icon}</span>}
-                          <span>{v1.name}</span>
-                          {v1.emoji && <span>{v1.emoji}</span>}
-                        </MenubarItem>
+                      <MenubarSubTrigger
+                      // onClick={() => {
+                      //   router.push(
+                      //     menu.id === "category" || menu.id === "brand"
+                      //       ? v1.id === "all"
+                      //         ? "/products"
+                      //         : `/products?${menu.id}=${v1.id}`
+                      //       : `/${menu.id}?type=${v1.id}`
+                      //   );
+
+                      //   // 메뉴리스트를 닫기위해서 리로드
+                      //   window.location.reload();
+                      // }}
+                      >
+                        {v1.icon && <span>{v1.icon}</span>}
+                        <MenubarLabel>{v1.name}</MenubarLabel>
+                        {v1.emoji && <span>{v1.emoji}</span>}
                       </MenubarSubTrigger>
                     </Link>
                     <MenubarSubContent>
@@ -54,9 +58,9 @@ export function NavMenu() {
                         <Link
                           key={v2.id}
                           href={
-                            navItem.id === "category" || navItem.id === "brand"
-                              ? `/products?${navItem.id}=${v1.id},${v2.id}`
-                              : `/${navItem.id}?type=${v2.id}`
+                            menu.id === "category" || menu.id === "brand"
+                              ? `/products?${menu.id}=${v1.id},${v2.id}`
+                              : `/${menu.id}?type=${v2.id}`
                           }
                         >
                           <MenubarItem>
@@ -76,11 +80,11 @@ export function NavMenu() {
                   <Link
                     key={v1.id}
                     href={
-                      navItem.id === "category" || navItem.id === "brand"
+                      menu.id === "category" || menu.id === "brand"
                         ? v1.id === "all"
                           ? "/products"
-                          : `/products?${navItem.id}=${v1.id}`
-                        : `/${navItem.id}?type=${v1.id}`
+                          : `/products?${menu.id}=${v1.id}`
+                        : `/${menu.id}?type=${v1.id}`
                     }
                   >
                     <MenubarItem>

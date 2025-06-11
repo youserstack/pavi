@@ -137,15 +137,15 @@ export const saleItems = [
   },
 ];
 
-type MenuItem = {
+type Menu = {
   id: string;
   name: string;
   icon?: JSX.Element;
   emoji?: string;
-  children?: MenuItem[];
+  children?: Menu[];
 };
 
-export const navItems: MenuItem[] = [
+export const menus: Menu[] = [
   { id: "category", name: "카테고리", children: categoryItems },
   { id: "brand", name: "브랜드", children: brandItems },
   { id: "event", name: "이벤트", children: eventItems },

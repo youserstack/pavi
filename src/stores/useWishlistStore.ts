@@ -50,7 +50,7 @@ export const useWishlistStore = create<WishlistStore>()(
     {
       name: "wishlist-storage",
       storage: createJSONStorage(() => localStorage),
-      skipHydration: true, // Next.js hydration 오류 방지
+      // skipHydration: true, // Next.js hydration 오류 방지
       // Next.js 서버사이드 렌더링(SSR) 중에는 localStorage가 없어서 접근 불가합니다.
       // 이 때문에 서버에서 렌더링한 초기 상태와 클라이언트에서 localStorage를 읽은 상태가 달라져
       // React의 hydration 오류가 발생할 수 있습니다.

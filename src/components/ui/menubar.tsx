@@ -204,8 +204,36 @@ function MenubarSubTrigger({
     <MenubarPrimitive.SubTrigger
       data-slot="menubar-sub-trigger"
       data-inset={inset}
+      // className={cn(
+      //   "focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[inset]:pl-8",
+      //   className
+      // )}
       className={cn(
-        "focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[inset]:pl-8",
+        // ⛳️ 상태(state)에 따른 스타일
+        "focus:bg-accent", // 포커스 시 배경색 변경
+        "focus:text-accent-foreground", // 포커스 시 텍스트 색상 변경
+        "data-[state=open]:bg-accent", // 열렸을 때 배경색
+        "data-[state=open]:text-accent-foreground", // 열렸을 때 텍스트 색상 변경
+        "data-[inset]:pl-8", // inset이 true일 때 왼쪽 패딩
+
+        // 📐 레이아웃 및 정렬
+        "flex", // 플렉스 컨테이너
+        "items-center", // 아이템 세로 중앙 정렬
+        "px-2", // 좌우 패딩
+        "py-1.5", // 상하 패딩
+
+        // 🔡 텍스트 스타일
+        "text-sm", // 작은 텍스트 크기
+
+        // 🎯 상호작용 및 접근성
+        "cursor-default", // 기본 커서 유지
+        "outline-none", // 포커스 outline 제거
+        "select-none", // 텍스트 선택 방지
+
+        // 🧱 스타일 및 형태
+        "rounded-sm", // 모서리 둥글게 처리
+
+        // 📝 사용자 정의 className 병합
         className
       )}
       {...props}
