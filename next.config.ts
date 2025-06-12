@@ -7,9 +7,6 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [{ hostname: "*" }],
   },
-  experimental: {
-    ppr: "incremental",
-  },
 };
 
 export default nextConfig;
