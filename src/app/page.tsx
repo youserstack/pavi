@@ -4,6 +4,8 @@ import PopularProductList from "@/components/popular-product-list";
 import ProductSampleList from "@/components/product-sample-list";
 import { Suspense } from "react";
 
+export const experimental_ppr = true;
+
 export default function Home() {
   return (
     <main className="space-y-4">
