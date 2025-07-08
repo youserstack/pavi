@@ -1,0 +1,13 @@
+name: Warm Up App
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+jobs:
+  warmup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: warm up function
+        env:
+          WARMUP_URL: ${{ secrets.WARMUP_URL }} # GitHub Actions → 셸 env로 넘김
+        run: curl $WARMUP_URL # 셸에서 그 env 변수 사용
+
