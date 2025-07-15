@@ -17,14 +17,9 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Separator } from "@/components/ui/separator";
-import SigninButton from "@/components/buttons/signin-button";
 
 export function SideDrawer() {
   const { data: session } = useSession();
-  const user = {
-    username: session?.user?.name as string,
-    image: session?.user?.image as string,
-  };
 
   return (
     <Drawer direction="left">
@@ -44,7 +39,7 @@ export function SideDrawer() {
             </DrawerClose>
 
             {session ? (
-              <UserAvatar user={user} />
+              <UserAvatar session={session} />
             ) : (
               <DrawerClose asChild>
                 <Link href="/signin">
