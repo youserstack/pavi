@@ -57,12 +57,14 @@ const authOptions: NextAuthOptions = {
         return false;
       }
 
-      if (account.provider === "credentials") {
-        console.log("✔️ 인증/인가된 사용자 데이터", { user, account });
-      }
-      if (account.provider !== "credentials") {
-        console.log("✔️ 인증/인가된 사용자 데이터", { user, account, profile });
-      }
+      console.log("✔️ 인증/인가된 사용자 데이터", { user, account, profile });
+
+      // if (account.provider === "credentials") {
+      // }
+      // if (account.provider === "google") {
+      // }
+      // if (account.provider === "naver") {
+      // }
 
       console.log("🟢 로그인 성공");
       return true;

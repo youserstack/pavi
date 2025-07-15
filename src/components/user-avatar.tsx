@@ -9,33 +9,29 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { signOut } from "next-auth/react";
+import { Session } from "next-auth";
 import Link from "next/link";
 
 export default function UserAvatar({
   hasDropdownMenu,
-  user,
+  session: { user },
 }: {
   hasDropdownMenu?: boolean;
-  user: {
-    email?: string;
-    username: string;
-    image: string;
-  };
+  session: Session;
 }) {
   if (hasDropdownMenu) {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Avatar className="cursor-pointer hover:ring-2 /hover:ring-ring hover:ring-emerald-400 transition duration-300">
-            <AvatarImage src={user.image || "https://github.com/shadcn.png"} alt={"avatar"} />
-            <AvatarFallback>{user.username.slice(0, 1).toUpperCase() || "CN"}</AvatarFallback>
+            <AvatarImage src={user?.image || "https://github.com/shadcn.png"} alt={"avatar"} />
+            <AvatarFallback>{user?.name?.slice(0, 1)?.toUpperCase() || "CN"}</AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
 
         <DropdownMenuContent className="w-56 [&_*]:cursor-pointer">
           <DropdownMenuLabel className="hover:cursor-default">
-            {user.email || "example@gmail.com"}
+            {user?.email || "example@gmail.com"}
           </DropdownMenuLabel>
 
           <DropdownMenuSeparator />
@@ -60,8 +56,8 @@ export default function UserAvatar({
 
   return (
     <Avatar>
-      <AvatarImage src={user.image || "https://github.com/shadcn.png"} alt={"avatar"} />
-      <AvatarFallback>{user.username.slice(0, 1).toUpperCase() || "CN"}</AvatarFallback>
+      <AvatarImage src={user?.image || "https://github.com/shadcn.png"} alt={"avatar"} />
+      <AvatarFallback>{user?.name?.slice(0, 1)?.toUpperCase() || "CN"}</AvatarFallback>
     </Avatar>
   );
 }

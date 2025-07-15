@@ -18,10 +18,15 @@ export default function SignoutButton({
     | null
     | undefined;
 }) {
-  if (plain) return <button onClick={() => signOut()}>로그아웃</button>;
+  const handleClick = () => {
+    console.log("handleclick");
+    signOut();
+  };
+
+  if (plain) return <button onClick={handleClick}>로그아웃</button>;
 
   return (
-    <Button variant={variant} onClick={() => signOut()}>
+    <Button variant={variant} onClick={handleClick}>
       로그아웃
     </Button>
   );

@@ -5,16 +5,12 @@ import { getServerSession } from "next-auth";
 
 export default async function UserButtons() {
   const session = await getServerSession();
-  const user = {
-    email: session?.user?.email as string,
-    username: session?.user?.name as string,
-    image: session?.user?.image as string,
-  };
+  // console.log({ session });
 
   return (
     <div className="UserButtons hidden md:flex gap-4 items-center">
       {session ? (
-        <UserAvatar hasDropdownMenu user={user} />
+        <UserAvatar hasDropdownMenu session={session} />
       ) : (
         <>
           <SigninButton />
